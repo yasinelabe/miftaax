@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AssetSeeder::class,
             GuardianSeeder::class,
             BloodGroupSeeder::class,
+            StudentAddressSeeder::class,
             StudentSeeder::class,
             AcademicYearSeeder::class,
             ShiftsSeeder::class,

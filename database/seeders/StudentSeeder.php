@@ -25,6 +25,7 @@ class StudentSeeder extends Seeder
             'is_graduated' => 0,
             'fee_balance' => 0,
             'fee_amount' => 50,
+            'student_address_id' => 1,
         ]);
     }
 }
