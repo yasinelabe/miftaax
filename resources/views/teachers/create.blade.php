@@ -1,0 +1,16 @@
+@extends('layout.header')@section('content')<div  class="right_col" role="main"><div class=""><div class="page-title"><div class="title_left"><h3>Teacher</h3></div></div><div class="clearfix"></div><div class="row"><div class="col-md-12 "><div class="x_panel"><div class="x_title"><ul class="nav navbar-right panel_toolbox"><li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li><li><a class="close-link"><i class="fa fa-close"></i></a></li></ul><div class="clearfix"></div></div><div class="x_content"><br />
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="alert" class="alert alert-danger">
+                                            {{ $error }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif<form enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="{{ route('teachers.store') }}">@csrf<div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align" for="fullname">Fullname <span class="required">*</span></label><div class="col-sm-6"><input type="text" id="fullname" name="fullname" required="required" class="form-control "></div></div><div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align" for="salary">Salary <span class="required">*</span></label><div class="col-sm-6"><input type="text" id="salary" name="salary" required="required" class="form-control "></div></div><div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align" for="gender">Gender <span class="required">*</span></label><div class="col-sm-6"><p style="margin-top:6px;">
+               
+                <input type="radio" class="flat" name="gender" id="genderM" value="male" checked="" required /> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" class="flat" name="gender" id="genderF" value="female" /> Female 
+            </p>
+                </div></div><div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align" for="tell">Tell <span class="required">*</span></label><div class="col-sm-6"><input type="text" id="tell" name="tell" required="required" class="form-control "></div></div><div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align" for="blood_group_id">Blood group  <span class="required">*</span></label><div class="col-sm-6"><select class="form-control" name="blood_group_id"><option value="">Select Blood group </option>@foreach($blood_group_ids as $blood_group_id)<option value="{{ $blood_group_id->id }}">{{ $blood_group_id->name }}</option>@endforeach</select></div></div><div class="ln_solid"></div><div class="item form-group"><div class="col-6 offset-3"><button type="submit" class="btn btn-sm btn-success">Submit</button></div></div></form></div></div></div></div></div></div></div>@endsection
