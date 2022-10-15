@@ -31,6 +31,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherSubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentAddressController;
+use App\Http\Controllers\TeacherAttendanceController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -334,4 +335,28 @@ Route::controller(GradingController::class)->prefix("gradings")->middleware("aut
     Route::get("/{grading}/edit", "edit")->name(".edit");
     Route::post("/{grading}/update", "update")->name(".update");
     Route::get("/{grading}/delete", "destroy")->name(".delete");
-});Route::controller(StudentAddressController::class)->prefix("student_addresses")->middleware("auth")->name("student_addresses")->group(function () { Route::get("/", "index")->name(".index"); Route::get("/create", "create")->name(".create"); Route::post("/store", "store")->name(".store"); Route::get("/{studentaddress}/edit", "edit")->name(".edit"); Route::post("/{studentaddress}/update", "update")->name(".update"); Route::get("/{studentaddress}/delete", "destroy")->name(".delete"); }); Route::controller(StudentAddressController::class)->prefix("student_addresses")->middleware("auth")->name("student_addresses")->group(function () { Route::get("/", "index")->name(".index"); Route::get("/create", "create")->name(".create"); Route::post("/store", "store")->name(".store"); Route::get("/{studentaddress}/edit", "edit")->name(".edit"); Route::post("/{studentaddress}/update", "update")->name(".update"); Route::get("/{studentaddress}/delete", "destroy")->name(".delete"); }); 
+});
+Route::controller(StudentAddressController::class)->prefix("student_addresses")->middleware("auth")->name("student_addresses")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{studentaddress}/edit", "edit")->name(".edit");
+    Route::post("/{studentaddress}/update", "update")->name(".update");
+    Route::get("/{studentaddress}/delete", "destroy")->name(".delete");
+});
+Route::controller(StudentAddressController::class)->prefix("student_addresses")->middleware("auth")->name("student_addresses")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{studentaddress}/edit", "edit")->name(".edit");
+    Route::post("/{studentaddress}/update", "update")->name(".update");
+    Route::get("/{studentaddress}/delete", "destroy")->name(".delete");
+});
+Route::controller(TeacherAttendanceController::class)->prefix("teacher_attendances")->middleware("auth")->name("teacher_attendances")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{teacherattendance}/edit", "edit")->name(".edit");
+    Route::post("/{teacherattendance}/update", "update")->name(".update");
+    Route::get("/{teacherattendance}/delete", "destroy")->name(".delete");
+});
