@@ -87,7 +87,7 @@
                                                 <th>Id</th>
                                                 <th>Is absent</th>
                                                 <th>Teacher </th>
-                                                <th>Date</th>
+                                                <th>Created Date</th>
                                                 <th>Time in</th>
                                                 <th>Time out</th>
                                                 <th>Action</th>
