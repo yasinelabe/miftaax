@@ -105,7 +105,7 @@
                                         <li><a href="/exams">Exams</a></li>
                                         <li><a href="/exam_results">Exam Result</a></li>
                                         <li><a href="/exams/schedule">Exam Schedule</a></li>
-                                        <li><a href="/exams/get_marks_sheet">Get Marks Sheet</a></li>
+                                        <li><a href="#">Get Marks Sheet</a></li>
                                         <li><a href="#">Get Admit Card</a></li>
                                     </ul>
                                 </li>
