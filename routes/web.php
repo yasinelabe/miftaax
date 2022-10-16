@@ -355,6 +355,7 @@ Route::controller(StudentAddressController::class)->prefix("student_addresses")-
 });
 Route::controller(TeacherAttendanceController::class)->prefix("teacher_attendances")->middleware("auth")->name("teacher_attendances")->group(function () {
     Route::get("/", "index")->name(".index");
+    Route::post("/", "index")->name(".index");
     Route::get("/create", "create")->name(".create");
     Route::post("/store", "store")->name(".store");
     Route::get("/{teacherattendance}/edit", "edit")->name(".edit");

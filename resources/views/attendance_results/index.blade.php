@@ -123,7 +123,7 @@
                                                                 <span
                                                                     class="badge badge-danger">{{ $attendanceresult->attendance_result_status->name }}</span>
                                                             @else
-                                                              {{ $attendanceresult->attendance_result_status->name }}
+                                                                {{ $attendanceresult->attendance_result_status->name }}
                                                             @endif
 
                                                         </td>

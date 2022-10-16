@@ -76,6 +76,52 @@
                             </div>
                         @endif
 
+                        <form class="row" action="{{ route('teacher_attendances.index') }}" method="post">
+                            @csrf
+                            <div class="col-sm-6 col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label>Month</label><small class="req"> *</small>
+                                    <select name="month" id="" class="form-control" required>
+                                        <option value=""></option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3 col-md-12">
+                                <div class="form-group">
+                                    <label>Teacher</label><small class="req"> *</small>
+                                    <select id="class_room_id" name="teacher_id" class="form-control" required>
+                                        <option value="">Select</option>
+                                        @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 col-md-12">
+                                <div class="form-group">
+                                    <label>...</label>
+                                    <button type="submit" class="btn btn-success form-control"><i class="fa fa-search"></i>
+                                        Search</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
@@ -117,10 +163,6 @@
                                                                 onclick="initializeIframe('{{ route('teacher_attendances.edit', $teacherattendance->id) }}')"><i
                                                                     class="fa fa-pencil"></i> Add Clock Out </a>
                                                         @endif
-                                                        | <a href="javascript:void(0)" data-toggle="modal"
-                                                            data-target="#warningModal"
-                                                            onclick="delete_id({{ $teacherattendance->id }})"><i
-                                                                class="fa fa-trash-o"></i> Delete </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

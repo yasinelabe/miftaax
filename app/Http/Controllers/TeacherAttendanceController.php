@@ -10,11 +10,20 @@ use Carbon\Carbon;
 
 class TeacherAttendanceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $teacher_attendances = TeacherAttendance::whereDate('created_at', Carbon::today())->get();
         $list = true;
-        return view('teacher_attendances.index', compact('teacher_attendances', 'list'));
+        $teachers = Teacher::all();
+
+        if ($request->getMethod() == "POST") :
+            $month = $request->month;
+            $teacher = $request->teacher_id;
+
+            $teacher_attendances = TeacherAttendance::where('teacher_id',$teacher)->whereMonth('created_at',$month)->get();
+        endif;
+
+        return view('teacher_attendances.index', compact('teacher_attendances', 'teachers', 'list'));
     }
     public function create()
     {
