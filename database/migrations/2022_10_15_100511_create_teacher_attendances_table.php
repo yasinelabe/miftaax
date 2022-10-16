@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('teacher_attendances', function (Blueprint $table) {
             $table->id();
-            $table->time('time_in')->useCurrent();
-            $table->time('time_out')->useCurrent();
+            $table->time('time_in');
+            $table->time('time_out')->nullable();
             $table->foreignId('teacher_id')->constrained('teachers')->cascadeOnDelete();
             $table->boolean('is_absent')->default(0);
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

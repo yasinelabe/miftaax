@@ -87,6 +87,7 @@
                                                 <th>Id</th>
                                                 <th>Is absent</th>
                                                 <th>Teacher </th>
+                                                <th>Date</th>
                                                 <th>Time in</th>
                                                 <th>Time out</th>
                                                 <th>Action</th>
@@ -98,20 +99,29 @@
                                                     <td>{{ $teacherattendance->id }}</td>
                                                     @if ($teacherattendance->is_absent == 1)
                                                         <td>Yes</td>
+                                                        <td>{{ $teacherattendance->teacher->fullname }}</td>
+                                                        <td>{{ $teacherattendance->created_at }}</td>
+                                                        <td></td>
+                                                        <td></td>
                                                     @else
                                                         <td>No</td>
+                                                        <td>{{ $teacherattendance->teacher->fullname }}</td>
+                                                        <td>{{ $teacherattendance->created_at }}</td>
+                                                        <td>{{ $teacherattendance->time_in }}</td>
+                                                        <td>{{ $teacherattendance->time_out }}</td>
                                                     @endif
-                                                    <td>{{ $teacherattendance->teacher->name }}</td>
-                                                    <td>{{ $teacherattendance->time_in }}</td>
-                                                    <td>{{ $teacherattendance->time_out }}</td>
-                                                    <td><a href="#" data-toggle="modal"
-                                                            data-target=".bs-example-modal-lg"
-                                                            onclick="initializeIframe('{{ route('teacher_attendances.edit', $teacherattendance->id) }}')"><i
-                                                                class="fa fa-pencil"></i> Edit </a> | <a
-                                                            href="javascript:void(0)" data-toggle="modal"
+                                                    <td>
+                                                        @if ($teacherattendance->time_out == null && $teacherattendance->is_absent != 1)
+                                                            <a href="#" data-toggle="modal"
+                                                                data-target=".bs-example-modal-lg"
+                                                                onclick="initializeIframe('{{ route('teacher_attendances.edit', $teacherattendance->id) }}')"><i
+                                                                    class="fa fa-pencil"></i> Add Clock Out </a>
+                                                        @endif
+                                                        | <a href="javascript:void(0)" data-toggle="modal"
                                                             data-target="#warningModal"
                                                             onclick="delete_id({{ $teacherattendance->id }})"><i
-                                                                class="fa fa-trash-o"></i> Delete </a> </td>
+                                                                class="fa fa-trash-o"></i> Delete </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

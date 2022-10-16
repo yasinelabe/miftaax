@@ -37,8 +37,8 @@
                                 <div class="col-sm-6">
                                     <select class="form-control" name="is_absent">
                                         <option value="">--</option>
-                                        <option value="1">Yes</option>
                                         <option value="0">No</option>
+                                        <option value="1">Yes</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,18 +47,13 @@
                                 <div class="col-sm-6"><select class="form-control" name="teacher_id">
                                         <option value="">Select Teacher </option>
                                         @foreach ($teacher_ids as $teacher_id)
-                                            <option value="{{ $teacher_id->id }}">{{ $teacher_id->name }}</option>
+                                            <option value="{{ $teacher_id->id }}">{{ $teacher_id->fullname }}</option>
                                         @endforeach
                                     </select></div>
                             </div>
                             <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
                                     for="time_in">Time in <span class="required">*</span></label>
                                 <div class="col-sm-6"><input type="time" id="time_in" name="time_in"
-                                        required="required" class="form-control "></div>
-                            </div>
-                            <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
-                                    for="time_out">Time out <span class="required">*</span></label>
-                                <div class="col-sm-6"><input type="time" id="time_out" name="time_out"
                                         required="required" class="form-control "></div>
                             </div>
                             <div class="ln_solid"></div>
