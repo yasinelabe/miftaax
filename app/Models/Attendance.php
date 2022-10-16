@@ -17,4 +17,8 @@ class Attendance extends Model
     public function class_room(){
         return $this->belongsTo(ClassRoom::class,'class_room_id');
     }
+
+    public function attendance_results(){
+        return $this->hasMany(AttendanceResult::class);
+    }
 }

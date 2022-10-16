@@ -8,15 +8,39 @@ use App\Models\AttendanceResult;
 use App\Models\Attendance;
 use App\Models\Student;
 use App\Models\AttendanceResultStatus;
+use App\Repositories\ClassRoomRepository;
+use Carbon\Carbon;
 
 class AttendanceResultController extends Controller
 {
-    public function index()
+
+    protected $classRoomRepository;
+
+
+    public function __construct(ClassRoomRepository $classRoomRepository)
     {
-        $attendance_results = AttendanceResult::all();
-        $list = true;
-        return view('attendance_results.index', compact('attendance_results', 'list'));
+        $this->classRoomRepository = $classRoomRepository;
     }
+
+    public function index(Request $request)
+    {
+        $attendance_results = [];
+        $list = true;
+        $active_classes = $this->classRoomRepository->active_classes();
+
+        if ($request->getMethod() == "POST") :
+            $class_room = $request->class_room_id;
+            $attendance_date = $request->attendance_date;
+            
+            $attendance = Attendance::where(['attendance_date'=>$attendance_date,'class_room_id'=>$class_room])->get();
+
+            if($attendance->count() > 0){
+                $attendance_results = Attendance::find($attendance[0]->id)->attendance_results;
+            }
+        endif;
+        return view('attendance_results.index', compact('attendance_results', 'active_classes', 'list'));
+    }
+
     public function create()
     {
         $attendance_ids = Attendance::all();

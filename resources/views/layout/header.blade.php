@@ -127,7 +127,7 @@
                                         <li><a href="/attendance_result_statuses">Attendance Status</a></li>
                                         <li><a href="/leaves">Leaves</a></li>
                                         <li><a href="/teacher_attendances">Teacher Attendance</a></li>
-                                        <li><a href="/student_attendance_report">Student Attendance Report</a></li>
+                                        <li><a href="/attendance_results">Student Attendance Report</a></li>
                                         <li><a href="/teacher_attendance_report">Teacher Attendance Report</a></li>
                                     </ul>
                                 </li>

@@ -25,27 +25,6 @@
         </div>
     </div>
 
-    {{-- warning modal before delete --}}
-    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form class="modal-content" method="get" id="delete">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete this AttendanceResult?</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-danger" id="delete">Delete</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- page content -->
     <div class="right_col" role="main">
@@ -55,8 +34,7 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2><a href="/attendance_results/create" class="btn btn-sm btn-success"><i
-                                    class="fa fa-plus text-white"></i> AttendanceResult</a></h2>
+                        <h2>Student Attendance Report</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -69,51 +47,104 @@
                         @if (Session::has('success'))
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div id="alert" class="alert alert-success text-white  alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>{{ Session::get('success') }}</strong>
-                        </div>
+                                    <div id="alert" class="alert alert-success text-white  alert-dismissible"
+                                        role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <strong>{{ Session::get('success') }}</strong>
+                                    </div>
                                 </div>
                             </div>
                         @endif
+                        <form class="row" action="{{ route('attendance_results.index') }}" method="post">
+                            @csrf
+                            <div class="col-sm-6 col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label>Date</label><small class="req"> *</small>
+                                    <input type="date" name="attendance_date" class="form-control">
+                                </div>
+                            </div>
 
+                            <div class="col-sm-6 col-lg-3 col-md-12">
+                                <div class="form-group">
+                                    <label>Class</label><small class="req"> *</small>
+                                    <select id="class_room_id" name="class_room_id" class="form-control" required>
+                                        <option value="">Select</option>
+                                        @foreach ($active_classes as $class_room)
+                                            <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 col-md-12">
+                                <div class="form-group">
+                                    <label>...</label>
+                                    <button type="submit" class="btn btn-success form-control"><i class="fa fa-search"></i>
+                                        Search</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <br />
+                        <br />
+                        <div class="divider"></div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
+
+
+
                                     <table id="datatable-buttons"
                                         class="table jambo_table  table-striped  table-bordered dataTable no-footer dtr-inline"
                                         style="width: 100%;" role="grid" aria-describedby="datatable-buttons_info">
                                         <thead>
                                             <tr role="row">
                                                 <th>Id</th>
-                                                <th>Attendance </th>
+                                                <th>Attendance Date</th>
                                                 <th>Student ID</th>
                                                 <th>Student Name </th>
                                                 <th>Attendance result status </th>
                                                 <th>Note</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($attendance_results as $attendanceresult)
-                                                <tr role="row" class="odd">
-                                                    <td>{{ $attendanceresult->id }}</td>
-                                                    <td>{{ $attendanceresult->attendance->attendance_date . '-' . $attendanceresult->attendance->class_room->name }}
+                                            @if (gettype($attendance_results) != 'array')
+                                                @foreach ($attendance_results as $attendanceresult)
+                                                    <tr role="row" class="odd">
+                                                        <td>{{ $attendanceresult->id }}</td>
+                                                        <td>{{ $attendanceresult->attendance->attendance_date . '-' . $attendanceresult->attendance->class_room->name }}
+                                                        </td>
+                                                        <td>{{ $attendanceresult->student->id }}</td>
+                                                        <td>{{ $attendanceresult->student->fullname }}</td>
+                                                        <td>
+                                                            @if ($attendanceresult->attendance_result_status->name == 'Absent')
+                                                                <span
+                                                                    class="badge badge-danger">{{ $attendanceresult->attendance_result_status->name }}</span>
+                                                            @else
+                                                              {{ $attendanceresult->attendance_result_status->name }}
+                                                            @endif
+
+                                                        </td>
+                                                        <td>{{ $attendanceresult->note }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td>
                                                     </td>
-                                                    <td>{{ $attendanceresult->student->id }}</td>
-                                                    <td>{{ $attendanceresult->student->fullname }}</td>
-                                                    <td>{{ $attendanceresult->attendance_result_status->name }}</td>
-                                                    <td>{{ $attendanceresult->note }}</td>
-                                                    <td><a href="#" data-toggle="modal"
-                                                            data-target=".bs-example-modal-lg"
-                                                            onclick="initializeIframe('{{ route('attendance_results.edit', $attendanceresult->id) }}')"><i
-                                                                class="fa fa-pencil"></i> Edit </a> | <a
-                                                            href="javascript:void(0)" data-toggle="modal"
-                                                            data-target="#warningModal"
-                                                            onclick="delete_id({{ $attendanceresult->id }})"><i
-                                                                class="fa fa-trash-o"></i> Delete </a> </td>
+                                                    <td></td>
+                                                    <td>
+                                                        <h5>No results found</h5>
+                                                    </td>
+
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
-                                            @endforeach
+                                            @endif
+
                                         </tbody>
                                     </table>
                                 </div>

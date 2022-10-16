@@ -29,6 +29,7 @@ class AttendanceController extends Controller
         $list = true;
         return view('attendances.index', compact('attendances', 'list'));
     }
+    
     public function create()
     {
         $class_room_ids = $this->classRoomRepository->active_classes();
@@ -79,4 +80,7 @@ class AttendanceController extends Controller
         session()->flash('success', 'Deleted Successfully');
         return redirect()->route('attendances.index');
     }
+
+
+    
 }
