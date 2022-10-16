@@ -124,7 +124,6 @@
                                     <a><i class="fa fa-eye"></i> Attendance <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/attendances">Make Attendance</a></li>
-                                        <li><a href="/attendance_results">Attendance Result</a></li>
                                         <li><a href="/attendance_result_statuses">Attendance Status</a></li>
                                         <li><a href="/leaves">Leaves</a></li>
                                         <li><a href="/teacher_attendances">Teacher Attendance</a></li>
