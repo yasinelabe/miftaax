@@ -81,3 +81,13 @@ X = 50
 
 SCORE = (4 * MARKS ) / 100
 GRADE POINTS = CREDIT_HOURS * SCORE
+
+
+Student profile Information
+
+    - Student Details
+    - Student Parent
+    - Student Siblings
+    - Student Fee Information  / Academic year
+    - Student Exams / Academic Year
+    - Student Attendance Map Report
