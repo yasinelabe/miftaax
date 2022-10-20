@@ -1,104 +1,101 @@
 @extends('layout.header') @section('content')
     <!-- page content -->
     <div class="right_col" role="main">
-        <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Student profile</h3>
-                </div>
 
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="clearfix"></div>
 
-            <div class="clearfix"></div>
-
-            <div class="row">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
                 <div class="col-md-12 col-sm-12 ">
-                    <div class="x_content">
-                        <div class="col-sm-3">
+                    <div class="x_panel">
+                        <div class="x_title">
 
-                            <div class="card">
-                                <div class="card-body">
-
-                                    <div class="profile_img text-center w-100">
-                                        <div id="crop-avatar">
-                                            <!-- Current avatar -->
-                                            <img class="img-responsive avatar-view"
-                                                src="/images/nophoto-{{ $student->gender }}.png" alt="Avatar"
-                                                title="Change the avatar">
-                                        </div>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <ul class="list-group user_data">
-                                        <li class="list-group-item">Name: {{ $student->fullname }}</li>
-                                        <li class="list-group-item">Address:
-                                            {{ $student->student_address->area }}
-                                        </li>
-                                        <li class="list-group-item">Gender:
-                                            {{ $student->gender }}
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            DOB: {{ $student->date_of_birth }}
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            Joined: {{ $student->joined_date }}
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            Blood G: {{ $student->blood_group->name }}
-                                        </li>
-                                        <li class="list-group-item">
-                                            Fee: {{ $student->fee_amount }}
-                                        </li>
-                                        <li class="list-group-item">
-                                            Balance: {{ $student->fee_balance }}
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            Graduated: {{ $student->is_graduated == 1 ? 'Yes' : 'No' }}
-                                        </li>
-                                        <li class="list-group-item">
-                                            Active: {{ $student->is_active == 1 ? 'Yes' : 'No' }}
-                                        </li>
-                                        <li class="list-group-item">Class Rooms: @foreach ($student->class_rooms as $class_room)
-                                                {{ $class_room->name }},
-                                            @endforeach
-                                        </li>
-
-                                    </ul>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h2>Student profile</h2>
                                 </div>
                             </div>
 
-
-
                         </div>
-                        <div class="col-md-9 col-sm-9 ">
+                        <div class="x_content">
 
-                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#tab_content1" id="home-tab"
-                                            role="tab" data-toggle="tab" aria-expanded="true">Details</a>
+                            <div class="col-sm-3">
+
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="profile_img text-center w-100">
+                                            <div id="crop-avatar">
+                                                <!-- Current avatar -->
+                                                <img class="img-responsive avatar-view"
+                                                    src="/images/nophoto-{{ $student->gender }}.png" alt="Avatar"
+                                                    title="Change the avatar">
+                                            </div>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <ul class="list-group user_data">
+                                            <li class="list-group-item">Name: {{ $student->fullname }}</li>
+                                            <li class="list-group-item">Address:
+                                                {{ $student->student_address->area }}
+                                            </li>
+                                            <li class="list-group-item">Gender:
+                                                {{ $student->gender }}
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                DOB: {{ $student->date_of_birth }}
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                Joined: {{ $student->joined_date }}
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                Blood G: {{ $student->blood_group->name }}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Fee: {{ $student->fee_amount }}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Balance: {{ $student->fee_balance }}
+                                            </li>
+
+                                            <li class="list-group-item">
+                                                Graduated: {{ $student->is_graduated == 1 ? 'Yes' : 'No' }}
+                                            </li>
+                                            <li class="list-group-item">
+                                                Active: {{ $student->is_active == 1 ? 'Yes' : 'No' }}
+                                            </li>
+                                            <li class="list-group-item">Class Rooms: @foreach ($student->class_rooms as $class_room)
+                                                    {{ $class_room->name }},
+                                                @endforeach
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-9 col-sm-9 ">
+
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+                                            role="tab" aria-controls="home" aria-selected="true">Details</a>
                                     </li>
-                                    <li role="presentation" class=""><a href="#tab_content2" role="tab"
-                                            id="profile-tab" data-toggle="tab" aria-expanded="false">Fees</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                                            role="tab" aria-controls="profile" aria-selected="false">Fees</a>
                                     </li>
-                                    <li role="presentation" class=""><a href="#tab_content3" role="tab"
-                                            id="profile-tab2" data-toggle="tab" aria-expanded="false">Exam results</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+                                            role="tab" aria-controls="contact" aria-selected="false">Exam results</a>
                                     </li>
                                 </ul>
-                                <div id="myTabContent" class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active " id="tab_content1"
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel"
                                         aria-labelledby="home-tab">
                                         <div class="tshadow mb25 bozero">
                                             <h3 class="pagetitleh2">Parent / Guardian Details </h3>
@@ -182,10 +179,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content2"
-                                        aria-labelledby="profile-tab">
-
-                                        <!-- start user projects -->
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <table class="table table-bordered table-striped no-margin">
                                             <thead>
                                                 <tr>
@@ -247,14 +241,11 @@
 
                                             </tbody>
                                         </table>
-                                        <!-- end user projects -->
-
                                     </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content3"
-                                        aria-labelledby="profile-tab">
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         @foreach ($student->exam_group_items as $exam)
                                             <table class="table table-bordered">
-                                                <thead class="btn-success text-white">
+                                                <thead>
                                                     <tr>
                                                         <th>{{ $exam->exam->name }}</th>
                                                         <th>{{ $exam->academic_year->year }}</th>
@@ -278,10 +269,12 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </table><br/>
+                                            </table><br />
                                         @endforeach
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
