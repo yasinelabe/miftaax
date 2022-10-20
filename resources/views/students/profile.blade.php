@@ -262,9 +262,9 @@
                                                     @foreach ($student->exam_results as $result)
                                                         <tr>
                                                             <td>{{ $result->exam_subject->subject->name }}</td>
-                                                            <td>{{ $result->marks }}</td>
+                                                            <td>{{ number_format((float) $result->marks, 2, '.', '') }}</td>
                                                             <td>@php
-                                                                echo App\Models\Grading::find(App\Models\Grading::get_grading_id($result->marks, $result->exam_subject->max_marks))->grade;
+                                                                echo App\Models\Grading::find(App\Models\Grading::get_grading_id(number_format((float) $result->marks, 2, '.', ''), $result->exam_subject->max_marks))->grade;
                                                             @endphp</td>
                                                         </tr>
                                                     @endforeach

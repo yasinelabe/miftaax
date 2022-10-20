@@ -20,7 +20,7 @@ class ExamResultImport implements ToModel, WithStartRow, WithHeadingRow, WithMul
     public function model(array $row)
     {
         if ($row["marks"] !=  '' && $row["subject"] != '' && $row['studentid'] != '' && $row['exam'] != '') {
-            $subject = ExamSubject::where(['subject_id' => $row["subject"], 'exam_group_item_id' => $row["exam"]])->get();
+            $subject = ExamSubject::where(['id' => $row["subject"]])->get();
             $min_marks = isset($subject[0]) ? $subject[0]->min_marks : 'x';
             $max_marks = isset($subject[0]) ? $subject[0]->max_marks : 'x';
 
@@ -28,7 +28,7 @@ class ExamResultImport implements ToModel, WithStartRow, WithHeadingRow, WithMul
                 return   redirect()->back()->with('error', 'Invalid Subject');
             }
             
-            if (($row["marks"] < $min_marks) || ($row["absent"] == "yes")) {
+            if (($row["marks"] < (int)$min_marks) || ($row["absent"] == "yes")) {
                 $status = 0;
             } else {
                 $status = 1;
