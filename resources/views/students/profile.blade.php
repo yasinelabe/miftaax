@@ -186,7 +186,7 @@
                                         aria-labelledby="profile-tab">
 
                                         <!-- start user projects -->
-                                        <table class="data table table-striped no-margin">
+                                        <table class="table table-bordered table-striped no-margin">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -278,7 +278,7 @@
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
-                                            </table>
+                                            </table><br/>
                                         @endforeach
                                     </div>
                                 </div>
