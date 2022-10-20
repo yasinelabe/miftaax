@@ -26,8 +26,8 @@ class ExamResult extends Model
     public function student(){
         return $this->belongsTo(Student::class);
     }
-    public function subject(){
-        return $this->belongsTo(Subject::class);
+    public function exam_subject(){
+        return $this->belongsTo(ExamSubject::class,'subject_id');
     }
     public function grading(){
         return $this->belongsTo(Grading::class,'grading_id');

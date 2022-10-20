@@ -27,5 +27,6 @@ class ClassRoom extends Model
     public function students(){
         return $this->belongsToMany(Student::class,'student_class_rooms');
     }
-   
+
+    
 }

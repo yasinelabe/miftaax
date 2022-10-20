@@ -87,7 +87,7 @@ class ExamResultController extends Controller
         $students = $examgroupitem->exam_students->map(function ($examstudent) use ($classroom, $examgroupitem) {
             if ($examstudent->student->hasClassRoom($classroom->id)) {
                 $examstudent->student->exam_results =  $examstudent->student->exam_results->map(function ($result) use ($examgroupitem) {
-                    $result->subject = $result->subject;
+                    $result->exam_subject =  $result->exam_subject->subject;
                     return $result->exam_group_item_id == $examgroupitem->id;
                 });
                 return  $examstudent->student;

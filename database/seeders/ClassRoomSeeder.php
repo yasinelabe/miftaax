@@ -18,7 +18,7 @@ class ClassRoomSeeder extends Seeder
         DB::table('class_rooms')->insert([
             [
                 'name' => '1A-2022',
-                'academic_year_id'=>1,
+                'academic_year_id'=>5,
                 'shift_id' => 1
             ],
         ]);

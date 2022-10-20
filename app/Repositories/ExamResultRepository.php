@@ -13,7 +13,7 @@ class ExamResultRepository
 
     public function store_in_batch($request)
     {
-        $subject = ExamSubject::where(['subject_id' => $request->subject_id, 'exam_group_item_id' => $request->exam_group_item_id])->get();
+        $subject = ExamSubject::where(['id' => $request->subject_id, 'exam_group_item_id' => $request->exam_group_item_id])->get();
         $min_marks = isset($subject[0]) ? $subject[0]->min_marks : 'x';
         $max_marks = isset($subject[0]) ? $subject[0]->max_marks : 'x';
         $min_marks = isset($subject[0]) ? $subject[0]->min_marks : 'x';
@@ -89,7 +89,7 @@ class ExamResultRepository
                 $students = $examgroupitem->exam_students->map(function ($examstudent) use ($classroom, $examgroupitem) {
                     if ($examstudent->student->hasClassRoom($classroom->id)) {
                         $examstudent->student->exam_results =  $examstudent->student->exam_results->map(function ($result) use ($examgroupitem) {
-                            $result->subject = $result->subject;
+                            $result->exam_subject =  $result->exam_subject->subject;
                             if ($result->exam_group_item_id == $examgroupitem->id) {
                                 return $result;
                             }
@@ -118,7 +118,7 @@ class ExamResultRepository
                 $students = $examgroupitem->exam_students->map(function ($examstudent) use ($classroom, $examgroupitem) {
                     if ($examstudent->student->hasClassRoom($classroom->id)) {
                         $examstudent->student->exam_results =  $examstudent->student->exam_results->map(function ($result) use ($examgroupitem) {
-                            $result->subject = $result->subject;
+                            $result->exam_subject =  $result->exam_subject->subject;
                             if ($result->exam_group_item_id == $examgroupitem->id) {
                                 return $result;
                             }

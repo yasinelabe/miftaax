@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('exam_group_item_id')->constrained('exams')->cascadeOnDelete();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
-            $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete();
+            $table->foreignId('subject_id')->constrained('exam_subjects')->cascadeOnDelete();
             $table->string('marks');
             $table->string('note')->nullable()->default(NULL);
             $table->boolean('is_absent')->default(0);

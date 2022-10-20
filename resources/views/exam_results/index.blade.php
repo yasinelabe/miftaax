@@ -147,7 +147,7 @@
                                                         @endphp
                                                         @foreach ($student->exam_results as $result)
                                                             @php
-                                                                array_push($results, $result->subject->id);
+                                                                array_push($results, $result->exam_subject->id);
                                                             @endphp
                                                         @endforeach
 
@@ -184,7 +184,7 @@
                                                             @endif
                                                         @else
                                                             @foreach ($student->exam_results as $result)
-                                                                @if ($result->subject->id == $th[0])
+                                                                @if ($result->exam_subject->id == $th[0])
                                                                     <td>{{ $result->marks . ' (' . $result->grading->grade . ')' }}
                                                                         <br /><small>{{ $result->note }}</small>
                                                                     </td>

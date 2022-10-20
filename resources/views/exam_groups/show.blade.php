@@ -499,7 +499,7 @@
                     <td>${subj.credit_hours}</td>
                     <td class="">${subj.max_marks}</td>
                     <td class="">${subj.min_marks}</td>
-                    <td class="text-center" ><a onclick="initSubjectMarks('${s.name}',${subj.subject_id},${itemid})" class="text-black" data-toggle="tooltip" title="Add marks" href="#"><i class="fa fa-calendar"></i></a></td>
+                    <td class="text-center" ><a onclick="initSubjectMarks('${s.name}',${subj.id},${itemid})" class="text-black" data-toggle="tooltip" title="Add marks" href="#"><i class="fa fa-calendar"></i></a></td>
                 </tr>`
                 }
             })

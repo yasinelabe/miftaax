@@ -20,4 +20,13 @@ class AcademicYear extends Model
     {
         return $this->hasMany(ClassRoom::class,'academic_year_id');
     }
+
+
+    public function students(){
+        return $this->hasManyThrough(StudentClassRoom::class,ClassRoom::class);
+    }
+
+    public function fees(){
+        return $this->hasMany(Fee::class);
+    }
 }

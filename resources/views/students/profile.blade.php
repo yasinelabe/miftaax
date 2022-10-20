@@ -169,9 +169,11 @@
                                                                     <td>Active:
                                                                         {{ $student->is_active == 1 ? 'Yes' : 'No' }}</td>
                                                                 </tr>
-                                                                <tr><td>Class Rooms: @foreach ($child->class_rooms as $class_room)
-                                                                        {{ $class_room->name }},
-                                                                    @endforeach</td>
+                                                                <tr>
+                                                                    <td>Class Rooms: @foreach ($child->class_rooms as $class_room)
+                                                                            {{ $class_room->name }},
+                                                                        @endforeach
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -189,6 +191,7 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Fee</th>
+                                                    <th>Academic Year</th>
                                                     <th>Type</th>
                                                     <th>Amount</th>
                                                     <th>Balance</th>
@@ -202,10 +205,8 @@
                                                     <tr>
                                                         <td>{{ $row->id }}</td>
                                                         <td>{{ $row->fee->name }}</td>
-
-
+                                                        <td>{{ $row->fee->academic_year->year }}</td>
                                                         <td>
-
                                                             @if ($row->transaction_type == 'payment')
                                                                 <span class="badge badge-success">
                                                                     {{ $row->transaction_type }}
@@ -215,9 +216,6 @@
                                                                     {{ $row->transaction_type }}
                                                                 </span>
                                                             @endif
-
-
-
                                                         </td>
 
                                                         <td>{{ $row->amount }}</td>
@@ -254,10 +252,34 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab_content3"
                                         aria-labelledby="profile-tab">
-                                        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin
-                                            coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next
-                                            level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                                            photo booth letterpress, commodo enim craft beer mlkshk </p>
+                                        @foreach ($student->exam_group_items as $exam)
+                                            <table class="table table-bordered">
+                                                <thead class="btn-success text-white">
+                                                    <tr>
+                                                        <th>{{ $exam->exam->name }}</th>
+                                                        <th>{{ $exam->academic_year->year }}</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Subject</th>
+                                                        <th>Marks</th>
+                                                        <th>Grade</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    @foreach ($student->exam_results as $result)
+                                                        <tr>
+                                                            <td>{{ $result->exam_subject->subject->name }}</td>
+                                                            <td>{{ $result->marks }}</td>
+                                                            <td>@php
+                                                                echo App\Models\Grading::find(App\Models\Grading::get_grading_id($result->marks, $result->exam_subject->max_marks))->grade;
+                                                            @endphp</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
