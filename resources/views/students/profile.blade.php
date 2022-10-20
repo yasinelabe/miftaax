@@ -86,19 +86,25 @@
                                             role="tab" aria-controls="home" aria-selected="true">Details</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                            role="tab" aria-controls="profile" aria-selected="false">Fees</a>
+                                        <a class="nav-link" id="fees-tab" data-toggle="tab" href="#fees" role="tab"
+                                            aria-controls="fees" aria-selected="false">Fees</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact"
-                                            role="tab" aria-controls="contact" aria-selected="false">Exam results</a>
+                                        <a class="nav-link" id="results-tab" data-toggle="tab" href="#results"
+                                            role="tab" aria-controls="results" aria-selected="false">Exam results</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="attendance-tab" data-toggle="tab" href="#attendance"
+                                            role="tab" aria-controls="attendance" aria-selected="false">Attendance</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel"
                                         aria-labelledby="home-tab">
+                                        <br />
+                                        <br />
                                         <div class="tshadow mb25 bozero">
-                                            <h3 class="pagetitleh2">Parent / Guardian Details </h3>
+                                            <h5 class="pagetitleh2">Parent / Guardian Details </h5>
                                             <div class="table-responsive around10 pt10">
                                                 <table class="table table-hover table-striped tmb0">
                                                     <tbody>
@@ -119,7 +125,7 @@
                                             </div>
                                         </div>
                                         <div class="tshadow mb25 bozero">
-                                            <h3 class="pagetitleh2">Siblings </h3>
+                                            <h5 class="pagetitleh2">Siblings </h5>
                                             <div class="table-responsive around10 pt10">
                                                 @if ($student->guardian->children->count() == 1)
                                                     <p>No siblings are registered</p>
@@ -179,7 +185,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="tab-pane fade" id="fees" role="tabpanel" aria-labelledby="profile-tab">
+                                        <br />
+                                        <br />
                                         <table class="table table-bordered table-striped no-margin">
                                             <thead>
                                                 <tr>
@@ -242,7 +250,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="contact-tab">
+                                        <br />
+                                        <br />
                                         @foreach ($student->exam_group_items as $exam)
                                             <table class="table table-bordered">
                                                 <thead>
@@ -262,7 +272,8 @@
                                                     @foreach ($student->exam_results as $result)
                                                         <tr>
                                                             <td>{{ $result->exam_subject->subject->name }}</td>
-                                                            <td>{{ number_format((float) $result->marks, 2, '.', '') }}</td>
+                                                            <td>{{ number_format((float) $result->marks, 2, '.', '') }}
+                                                            </td>
                                                             <td>@php
                                                                 echo App\Models\Grading::find(App\Models\Grading::get_grading_id(number_format((float) $result->marks, 2, '.', ''), $result->exam_subject->max_marks))->grade;
                                                             @endphp</td>
@@ -271,6 +282,12 @@
                                                 </tbody>
                                             </table><br />
                                         @endforeach
+                                    </div>
+                                    <div class="tab-pane fade" id="attendance" role="tabpane1"
+                                        aria-labelledby="attendance-tab">
+                                        <br />
+                                        <br />
+                                       
                                     </div>
                                 </div>
 
