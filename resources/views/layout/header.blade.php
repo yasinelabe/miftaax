@@ -92,8 +92,7 @@
                                         
                                         <li><a href="/teacher_subjects">Teacher Subject Mapping</a></li>
                                         <li><a href="/class_room_subjects">Class Subject Mapping</a></li>
-                                        <li><a href="/teacher_time_table">Teacher Time Table</a></li>
-                                        <li><a href="/time_tables">Class Time Table</a></li>
+                                        <li><a href="/schedules">Class Time Table</a></li>
                                     </ul>
                                 </li>
                                 <li>

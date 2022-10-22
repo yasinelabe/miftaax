@@ -23,11 +23,20 @@ class ScheduleController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $schedules = Schedule::all();
+        $schedules = [];
+
+        if($request->getMethod() == 'POST'):
+            $this->validate($request, ['class_room_id' => 'required',]);
+            $schedules = Schedule::where(['class_room_id'=>$request->class_room_id])->get();
+        endif;
+
         $list = true;
-        return view('schedules.index', compact('schedules', 'list'));
+        $class_rooms = $this->classRoomRepository->active_classes();
+
+        
+        return view('schedules.index', compact('schedules', 'list','class_rooms'));
     }
     public function create(Request $request)
     {

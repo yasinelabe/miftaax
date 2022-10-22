@@ -365,6 +365,7 @@ Route::controller(TeacherAttendanceController::class)->prefix("teacher_attendanc
 });
 Route::controller(ScheduleController::class)->prefix("schedules")->middleware("auth")->name("schedules")->group(function () {
     Route::get("/", "index")->name(".index");
+    Route::post("/", "index")->name(".index");
     Route::get("/create", "create")->name(".create");
     Route::post("/create", "create")->name(".create");
     Route::post("/store", "store")->name(".store");
