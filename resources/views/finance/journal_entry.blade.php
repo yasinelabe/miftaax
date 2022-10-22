@@ -29,10 +29,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    {{-- display success messages --}}
-                    <div class="alert alert-success alert-block" id="success-message" style="display:none;">
-
-                    </div>
+                  
                     <div class="x_content">
                         <div class="row">
                             <div class="col-md-12">
