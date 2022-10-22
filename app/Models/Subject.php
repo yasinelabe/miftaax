@@ -22,4 +22,8 @@ class Subject extends Model
     function exam_results(){
         return $this->hasMany(ExamResult::class,'subject_id');
     }
+
+    function teachers(){
+        return $this->belongsToMany(Teacher::class,'teacher_subjects');
+    }
 }

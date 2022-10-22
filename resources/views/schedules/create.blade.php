@@ -50,7 +50,8 @@
                             <div class="col-sm-6 col-lg-3 col-md-12">
                                 <div class="form-group">
                                     <label>...</label>
-                                    <button type="submit" class="btn btn-success form-control"><i class="fa fa-search"></i>
+                                    <button type="submit" class="btn btn-success form-control"><i
+                                            class="fa fa-search"></i>
                                         Search</button>
                                 </div>
                             </div>
@@ -75,8 +76,8 @@
                                     aria-controls="monday" aria-selected="false">Monday</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="tuesday-tab" data-toggle="tab" href="#tuesday"
-                                    role="tab" aria-controls="tuesday" aria-selected="false">Tuesday</a>
+                                <a class="nav-link" id="tuesday-tab" data-toggle="tab" href="#tuesday" role="tab"
+                                    aria-controls="tuesday" aria-selected="false">Tuesday</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="wednesday-tab" data-toggle="tab" href="#wednesday"
@@ -92,43 +93,362 @@
                             </li>
                         </ul>
 
-                        <div class="tab-content" id="myTabContent">
+                        <form action="{{ route('schedules.store') }}" method="post" class="tab-content"
+                            id="myTabContent">
+                            @csrf
                             <div class="tab-pane fade show active" id="saturday" role="tabpanel"
                                 aria-labelledby="saturday-tab">
                                 <br />
                                 <br />
+
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            <input type="hidden" name="class_room_id"
+                                                value="{{ $class_room_subject->class_room_id }}">
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="saturday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="saturday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="saturday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="saturday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane fade show active" id="sunday" role="tabpanel"
-                                aria-labelledby="sunday-tab">
+                            <div class="tab-pane" id="sunday" role="tabpane2" aria-labelledby="sunday-tab">
                                 <br />
                                 <br />
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="sunday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="sunday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="sunday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="sunday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
                             </div>
-                            <div class="tab-pane fade show active" id="monday" role="tabpanel"
-                                aria-labelledby="monday-tab">
+                            <div class="tab-pane" id="monday" role="tabpane3" aria-labelledby="monday-tab">
                                 <br />
                                 <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="monday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="monday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="monday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="monday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane fade show active" id="tuesday" role="tabpanel"
-                                aria-labelledby="tuesday-tab">
+                            <div class="tab-pane" id="tuesday" role="tabpane4" aria-labelledby="tuesday-tab">
                                 <br />
                                 <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="tuesday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="tuesday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="tuesday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="tuesday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane fade show active" id="wednesday" role="tabpanel"
-                                aria-labelledby="wednesday-tab">
+                            <div class="tab-pane" id="wednesday" role="tabpane5" aria-labelledby="wednesday-tab">
                                 <br />
                                 <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="wednesday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="wednesday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="wednesday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="wednesday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane fade show active" id="thrustday" role="tabpanel"
-                                aria-labelledby="thrustday-tab">
+                            <div class="tab-pane" id="thrustday" role="tabpane6" aria-labelledby="thrustday-tab">
                                 <br />
                                 <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="thrustday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="thrustday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="thrustday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="thrustday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="tab-pane fade show active" id="friday" role="tabpanel"
-                                aria-labelledby="friday-tab">
+                            <div class="tab-pane" id="friday" role="tabpane7" aria-labelledby="friday-tab">
                                 <br />
                                 <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Time from</th>
+                                            <th>Time to</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($class_room_subjects as $class_room_subject)
+                                            @foreach ($class_room_subject->subject_group->items as $subject_group_item)
+                                                <tr>
+                                                    <td>{{ $subject_group_item->subject->name }}
+                                                        <input type="hidden" name="friday_subjects[]"
+                                                            value="{{ $subject_group_item->subject_id }}">
+                                                    </td>
+                                                    <td>
+                                                        <select name="friday_teacher_ids[]" required
+                                                            class="form-control">
+                                                            @foreach ($subject_group_item->subject->teachers as $teacher)
+                                                                <option value="{{ $teacher->id }}">
+                                                                    {{ $teacher->fullname }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" class="form-control"
+                                                            name="friday_time_ins[]" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="time" name="friday_time_outs[]" required
+                                                            class="form-control">
+                                                    </td>
+                                                    <td>
+                                                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
+
+                            <div class="text-right">
+                                <button class="btn-sm btn btn-success"><i class="fa fa-save"></i> Save</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -136,4 +456,10 @@
     </div>
 </div>
 </div>
+
+<script>
+    $(document).on('click', '.remove', function() {
+        $(this).closest('tr').remove();
+    });
+</script>
 @endsection

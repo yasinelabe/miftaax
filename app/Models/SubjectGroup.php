@@ -17,4 +17,6 @@ class SubjectGroup extends Model
     public function items(){
         return $this->hasMany(SubjectGroupItem::class,'subject_group_id');
     }
+
+    
 }

@@ -90,6 +90,7 @@
                                                 <th>Id</th>
                                                 <th>Name</th>
                                                 <th>Code</th>
+                                                <th>Teachers</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -99,6 +100,11 @@
                                                     <td>{{ $subject->id }}</td>
                                                     <td>{{ $subject->name.'('.$subject->code.')'  }}</td>
                                                     <td>{{ $subject->code }}</td>
+                                                    <td>
+                                                        @foreach ($subject->teachers as $teacher)
+                                                                {{$teacher->fullname}},
+                                                        @endforeach
+                                                    </td>
                                                     <td><a href="#" data-toggle="modal"
                                                             data-target=".bs-example-modal-lg"
                                                             onclick="initializeIframe('{{ route('subjects.edit', $subject->id) }}')"><i
