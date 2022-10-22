@@ -23,4 +23,8 @@ class Teacher extends Model
     {
         return $this->belongsTo(BloodGroup::class, 'blood_group_id');
     }
+
+    public function subjects(){
+        return $this->hasMany(TeacherSubject::class);
+    }
 }
