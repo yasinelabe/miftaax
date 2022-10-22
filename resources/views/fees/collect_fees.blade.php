@@ -79,38 +79,141 @@
                         @if (Session::has('success'))
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div id="alert" class="alert alert-success text-white  alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>{{ Session::get('success') }}</strong>
-                        </div>
+                                    <div id="alert" class="alert alert-success text-white  alert-dismissible"
+                                        role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <strong>{{ Session::get('success') }}</strong>
+                                    </div>
                                 </div>
                             </div>
                         @endif
 
-                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab"
-                                        aria-expanded="true" class="active" aria-selected="true">Collect
-                                        By Student</a>
-                                </li>
-                                <li role="presentation" class=""><a href="#tab_content2" role="tab"
-                                        id="profile-tab" data-toggle="tab" aria-expanded="false">Collect By Class</a>
-                                </li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="tab_content1" aria-labelledby="home-tab">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">Collect
+                                    By Student</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="fees-tab" data-toggle="tab" href="#fees" role="tab"
+                                    aria-controls="fees" aria-selected="false">Collect By Class</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <br />
+                                <br />
+
+                                <form class="card-body" action="{{ route('fees.save_student_payment') }}" method="post">
+                                    @csrf
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="from_marks">Fee
+                                            <span class="required">*</span></label>
+                                        <div class="col-sm-6">
+                                            <select name="fee_id" class="form-control">
+                                                <option value="">-Fee-</option>
+                                                @foreach ($fees as $fee)
+                                                    <option value="{{ $fee->id }}">
+                                                        {{ $fee->description . $fee->month }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="from_marks">Class
+                                            <span class="required">*</span></label>
+                                        <div class="col-sm-6">
+                                            <select id="class_rooms2" onchange="getStudents(event)" name="class_id"
+                                                class="form-control ">
+                                                <option value="">Select</option>
+                                                @foreach ($class_rooms as $class_room)
+                                                    <option value="{{ $class_room->id }}">{{ $class_room->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="from_marks">Student
+                                            <span class="required">*</span></label>
+
+                                        <div class="col-sm-6">
+                                            <select id="students2" name="student_id" class="form-control ">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="from_marks">Amount
+                                            <span class="required">*</span></label>
+
+                                        <div class="col-sm-6">
+                                            <input type="number" min="0.01" step="0.01" id="amount"
+                                                name="amount" class="form-control ">
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align"
+                                            for="from_marks">Payment method
+                                            <span class="required">*</span></label>
+
+                                        <div class="col-sm-6">
+                                            <select name="receiving_account_id" required="required" class="form-control"
+                                                required>
+                                                <option value="">Select Payment Method</option>
+                                                @foreach ($cash_accounts as $cash_account)
+                                                    <option value="{{ $cash_account->id }}">
+                                                        {{ $cash_account->account_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-6">
+                                            <button class="btn btn-sm btn-success">
+                                                <i class="fa fa-search"> </i> Save Payment
+                                            </button>
+                                        </div>
+                                    </div>
 
 
 
-                                    <form class="card-body" action="{{ route('fees.save_student_payment') }}"
-                                        method="post">
-                                        @csrf
-                                        <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="from_marks">Fee
-                                                <span class="required">*</span></label>
-                                            <div class="col-sm-6">
-                                                <select name="fee_id" class="form-control">
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="fees" role="tabpanel" aria-labelledby="profile-tab">
+                                <br />
+                                <br />
+
+                                <form class="row">
+                                    <div class="card-box table-responsive">
+                                        <div class="col-sm-3">
+                                            <div class="col">
+                                                <select name="class_id" id="class_rooms" class="form-control ">
+                                                    @foreach ($class_rooms as $class_room)
+                                                        <option value="{{ $class_room->id }}">{{ $class_room->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="col">
+                                                <select onchange="feeChange(this)" name="fee_id" id="fee"
+                                                    class="form-control">
                                                     <option value="">-Fee-</option>
                                                     @foreach ($fees as $fee)
                                                         <option value="{{ $fee->id }}">
@@ -118,185 +221,83 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-
-                                            </div>
-                                        </div>
-                                        <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                                for="from_marks">Class
-                                                <span class="required">*</span></label>
-                                            <div class="col-sm-6">
-                                                <select id="class_rooms2" onchange="getStudents(event)" name="class_id"
-                                                    class="form-control ">
-                                                    <option value="">Select</option>
-                                                    @foreach ($class_rooms as $class_room)
-                                                        <option value="{{ $class_room->id }}">{{ $class_room->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-
                                             </div>
                                         </div>
 
-                                        <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                                for="from_marks">Student
-                                                <span class="required">*</span></label>
-
-                                            <div class="col-sm-6">
-                                                <select id="students2" name="student_id" class="form-control ">
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                                for="from_marks">Amount
-                                                <span class="required">*</span></label>
-
-                                            <div class="col-sm-6">
-                                                <input type="number" min="0.01" step="0.01" id="amount"
-                                                    name="amount" class="form-control ">
-
-                                            </div>
+                                        <div class="col-sm-3 ">
+                                            <select onchange="accountChange(this)" required="required"
+                                                class="form-control" required>
+                                                <option value="">Select Payment Method</option>
+                                                @foreach ($cash_accounts as $cash_account)
+                                                    <option value="{{ $cash_account->id }}">
+                                                        {{ $cash_account->account_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
-
-                                        <div class="item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3 label-align"
-                                                for="from_marks">Payment method
-                                                <span class="required">*</span></label>
-
-                                            <div class="col-sm-6">
-                                                <select name="receiving_account_id" required="required"
-                                                    class="form-control" required>
-                                                    <option value="">Select Payment Method</option>
-                                                    @foreach ($cash_accounts as $cash_account)
-                                                        <option value="{{ $cash_account->id }}">
-                                                            {{ $cash_account->account_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="item form-group">
-                                            <div class="col-sm-3"></div>
-                                            <div class="col-sm-6">
-                                                <button class="btn btn-sm btn-success">
-                                                    <i class="fa fa-search"> </i> Save Payment
+                                        <div class="col-sm-3">
+                                            <div class="col">
+                                                <button onclick="searchStudents(event)" class="btn btn-success"
+                                                    id="find_students">
+                                                    <i class="fa fa-search"> </i> Search
                                                 </button>
                                             </div>
                                         </div>
 
 
 
-                                    </form>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content2"
-                                    aria-labelledby="profile-tab">
 
-                                    <form class="row">
-                                        <div class="card-box table-responsive">
-                                            <div class="col-sm-3">
-                                                <div class="col">
-                                                    <select name="class_id" id="class_rooms" class="form-control ">
-                                                        @foreach ($class_rooms as $class_room)
-                                                            <option value="{{ $class_room->id }}">{{ $class_room->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="col">
-                                                    <select onchange="feeChange(this)" name="fee_id" id="fee"
-                                                        class="form-control">
-                                                        <option value="">-Fee-</option>
-                                                        @foreach ($fees as $fee)
-                                                            <option value="{{ $fee->id }}">
-                                                                {{ $fee->description . $fee->month }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-3 ">
-                                                <select onchange="accountChange(this)" required="required"
-                                                    class="form-control" required>
-                                                    <option value="">Select Payment Method</option>
-                                                    @foreach ($cash_accounts as $cash_account)
-                                                        <option value="{{ $cash_account->id }}">
-                                                            {{ $cash_account->account_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <div class="col-sm-3">
-                                                <div class="col">
-                                                    <button onclick="searchStudents(event)" class="btn btn-success"
-                                                        id="find_students">
-                                                        <i class="fa fa-search"> </i> Search
-                                                    </button>
-                                                </div>
-                                            </div>
+                                    </div>
+                                </form>
 
 
+                                <form action="{{ route('fees.save_payments') }}" method="post" class="container">
+                                    @csrf
+                                    <input type="hidden" id="fee_id" name="fee_id">
+                                    <input type="hidden" id="receiving_account_id" name="receiving_account_id">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card-box table-responsive">
+                                                <table id="datatable-buttons"
+                                                    class="table jambo_table  table-striped  table-bordered dataTable no-footer dtr-inline"
+                                                    style="width: 100%;" role="grid"
+                                                    aria-describedby="datatable-buttons_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th>StudentID</th>
+                                                            <th>Student Fullname</th>
+                                                            <th>Unpaid Total</th>
+                                                            <th>Fee Amount</th>
+                                                            <th>Paid Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table_data">
+
+                                                    </tbody>
 
 
-                                        </div>
-                                    </form>
+                                                </table>
 
 
-                                    <form action="{{ route('fees.save_payments') }}" method="post" class="container">
-                                        @csrf
-                                        <input type="hidden" id="fee_id" name="fee_id">
-                                        <input type="hidden" id="receiving_account_id" name="receiving_account_id">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="card-box table-responsive">
-                                                    <table id="datatable-buttons"
-                                                        class="table jambo_table  table-striped  table-bordered dataTable no-footer dtr-inline"
-                                                        style="width: 100%;" role="grid"
-                                                        aria-describedby="datatable-buttons_info">
-                                                        <thead>
-                                                            <tr role="row">
-                                                                <th>StudentID</th>
-                                                                <th>Student Fullname</th>
-                                                                <th>Unpaid Total</th>
-                                                                <th>Fee Amount</th>
-                                                                <th>Paid Amount</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="table_data">
-
-                                                        </tbody>
-
-
-                                                    </table>
-
-
-                                                </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <br><br>
+                                    <br><br>
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="text-right">
-                                                    <button style="display:none;" class="btn btn-sm btn-success" id="submit">
-                                                        Save Payments
-                                                    </button>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="text-right">
+                                                <button style="display:none;" class="btn btn-sm btn-success"
+                                                    id="submit">
+                                                    Save Payments
+                                                </button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
-
                         </div>
 
 

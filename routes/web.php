@@ -21,6 +21,7 @@ use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\StudentClassRoomController;
 use App\Http\Controllers\StudentController;
@@ -362,4 +363,11 @@ Route::controller(TeacherAttendanceController::class)->prefix("teacher_attendanc
     Route::post("/{teacherattendance}/update", "update")->name(".update");
     Route::get("/{teacherattendance}/delete", "destroy")->name(".delete");
 });
-Route::controller(ScheduleController::class)->prefix("schedules")->middleware("auth")->name("schedules")->group(function () { Route::get("/", "index")->name(".index"); Route::get("/create", "create")->name(".create"); Route::post("/store", "store")->name(".store"); Route::get("/{schedule}/edit", "edit")->name(".edit"); Route::post("/{schedule}/update", "update")->name(".update"); Route::get("/{schedule}/delete", "destroy")->name(".delete"); }); 
+Route::controller(ScheduleController::class)->prefix("schedules")->middleware("auth")->name("schedules")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{schedule}/edit", "edit")->name(".edit");
+    Route::post("/{schedule}/update", "update")->name(".update");
+    Route::get("/{schedule}/delete", "destroy")->name(".delete");
+});
