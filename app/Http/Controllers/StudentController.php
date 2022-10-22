@@ -60,7 +60,8 @@ class StudentController extends Controller
     {
         $guardian_ids = Guardian::all();
         $blood_group_ids = BloodGroup::all();
-        return view('students.edit', compact('student', 'guardian_ids', 'blood_group_ids'));
+        $student_addresses = StudentAddress::all();
+        return view('students.edit', compact('student', 'guardian_ids', 'blood_group_ids','student_addresses'));
     }
 
     public function update(Request $request, Student  $student)
@@ -71,7 +72,7 @@ class StudentController extends Controller
         $student->guardian_id = $request->guardian_id;
         $student->date_of_birth = $request->date_of_birth;
         $student->joined_date = $request->joined_date;
-        $student->address = $request->address;
+        $student->student_address_id = $request->student_address_id;
         $student->blood_group_id = $request->blood_group_id;
         $student->has_medical_emergency = $request->has_medical_emergency;
         $student->is_active = $request->is_active;

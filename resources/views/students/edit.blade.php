@@ -39,10 +39,12 @@
                             <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
-                                    <div id="alert" class="alert alert-success text-white  alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>{{ Session::get('success') }}</strong>
-                        </div>
+                                    <div id="alert" class="alert alert-success text-white  alert-dismissible"
+                                        role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>{{ Session::get('success') }}</strong>
+                                    </div>
                                 </div>
                             </div>
                         @endif
@@ -73,10 +75,11 @@
                             <div class="col-sm-6">
                                 <p style="margin-top:6px;">
                                     <input type="radio" class="flat" name="gender" id="genderM" value="male"
-                                        @if ($student->gender == 'male') <?php echo 'checked'; ?> @endif required /> Male
+                                        @if ($student->gender == 'male') {{'checked'}} @endif
+                                        required /> Male
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="radio" class="flat" name="gender" id="genderF" value="female"
-                                        @if ($student->gender == 'female') <?php echo 'checked'; ?> @endif /> Female
+                                        @if ($student->gender == 'female') {{'checked'}}  @endif required /> Female
                                 </p>
                             </div>
                         </div>
@@ -85,7 +88,12 @@
                             <div class="col-md-6 col-sm-6 col-sm-12"><select class="form-control" name="guardian_id">
                                     <option value="">Select Guardian </option>
                                     @foreach ($guardian_ids as $guardian_id)
-                                        <option value="{{ $guardian_id->id }}">{{ $guardian_id->fullname }}</option>
+                                        @if ($student->guardian_id == $guardian_id->id)
+                                            <option selected value="{{ $guardian_id->id }}">{{ $guardian_id->fullname }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $guardian_id->id }}">{{ $guardian_id->fullname }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -102,18 +110,23 @@
                                     value="{{ $student->joined_date }}" id="joined_date" name="joined_date"
                                     required="required" class="form-control"></div>
                         </div>
-                        <div class="item form-group"><label class="control-label col-md-3 col-sm-3 col-sm-12"
+                        <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
                                 for="address">Address <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-sm-12"><input type="text"
-                                    value="{{ $student->address }}" id="address" name="address" required="required"
-                                    class="form-control"></div>
+                            <div class="col-sm-6">
+                                <select name="student_address_id" class="form-control">
+                                    @foreach ($student_addresses as $address)
+                                        <option value="{{ $address->id }}"> {{ $address->area }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="item form-group"><label class="control-label col-md-3 col-sm-3 col-sm-12"
                                 for="blood_group_id">Blood group <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-sm-12"><select class="form-control" name="blood_group_id">
                                     <option value="">Select Blood group </option>
                                     @foreach ($blood_group_ids as $blood_group_id)
-                                        <option value="{{ $blood_group_id->id }}">{{ $blood_group_id->name }}</option>
+                                        <option value="{{ $blood_group_id->id }}">{{ $blood_group_id->name }}
+                                        </option>
                                     @endforeach
                                 </select></div>
                         </div>
@@ -165,8 +178,8 @@
                         </div>
                         <div class="ln_solid"></div>
                         <div class="item form-group">
-                            <div class="col-6 offset-3"><button type="submit"
-                                    class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button></div>
+                            <div class="col-6 offset-3"><button type="submit" class="btn btn-sm btn-success"><i
+                                        class="fa fa-save"></i> Save</button></div>
                         </div>
                     </form>
                 </div>
