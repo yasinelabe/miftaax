@@ -77,13 +77,25 @@
                         @endif
                         <form class="row" action="{{ route('schedules.index') }}" method="post">
                             @csrf
-                            <div class="col-sm-8">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Class</label><small class="req"> *</small>
-                                    <select id="class_room_id" name="class_room_id" class="form-control" required>
+                                    <select id="class_room_id" name="class_room_id" class="form-control">
                                         <option value="">Select</option>
                                         @foreach ($class_rooms as $class_room)
                                             <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Teacher</label><small class="req"> *</small>
+                                    <select id="teacher_id" name="teacher_id" class="form-control">
+                                        <option value="">Select</option>
+                                        @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
                                         @endforeach
                                     </select>
                                     <span class="text-danger"></span>

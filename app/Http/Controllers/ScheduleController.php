@@ -27,16 +27,18 @@ class ScheduleController extends Controller
     {
         $schedules = [];
 
-        if($request->getMethod() == 'POST'):
-            $this->validate($request, ['class_room_id' => 'required',]);
-            $schedules = Schedule::where(['class_room_id'=>$request->class_room_id])->get();
+        if ($request->getMethod() == 'POST') :
+            if (isset($request->teacher_id)) :
+                $schedules = Schedule::where(['teacher_id' => $request->teacher_id])->get();
+            elseif (isset($request->class_room_id)) :
+                $schedules = Schedule::where(['class_room_id' => $request->class_room_id])->get();
+            endif;
         endif;
 
         $list = true;
         $class_rooms = $this->classRoomRepository->active_classes();
-
-        
-        return view('schedules.index', compact('schedules', 'list','class_rooms'));
+        $teachers = Teacher::all();
+        return view('schedules.index', compact('schedules','teachers', 'list', 'class_rooms'));
     }
     public function create(Request $request)
     {
@@ -66,7 +68,7 @@ class ScheduleController extends Controller
             $day_time_ins = $request->$time_ins;
             $day_time_outs = $request->$time_outs;
 
-            if($day_subjects != ''){
+            if ($day_subjects != '') {
                 foreach ($day_subjects as $k => $subject) :
                     $teacher = $day_teachers[$k];
                     $time_in = $day_time_ins[$k];
