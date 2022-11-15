@@ -116,6 +116,7 @@
                                         <li><a href="/fees/create">Generate Fee</a></li>
                                         <li><a href="/fees/collect_fees">Collect Fees</a></li>
                                         <li><a href="/fees/due_list">Search Due Fees</a></li>
+                                        <li><a href="/fees/paid_list">Search Paid Fees</a></li>
                                         <li><a href="/fee_types">Fee Types</a></li>
                                     </ul>
                                 </li>

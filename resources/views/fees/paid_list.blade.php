@@ -154,18 +154,12 @@
 
             $.ajax({
                 type: "get",
-                url: "/fees/search_due_fees/" + class_room,
+                url: "/fees/search_paid_list/" + class_room,
                 success: function(response) {
                     students = response
-                    if (Object.keys(students).length < 1) {
-                        $("#table_data").html(
-                            "<tr><td rowspan='3'><h5 class='text-success'><i class='fa fa-trash'></i> All the students are paid.</h5></td></tr>"
-                        )
-                        return false;
-                    }
 
                     students.forEach(student => {
-                        if (student.fee_balance > 0) {
+                        if (student.fee_balance == 0 && student.fee_amount != 0) {
                             tr = document.createElement('tr')
                             tr.id = student.id
                             tr.innerHTML = `

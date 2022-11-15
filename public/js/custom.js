@@ -3052,6 +3052,7 @@ function init_DataTables() {
                     },
                 ],
                 responsive: true,
+                pageLength: 100
             });
         }
     };

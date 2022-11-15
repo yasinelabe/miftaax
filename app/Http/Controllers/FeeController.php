@@ -123,12 +123,32 @@ class FeeController extends Controller
         return view('fees.due_list', compact('class_rooms', 'list'));
     }
 
+    public function paid_list()
+    {
+        $class_rooms = $this->classRoomRepository->active_classes();
+        $list = true;
+        return view('fees.paid_list', compact('class_rooms', 'list'));
+    }
+
     public function search_due_fees(ClassRoom $classroom)
     {
         $students = $classroom->students;
         $unpaid_students = [];
         foreach ($students as $student) {
             if ($student->fee_balance > 0) {
+                array_push($unpaid_students, $student);
+            }
+        }
+        return response()->json(
+            $unpaid_students
+        );
+    }
+    public function search_paid_list(ClassRoom $classroom)
+    {
+        $students = $classroom->students;
+        $unpaid_students = [];
+        foreach ($students as $student) {
+            if ($student->fee_balance == 0) {
                 array_push($unpaid_students, $student);
             }
         }

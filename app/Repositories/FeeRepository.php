@@ -65,9 +65,7 @@ class FeeRepository
             $accounts_receivable_account_transaction->save();
 
             return true;
-        } else {
-            return false;
-        }
+        } 
     }
 
     public function generate_student_fee($student, $fee, $description)

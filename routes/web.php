@@ -226,7 +226,9 @@ Route::controller(FeeController::class)->prefix("fees")->middleware("auth")->nam
     Route::post("/{fee}/update", "update")->name(".update");
     Route::get("/{fee}/delete", "destroy")->name(".delete");
     Route::get("/due_list", "due_list")->name(".due_list");
+    Route::get("/paid_list", "paid_list")->name(".paid_list");
     Route::get("/search_due_fees/{classroom}", "search_due_fees")->name(".search_due_fees");
+    Route::get("/search_paid_list/{classroom}", "search_paid_list")->name(".search_paid_list");
     Route::get("/collect_fees", "collect_fees")->name(".collect_fees");
     Route::post("/save_payments", "save_payments")->name(".save_payments");
     Route::post("/save_student_payment", "save_student_payment")->name(".save_student_payment");
