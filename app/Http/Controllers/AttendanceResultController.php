@@ -50,7 +50,7 @@ class AttendanceResultController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, ['attendance_id' => 'required', 'student_id' => 'required', 'attendance_result_status_id' => 'required', 'note' => 'required',]);
+        $this->validate($request, ['attendance_id' => 'required', 'student_id' => 'required', 'attendance_result_status_id' => 'required']);
         $attendanceresult = new AttendanceResult();
         $attendanceresult->fill($request->all());
         $attendanceresult->save();
@@ -69,11 +69,10 @@ class AttendanceResultController extends Controller
     }
     public function update(Request $request, AttendanceResult  $attendanceresult)
     {
-        $this->validate($request, ['attendance_id' => 'required', 'student_id' => 'required', 'attendance_result_status_id' => 'required', 'note' => 'required',]);
+        $this->validate($request, ['attendance_id' => 'required', 'student_id' => 'required', 'attendance_result_status_id' => 'required']);
         $attendanceresult->attendance_id = $request->attendance_id;
         $attendanceresult->student_id = $request->student_id;
         $attendanceresult->attendance_result_status_id = $request->attendance_result_status_id;
-        $attendanceresult->note = $request->note;
         $attendanceresult->save();
         session()->flash('success', 'Record updated successfully.');
         return redirect()->route('attendance_results.edit', $attendanceresult->id);

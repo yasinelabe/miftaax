@@ -106,7 +106,6 @@
                                                 <th>Student ID</th>
                                                 <th>Student Name </th>
                                                 <th>Attendance result status </th>
-                                                <th>Note</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -114,7 +113,7 @@
                                                 @foreach ($attendance_results as $attendanceresult)
                                                     <tr role="row" class="odd">
                                                         <td>{{ $attendanceresult->id }}</td>
-                                                        <td>{{ $attendanceresult->attendance->attendance_date . '-' . $attendanceresult->attendance->class_room->name }}
+                                                        <td>{{ $attendanceresult->attendance->attendance_date . ' ( ' . $attendanceresult->attendance->class_room->name .' )' }}
                                                         </td>
                                                         <td>{{ $attendanceresult->student->id }}</td>
                                                         <td>{{ $attendanceresult->student->fullname }}</td>
@@ -127,7 +126,6 @@
                                                             @endif
 
                                                         </td>
-                                                        <td>{{ $attendanceresult->note }}</td>
                                                     </tr>
                                                 @endforeach
                                             @else

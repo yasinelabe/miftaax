@@ -53,7 +53,6 @@
                                         <th>StudentID</th>
                                         <th>Full Name</th>
                                         <th>Attendance</th>
-                                        <th>Note</th>
                                     </tr>
                                 </thead>
                                
@@ -120,7 +119,6 @@
                                         </div>
                                     @endforeach
                                 </td>
-                                <td><textarea class="form-control" type="text" name="notes[]"></textarea></td>
                         `
                         tbody.appendChild(tr)
                 });

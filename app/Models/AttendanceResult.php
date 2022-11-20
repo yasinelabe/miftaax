@@ -15,7 +15,6 @@ class AttendanceResult extends Model
         'attendance_id',
         'student_id',
         'attendance_result_status_id',
-        'note'
     ];
 
     public function student(){

@@ -52,11 +52,7 @@
                                         @endforeach
                                     </select></div>
                             </div>
-                            <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
-                                    for="note">Note <span class="required">*</span></label>
-                                <div class="col-sm-6"><input type="text" id="note" name="note"
-                                        required="required" class="form-control "></div>
-                            </div>
+                      
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-6 offset-3"><button type="submit"

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('attendance_id')->constrained('attendances')->cascadeOnDelete();
             $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
             $table->foreignId('attendance_result_status_id')->constrained('attendance_result_statuses')->cascadeOnDelete();
-            $table->text('note');
         });
     }
 

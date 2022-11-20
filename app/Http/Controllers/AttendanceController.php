@@ -50,7 +50,6 @@ class AttendanceController extends Controller
             $attendanceresult->attendance_id = $attendance->id;
             $attendanceresult->student_id = $student;
             $attendanceresult->attendance_result_status_id = $request->$status;
-            $attendanceresult->note = $request->notes[$k];
             $attendanceresult->save();
         endforeach;
         session()->flash('success', 'Record created successfully.');
