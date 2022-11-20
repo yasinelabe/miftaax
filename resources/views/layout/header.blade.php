@@ -215,6 +215,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right"
                                     aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/users/change_password"><i class="fa fa-lock pull-right"></i>
+                                        Change password</a>
                                     <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out pull-right"></i>
                                         Log Out</a>
                                 </div>

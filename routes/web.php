@@ -68,6 +68,8 @@ Route::get('/', DashboardController::class . '@dashboard')->name('home');
 Route::controller(UserController::class)->prefix('users')->name('users')->group(function () {
     Route::get('/', 'index')->name('.index');
     Route::get('/create', 'create')->name('.create');
+    Route::get('/change_password', 'change_password')->name('.change_password');
+    Route::post('/change_password', 'update_password')->name('.update_password');
     Route::post('/store', 'store')->name('.store');
     Route::get('/{user}', 'show')->name('.show');
     Route::get('/{user}/edit', 'edit')->name('.edit');
