@@ -109,12 +109,13 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('saturday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
 
 
-                                    <tbody>
+                                    <tbody id="saturday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             <input type="hidden" name="class_room_id"
                                                 value="{{ $class_room_subject->class_room_id }}">
@@ -162,12 +163,13 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('sunday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
 
 
-                                    <tbody>
+                                    <tbody id="sunday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             @foreach ($class_room_subject->subject_group->items as $subject_group_item)
                                                 <tr>
@@ -213,10 +215,11 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('monday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="monday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             @foreach ($class_room_subject->subject_group->items as $subject_group_item)
                                                 <tr>
@@ -261,10 +264,11 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('tuesday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tuesday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             @foreach ($class_room_subject->subject_group->items as $subject_group_item)
                                                 <tr>
@@ -309,10 +313,11 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('wednesday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="wednesday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             @foreach ($class_room_subject->subject_group->items as $subject_group_item)
                                                 <tr>
@@ -357,10 +362,11 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('thrustday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="thrustday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             @foreach ($class_room_subject->subject_group->items as $subject_group_item)
                                                 <tr>
@@ -405,10 +411,11 @@
                                             <th>Teacher</th>
                                             <th>Time from</th>
                                             <th>Time to</th>
-                                            <th></th>
+                                            <th><a href="#" onclick="addSubject('friday')"
+                                                    class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="friday_container">
                                         @foreach ($class_room_subjects as $class_room_subject)
                                             @foreach ($class_room_subject->subject_group->items as $subject_group_item)
                                                 <tr>
@@ -458,6 +465,66 @@
 </div>
 
 <script>
+    function addSubject(day) {
+        let container = document.getElementById(day + '_container')
+
+        let subjects = JSON.parse(`@json($class_room_subjects)`)
+
+        let output = ``
+
+        subjects.forEach(subject => {
+            let sbjs = ``
+            let teachers = ``
+            subject.subject_group.items.forEach(item => {
+                item.subject.teachers.forEach(teacher => {
+                    teachers += `
+                        <option value="${teacher.id}">${teacher.fullname}</option>
+                        `
+                })
+                sbjs += `<option value="${item.subject_id}">${item.subject.name}</option>`
+            });
+            output += `
+                    <td><select name="${day}_subjects[]" required
+                            class="form-control">
+                            ${sbjs}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="${day}_teacher_ids[]" required
+                            class="form-control">
+                            ${teachers}
+                        </select>
+
+                    </td>
+                    <td>
+                        <input type="time" class="form-control"
+                            name="${day}_time_ins[]" required>
+                    </td>
+                    <td>
+                        <input type="time" name="${day}_time_outs[]" required
+                            class="form-control">
+                    </td>
+                    <td>
+                        <span class="btn btn-danger btn-sm  remove fa fa-trash"></span>
+            `
+            let tr = document.createElement('tr')
+            tr.innerHTML = output
+            container.appendChild(tr)
+
+
+            teachers = ``
+            sbjs = ``
+        });
+
+
+        $('select').each(function() {
+            $(this).select2({
+                width: '100%'
+            })
+        });
+    }
+
+
     $(document).on('click', '.remove', function() {
         $(this).closest('tr').remove();
     });
