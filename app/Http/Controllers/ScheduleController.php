@@ -29,9 +29,9 @@ class ScheduleController extends Controller
 
         if ($request->getMethod() == 'POST') :
             if (isset($request->teacher_id)) :
-                $schedules = Schedule::where(['teacher_id' => $request->teacher_id])->get();
+                $schedules = Schedule::where(['teacher_id' => $request->teacher_id])->orderBy('time_in', 'ASC')->get();
             elseif (isset($request->class_room_id)) :
-                $schedules = Schedule::where(['class_room_id' => $request->class_room_id])->get();
+                $schedules = Schedule::where(['class_room_id' => $request->class_room_id])->orderBy('time_in', 'ASC')->get();
             endif;
         endif;
 
