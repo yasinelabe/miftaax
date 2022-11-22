@@ -135,7 +135,9 @@
                                                         <b>Subject:</b> {{ $schedule->subject->name }} <br />
                                                         <b> Time:</b> {{ $schedule->time_in }} - {{ $schedule->time_out }}
                                                         <br />
-                                                        <b>Teacher:</b> {{ $schedule->teacher->fullname }}
+                                                        <b>Teacher:</b> {{ $schedule->teacher->fullname }}<br />
+                                                        <b>Class:</b> {{ $schedule->class_room->name }}
+                                                        
                                                     </p>
 
                                                     <hr>
