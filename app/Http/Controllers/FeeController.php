@@ -40,7 +40,7 @@ class FeeController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'month' => 'required', 'fee_type_id' => 'required',]);
+        $this->validate($request, ['month' => 'required', 'fee_type_id' => 'required',]);
         $activeYear =  CheckActiveYear::check_active_year();
 
         $fee = new Fee();
@@ -52,7 +52,7 @@ class FeeController extends Controller
         foreach ($active_classes as $active_class) {
             $class_students = $active_class->students;
             foreach ($class_students as $student) :
-                $this->feeRepository->generate_student_fee($student, $fee, $request->name);
+                $this->feeRepository->generate_student_fee($student, $fee, $fee->month);
             endforeach;
         }
 
@@ -69,8 +69,7 @@ class FeeController extends Controller
     }
     public function update(Request $request, Fee  $fee)
     {
-        $this->validate($request, ['name' => 'required', 'month' => 'required', 'fee_type_id' => 'required',]);
-        $fee->name = $request->name;
+        $this->validate($request, [ 'month' => 'required', 'fee_type_id' => 'required',]);
         $fee->month = $request->month;
         $fee->fee_type_id = $request->fee_type_id;
         $fee->save();

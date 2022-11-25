@@ -13,7 +13,6 @@ class Fee extends Model
 
 
     protected $fillable  = [
-        "name",
         "month",
         "fee_type_id",
         "academic_year_id"

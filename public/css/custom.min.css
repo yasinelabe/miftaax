@@ -6185,3 +6185,7 @@ ul#myTab {
     text-align: center;
 
 }
+
+.hidden{
+	display: none;
+}

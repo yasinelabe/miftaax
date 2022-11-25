@@ -61,12 +61,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-sm-12" for="name">Name <span
-                                    class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-sm-12"><input type="text" value="{{ $fee->name }}"
-                                    id="name" name="name" required="required" class="form-control"></div>
-                        </div>
+                        
                         <div class="item form-group"><label class="control-label col-md-3 col-sm-3 col-sm-12"
                                 for="month">Month <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-sm-12"><input type="text" value="{{ $fee->month }}"

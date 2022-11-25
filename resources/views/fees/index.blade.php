@@ -86,7 +86,6 @@
                                         <thead>
                                             <tr role="row">
                                                 <th>Id</th>
-                                                <th>Name</th>
                                                 <th>Year</th>
                                                 <th>Month</th>
                                                 <th>Fee type </th>
@@ -97,14 +96,10 @@
                                             @foreach ($fees as $fee)
                                                 <tr role="row" class="odd">
                                                     <td>{{ $fee->id }}</td>
-                                                    <td>{{ $fee->name }}</td>
                                                     <td>{{ $fee->academic_year->year }}</td>
                                                     <td>{{ $fee->month }}</td>
                                                     <td>{{ $fee->fee_type->name }}</td>
-                                                    <td><a href="#" data-toggle="modal"
-                                                            data-target=".bs-example-modal-lg"
-                                                            onclick="initializeIframe('{{ route('fees.edit', $fee->id) }}')"><i
-                                                                class="fa fa-pencil"></i> Edit </a> | <a
+                                                    <td> <a
                                                             href="javascript:void(0)" data-toggle="modal"
                                                             data-target="#warningModal"
                                                             onclick="delete_id({{ $fee->id }})"><i

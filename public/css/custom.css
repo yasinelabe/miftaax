@@ -6347,3 +6347,8 @@ span.hover_options {
     }
   }
 
+
+
+  .hidden{
+    display: none;
+  }
