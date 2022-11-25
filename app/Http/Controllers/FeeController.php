@@ -34,8 +34,9 @@ class FeeController extends Controller
 
     public function create()
     {
-        $fee_type_ids = FeeType::all();;
-        return view('fees.create', compact('fee_type_ids'));
+        $fee_type_ids = FeeType::all();
+        $class_rooms = $this->classRoomRepository->active_classes();
+        return view('fees.create', compact('fee_type_ids','class_rooms'));
     }
 
     public function store(Request $request)

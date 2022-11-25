@@ -73,7 +73,7 @@
                     <table class="table table-bordered" id="students_list">
                         <thead>
                             <th>
-                                <input onchange="checkOrUnCheckAll()" type="checkbox" id="check_all" name="input-check">
+                                <input  type="checkbox" id="select-all" name="input-check">
                             </th>
                             <th>
                                 ID
@@ -141,10 +141,12 @@
                         @if (Session::has('success'))
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div id="alert" class="alert alert-success text-white  alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>{{ Session::get('success') }}</strong>
-                        </div>
+                                    <div id="alert" class="alert alert-success text-white  alert-dismissible"
+                                        role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>{{ Session::get('success') }}</strong>
+                                    </div>
                                 </div>
                             </div>
                         @endif
@@ -282,19 +284,16 @@
             });
         }
 
-        function checkOrUnCheckAll() {
-            if ($('#check_all').is(':checked')) {
-                $('.choose_students').each(function(i, obj) {
-                    obj.setAttribute('checked', true)
+        $(function() {
+            $('#select-all').click(function(event) {
+                var selected = this.checked;
+                // Iterate each checkbox
+                $('.choose_students').each(function() {
+                    this.checked = selected;
                 });
-            } else {
-                $('.choose_students').each(function(i, obj) {
-                    obj.removeAttribute('checked')
-                });
-            }
 
-
-        }
+            });
+        });
 
         function setClassRoom(value) {
             document.getElementById('hidden_class_room').value = value

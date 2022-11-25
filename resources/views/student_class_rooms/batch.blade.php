@@ -89,15 +89,11 @@
 </div>
 <script>
     function checkOrUncheckAll(target, boxclass) {
-        if ($(target).is(':checked')) {
-            $('.' + boxclass).each(function(i, obj) {
-                obj.setAttribute('checked', true)
-            });
-        } else {
-            $('.' + boxclass).each(function(i, obj) {
-                obj.removeAttribute('checked')
-            });
-        }
+        var selected = target.checked;
+        // Iterate each checkbox
+        $('.' + boxclass).each(function() {
+            this.checked = selected;
+        });
     }
 </script>
 @endsection

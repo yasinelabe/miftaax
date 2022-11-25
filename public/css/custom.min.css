@@ -6189,3 +6189,44 @@ ul#myTab {
 .hidden{
 	display: none;
 }
+
+
+.customModal{
+	position:fixed;
+	z-index: 999;
+	width:100%;
+	background:#ccc;
+	opacity: .8;
+	height: 100vh;
+}
+
+.customBox{
+	position: fixed;
+    width: 60%;
+    height: 70vh;
+    margin-top: 140px;
+    background: #f1f1f1;
+    z-index: 999!important;
+    margin-left: 20%;
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px;
+	padding:10px;
+}
+
+.customBoxHeader {
+	width: 100%;
+    border-bottom: 1px solid #d9d9d9;
+	height: 8vh;
+    padding: 10px;
+}
+
+.customBoxBody{
+	height: 54vh;
+    overflow: auto;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.customBoxFooter {
+    height: 10vh;
+	padding:10px;
+}

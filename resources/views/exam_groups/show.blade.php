@@ -55,8 +55,8 @@
                 <div class="ln_solid"></div>
                 <table class="table table-stripped table-hover">
                     <thead>
-                        <th><input onchange="checkOrUncheckAll(this,'studentscheckbox');" type="checkbox"
-                                class=" input-check" /></th>
+                        <th><input id="select-all" onchange="checkOrUncheckAll(this,'studentscheckbox');"
+                                type="checkbox" class=" input-check" /></th>
                         <th>StudentID</th>
                         <th>Student Full Name</th>
                         <th>Gender</th>
@@ -234,7 +234,8 @@
                                     </tbody>
                                 </table>
                                 <div class="form-group text-right">
-                                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Save</button>
+                                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i>
+                                        Save</button>
                                 </div>
                             </form>
                             <div role="tabpanel" class="tab-pane fade" id="tab_content2"
@@ -244,7 +245,8 @@
                                     <input type="hidden" name="exam" id="exam_item_id2">
                                     <input type="hidden" name="subject" id="subjectid2">
                                     <div class="form-group">
-                                        <button type="submit" class="btn-success-inverse btn btn-success btn-block"><i
+                                        <button type="submit"
+                                            class="btn-success-inverse btn btn-success btn-block"><i
                                                 class="fa fa-download"></i>
                                             Download Template</button>
                                     </div>
@@ -256,7 +258,8 @@
                                     <input type="file" name="file" class="dropify" data-height="300" />
                                     <br />
                                     <div class="form-group text-right">
-                                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Save</button>
+                                        <button type="submit" class="btn btn-success btn-sm"><i
+                                                class="fa fa-save"></i> Save</button>
                                     </div>
                                 </form>
 
@@ -473,15 +476,11 @@
 
 
     function checkOrUncheckAll(target, boxclass) {
-        if ($(target).is(':checked')) {
-            $('.' + boxclass).each(function(i, obj) {
-                obj.setAttribute('checked', true)
-            });
-        } else {
-            $('.' + boxclass).each(function(i, obj) {
-                obj.removeAttribute('checked')
-            });
-        }
+        var selected = target.checked;
+        // Iterate each checkbox
+        $('.' + boxclass).each(function() {
+            this.checked = selected;
+        });
     }
 
     function getExamSubjects(prev_subjects, itemid) {
