@@ -119,6 +119,7 @@ Route::controller(TeacherController::class)->prefix("teachers")->middleware("aut
 });
 Route::controller(StudentController::class)->prefix("students")->middleware("auth")->name("students")->group(function () {
     Route::get("/", "index")->name(".index");
+    Route::get("/search_students/{str}", "search_students")->name(".search_students");
     Route::get("/create", "create")->name(".create");
     Route::post("/store", "store")->name(".store");
     Route::get("/{student}/edit", "edit")->name(".edit");

@@ -90,4 +90,10 @@ class StudentController extends Controller
         session()->flash('success', 'Deleted Successfully');
         return redirect()->route('students.index');
     }
+
+
+    function search_students($str){
+        $students = Student::where('id',$str)->orWhere('fullname','like',"%$str%")->get();
+        return response()->json($students)->header('Content-type','Application/json');
+    }
 }
