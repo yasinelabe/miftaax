@@ -101,7 +101,7 @@
 
                                 </div>
 
-                                <div id="amounts" class="hidden col-sm-3"><input type="number" id="amount"
+                                <div id="amounts" class="hidden col-sm-3"><input placeholder="Amount" type="number" id="amount"
                                         name="amount" class="form-control "></div>
 
                             </div>
@@ -161,8 +161,8 @@
                             </div>
 
                             <div class="ln_solid"></div>
-                            <div class="item form-group">
-                                <div class="col-6 offset-3"><button type="submit" class="btn btn-sm btn-success"><i
+                            <div class="row">
+                                <div class="col-3"><button type="submit" class="btn btn-sm btn-success"><i
                                             class="fa fa-save"></i> Save</button></div>
                             </div>
                         </form>
@@ -282,8 +282,10 @@
 
     function saveSelection() {
         $('.check_student').each(function(i, item) {
-            let v = item.value
+            if(item.checked == true){
+                let v = item.value
             $("#selectedStudents").append($("#" + v))
+            }
         })
         toggleModal()
     }
