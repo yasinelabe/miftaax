@@ -116,7 +116,7 @@
                                                 <option value="">-Fee-</option>
                                                 @foreach ($fees as $fee)
                                                     <option value="{{ $fee->id }}">
-                                                        {{ $fee->description . $fee->month }}
+                                                        {{ $fee->month . '(' .$fee->fee_type->name . ')'}}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -217,7 +217,7 @@
                                                     <option value="">-Fee-</option>
                                                     @foreach ($fees as $fee)
                                                         <option value="{{ $fee->id }}">
-                                                            {{ $fee->description . $fee->month }}
+                                                            {{ $fee->month . '(' .$fee->fee_type->name . ')'}}
                                                         </option>
                                                     @endforeach
                                                 </select>
