@@ -8,6 +8,7 @@ use App\Models\ClassRoom;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -44,15 +45,13 @@ class DashboardController extends Controller
         // products expense accounts type = 3
 
         $all_expense_accounts = Account::where('account_type_id', '=', 3)->get();
-
         $expense = 0;
 
         foreach ($all_expense_accounts as $expense_account) {
-            if($expense_account->id = 6){
+            if($expense_account->id == 12){
                 continue;
             }
             $expense_account_transactions = AccountTransaction::where('account_id', '=', $expense_account->id)->where('transaction_date', '>=', date('Y-m-d'))->get();
-
             foreach ($expense_account_transactions as $expense_account_transaction) {
                 // if transaction type is 1 then it is debit
                 if ($expense_account_transaction->account_transaction_type_id == 1) {
@@ -60,6 +59,7 @@ class DashboardController extends Controller
                 }
             }
         }
+
 
         // get today's total transactions
         $total_transactions = $service_income_account_transactions->count();
