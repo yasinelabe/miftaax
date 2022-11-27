@@ -3485,18 +3485,18 @@ function init_echarts() {
         echartBar.setOption({
             title: {
                 text: "Total",
-                subtext: "Sale / Purchase",
+                subtext: "Income / Expense",
             },
             tooltip: {
                 trigger: "axis",
             },
             legend: {
-                data: ["sales", "purchases"],
+                data: ["income", "expense"],
             },
             toolbox: {
-                show: false,
+                show: true,
             },
-            calculable: false,
+            calculable: true,
             xAxis: [
                 {
                     type: "category",
@@ -3523,10 +3523,10 @@ function init_echarts() {
             ],
             series: [
                 {
-                    name: "sales",
+                    name: "income",
                     type: "bar",
                     data: JSON.parse(
-                        document.getElementById("sales_chart").value
+                        document.getElementById("income_chart").value
                     ),
                     markPoint: {
                         data: [
@@ -3537,23 +3537,15 @@ function init_echarts() {
                             {
                                 type: "min",
                                 name: "lowest",
-                            },
-                        ],
-                    },
-                    markLine: {
-                        data: [
-                            {
-                                type: "average",
-                                name: "???",
                             },
                         ],
                     },
                 },
                 {
-                    name: "purchases",
+                    name: "expense",
                     type: "bar",
                     data: JSON.parse(
-                        document.getElementById("purchase_chart").value
+                        document.getElementById("expense_chart").value
                     ),
                     markPoint: {
                         data: [
@@ -3564,14 +3556,6 @@ function init_echarts() {
                             {
                                 type: "min",
                                 name: "lowest",
-                            },
-                        ],
-                    },
-                    markLine: {
-                        data: [
-                            {
-                                type: "average",
-                                name: "???",
                             },
                         ],
                     },

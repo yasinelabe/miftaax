@@ -277,7 +277,9 @@
         <script src="{{ URL::asset('vendors/pdfmake/build/vfs_fonts.js') }}"></script>
     @endif
     <script src="{{ URL::asset('js/select2.min.js') }}"></script>
-    <script src="{{ URL::asset('/vendors/switchery/dist/switchery.min.js')}}"></script>
+    <script src="{{ URL::asset('vendors/echarts/dist/echarts.min.js') }}"></script>
+    <script src="{{ URL::asset('vendors/echarts/map/js/world.js') }}"></script>
+    <script src="{{ URL::asset('vendors/switchery/dist/switchery.min.js')}}"></script>
     <!-- Chart.js -->
     <script src="{{ URL::asset('vendors/Chart.js/dist/Chart.min.js') }}"></script>
     <!-- gauge.js -->

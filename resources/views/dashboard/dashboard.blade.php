@@ -31,6 +31,8 @@
                 </div>
         </div>
         <!-- /top tiles -->
+        <input type="hidden" value="{{ $expense_chart }}" id="expense_chart">
+        <input type="hidden" value="{{ $income_chart }}" id="income_chart">
         <input type="hidden" value="{{ $total_net_income }}" id="total_net_income">
         <input type="hidden" value="{{ $equity_balance }}" id="equity">
 
