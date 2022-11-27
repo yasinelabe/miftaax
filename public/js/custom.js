@@ -3495,6 +3495,26 @@ function init_echarts() {
             },
             toolbox: {
                 show: true,
+                feature: {
+                    magicType: {
+                        show: true,
+                        title: {
+                            line: "Line",
+                            bar: "Bar",
+                            stack: "Stack",
+                            tiled: "Tiled",
+                        },
+                        type: ["line", "bar", "stack", "tiled"],
+                    },
+                    restore: {
+                        show: true,
+                        title: "Restore",
+                    },
+                    saveAsImage: {
+                        show: true,
+                        title: "Save Image",
+                    },
+                },
             },
             calculable: true,
             xAxis: [
@@ -3524,7 +3544,7 @@ function init_echarts() {
             series: [
                 {
                     name: "income",
-                    type: "bar",
+                    type: "line",
                     data: JSON.parse(
                         document.getElementById("income_chart").value
                     ),
@@ -3543,7 +3563,7 @@ function init_echarts() {
                 },
                 {
                     name: "expense",
-                    type: "bar",
+                    type: "line",
                     data: JSON.parse(
                         document.getElementById("expense_chart").value
                     ),
