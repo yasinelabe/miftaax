@@ -203,6 +203,11 @@ class DashboardController extends Controller
             $dec_invoices
         ]);
 
-        return view('dashboard.dashboard', compact('total_users','total_income','total_expense','total_students','total_teachers','total_classes', 'service_income', 'expense','total_transactions','equity_balance','total_net_income','income_chart','expense_chart','invoice_charts','payment_charts'));
+
+        $total_students = Student::count();
+        $male = (Student::where('gender','male')->count() * 100 ) / $total_students;
+        $female = (Student::where('gender','female')->count() * 100 ) / $total_students;
+
+        return view('dashboard.dashboard', compact('total_users','total_income','total_expense','total_students','total_teachers','total_classes', 'service_income', 'expense','total_transactions','equity_balance','total_net_income','income_chart','expense_chart','invoice_charts','payment_charts','male','female'));
     }
 }

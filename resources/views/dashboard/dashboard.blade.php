@@ -37,6 +37,8 @@
         <input type="hidden" value="{{ $payment_charts }}" id="payment_charts">
         <input type="hidden" value="{{ $total_net_income }}" id="total_net_income">
         <input type="hidden" value="{{ $equity_balance }}" id="equity">
+        <input type="hidden" value="{{ $male }}" id="male">
+        <input type="hidden" value="{{ $female }}" id="female">
 
 
         <div class="row" style="margin: 10px 0;">
@@ -126,6 +128,21 @@
                 </div>
               </div>
             </div>
-
+            <div class="col-sm-4  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Male / Female </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="pieChart"></canvas>
+                  </div>
+                </div>
     </div>
 @endsection

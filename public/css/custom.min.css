@@ -6232,7 +6232,7 @@ ul#myTab {
 }
 
 .tile_count .tile_stats_count {
-    background: radial-gradient(#d7ffce, transparent);
+    background:radial-gradient(#2a3f5430, transparent)
 }
 
 .tile {

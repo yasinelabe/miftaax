@@ -6,7 +6,7 @@
  *     // code here
  * });
  */
- (function ($, sr) {
+(function ($, sr) {
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
     var debounce = function (func, threshold, execAsap) {
@@ -324,8 +324,8 @@ $.fn.popover.Constructor.prototype.leave = function (obj) {
         obj instanceof this.constructor
             ? obj
             : $(obj.currentTarget)
-                  [this.type](this.getDelegateOptions())
-                  .data("bs." + this.type);
+            [this.type](this.getDelegateOptions())
+                .data("bs." + this.type);
     var container, timeout;
 
     originalLeave.call(this, obj);
@@ -699,8 +699,8 @@ function init_skycons() {
     console.log("init_skycons");
 
     var icons = new Skycons({
-            color: "#73879C",
-        }),
+        color: "#73879C",
+    }),
         list = [
             "clear-day",
             "clear-night",
@@ -715,7 +715,7 @@ function init_skycons() {
         ],
         i;
 
-    for (i = list.length; i--; ) icons.set(list[i], list[i]);
+    for (i = list.length; i--;) icons.set(list[i], list[i]);
 
     icons.play();
 }
@@ -1297,7 +1297,7 @@ function init_parsley() {
 
     try {
         hljs.initHighlightingOnLoad();
-    } catch (err) {}
+    } catch (err) { }
 }
 
 /* INPUTS */
@@ -1353,33 +1353,33 @@ function init_wysiwyg() {
 
     function init_ToolbarBootstrapBindings() {
         var fonts = [
-                "Serif",
-                "Sans",
-                "Arial",
-                "Arial Black",
-                "Courier",
-                "Courier New",
-                "Comic Sans MS",
-                "Helvetica",
-                "Impact",
-                "Lucida Grande",
-                "Lucida Sans",
-                "Tahoma",
-                "Times",
-                "Times New Roman",
-                "Verdana",
-            ],
+            "Serif",
+            "Sans",
+            "Arial",
+            "Arial Black",
+            "Courier",
+            "Courier New",
+            "Comic Sans MS",
+            "Helvetica",
+            "Impact",
+            "Lucida Grande",
+            "Lucida Sans",
+            "Tahoma",
+            "Times",
+            "Times New Roman",
+            "Verdana",
+        ],
             fontTarget = $("[title=Font]").siblings(".dropdown-menu");
         $.each(fonts, function (idx, fontName) {
             fontTarget.append(
                 $(
                     '<li><a data-edit="fontName ' +
-                        fontName +
-                        '" style="font-family:\'' +
-                        fontName +
-                        "'\">" +
-                        fontName +
-                        "</a></li>"
+                    fontName +
+                    '" style="font-family:\'' +
+                    fontName +
+                    "'\">" +
+                    fontName +
+                    "</a></li>"
                 )
             );
         });
@@ -1435,9 +1435,9 @@ function init_wysiwyg() {
         }
         $(
             '<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                "<strong>File upload error</strong> " +
-                msg +
-                " </div>"
+            "<strong>File upload error</strong> " +
+            msg +
+            " </div>"
         ).prependTo("#alerts");
     }
 
@@ -2005,8 +2005,8 @@ function init_daterangepicker() {
 
     $("#reportrange span").html(
         moment().subtract(29, "days").format("MMMM D, YYYY") +
-            " - " +
-            moment().format("MMMM D, YYYY")
+        " - " +
+        moment().format("MMMM D, YYYY")
     );
     $("#reportrange").daterangepicker(optionSet1, cb);
     $("#reportrange").on("show.daterangepicker", function () {
@@ -2018,9 +2018,9 @@ function init_daterangepicker() {
     $("#reportrange").on("apply.daterangepicker", function (ev, picker) {
         console.log(
             "apply event fired, start/end dates are " +
-                picker.startDate.format("MMMM D, YYYY") +
-                " to " +
-                picker.endDate.format("MMMM D, YYYY")
+            picker.startDate.format("MMMM D, YYYY") +
+            " to " +
+            picker.endDate.format("MMMM D, YYYY")
         );
     });
     $("#reportrange").on("cancel.daterangepicker", function (ev, picker) {
@@ -2110,8 +2110,8 @@ function init_daterangepicker_right() {
 
     $("#reportrange_right span").html(
         moment().subtract(29, "days").format("MMMM D, YYYY") +
-            " - " +
-            moment().format("MMMM D, YYYY")
+        " - " +
+        moment().format("MMMM D, YYYY")
     );
 
     $("#reportrange_right").daterangepicker(optionSet1, cb);
@@ -2125,9 +2125,9 @@ function init_daterangepicker_right() {
     $("#reportrange_right").on("apply.daterangepicker", function (ev, picker) {
         console.log(
             "apply event fired, start/end dates are " +
-                picker.startDate.format("MMMM D, YYYY") +
-                " to " +
-                picker.endDate.format("MMMM D, YYYY")
+            picker.startDate.format("MMMM D, YYYY") +
+            " to " +
+            picker.endDate.format("MMMM D, YYYY")
         );
     });
     $("#reportrange_right").on("cancel.daterangepicker", function (ev, picker) {
@@ -2311,12 +2311,12 @@ function init_CustomNotification() {
         } else {
             $("#custom_notifications ul.notifications").append(
                 "<li><a id='ntlink" +
-                    cnt +
-                    "' class='alert-" +
-                    options.type +
-                    "' href='#ntf" +
-                    cnt +
-                    "'><i class='fa fa-bell animated shake'></i></a></li>"
+                cnt +
+                "' class='alert-" +
+                options.type +
+                "' href='#ntf" +
+                cnt +
+                "'><i class='fa fa-bell animated shake'></i></a></li>"
             );
             $("#custom_notifications #notif-group").append(message);
             cnt++;
@@ -2394,8 +2394,8 @@ function init_EasyPieChart() {
             obj instanceof this.constructor
                 ? obj
                 : $(obj.currentTarget)
-                      [this.type](this.getDelegateOptions())
-                      .data("bs." + this.type);
+                [this.type](this.getDelegateOptions())
+                    .data("bs." + this.type);
         var container, timeout;
 
         originalLeave.call(this, obj);
@@ -2837,27 +2837,26 @@ function init_charts() {
         var data = {
             datasets: [
                 {
-                    data: [120, 50, 140, 180, 100],
+                    data: [document.getElementById('male').value, document.getElementById('female').value],
                     backgroundColor: [
-                        "#455C73",
-                        "#9B59B6",
-                        "#BDC3C7",
-                        "#26B99A",
-                        "#3498DB",
+                        "#0f36f7",
+                        "#eb34cf",
                     ],
-                    label: "My dataset", // for legend
+                    label: "Students Analysis", // for legend
+
                 },
             ],
-            labels: ["Dark Gray", "Purple", "Gray", "Green", "Blue"],
+            labels: ["Male", "Female"],
         };
 
         var pieChart = new Chart(ctx, {
             data: data,
             type: "pie",
-            otpions: {
-                legend: false,
+            options: {
+                legend: true,
             },
         });
+
     }
 
     // PolarArea chart
@@ -3488,6 +3487,7 @@ function init_echarts() {
         var echartBar = echarts.init(document.getElementById("mainb"), theme);
 
         echartBar.setOption({
+            
             title: {
                 text: "Total",
                 subtext: "Income / Expense",
