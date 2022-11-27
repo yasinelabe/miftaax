@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,12 +14,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fees', function (Blueprint $table) {
-            $table->id();
-            $table->string('month')->nullable()->default(NULL);
-            $table->foreignId('fee_type_id')->constrained('fee_types')->cascadeOnDelete();
-            $table->foreignId('academic_year_id')->constrained('academic_years')->cascadeOnDelete();
-        });
+        DB::query("ALTER TABLE `fees` CHANGE `month` `month` VARCHAR(255) NULL DEFAULT NULL;");
+        DB::query("ALTER TABLE `fees`DROP COLUMN name");
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fees');
+        //
     }
 };

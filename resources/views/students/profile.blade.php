@@ -206,7 +206,7 @@
                                                 @foreach ($student->fee_transactions as $k => $row)
                                                     <tr>
                                                         <td>{{ $row->id }}</td>
-                                                        <td>{{ $row->fee->month }}</td>
+                                                        <td>{{ $row->fee->fee_type->name  . ' #' . $row->fee->month }}</td>
                                                         <td>{{ $row->fee->academic_year->year }}</td>
                                                         <td>
                                                             @if ($row->transaction_type == 'payment')

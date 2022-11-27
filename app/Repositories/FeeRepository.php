@@ -68,15 +68,16 @@ class FeeRepository
         } 
     }
 
-    public function generate_student_fee($student, $fee, $description)
+    public function generate_student_fee($student, $fee, $description,$amount)
     {
-        $student->fee_balance = $student->fee_balance + $student->fee_amount;
+        $fee_amount = ($amount != 0 ) ? $amount : $student->fee_amount;
+        $student->fee_balance = $student->fee_balance + $fee_amount;
         $student->save();
 
         $fee_transaction = new StudentFeeTransaction();
         $fee_transaction->description = $description;
         $fee_transaction->transaction_type = 'invoice';
-        $fee_transaction->amount = $student->fee_amount;
+        $fee_transaction->amount = $fee_amount;
         $fee_transaction->fee_balance = $student->fee_balance;
         $fee_transaction->transaction_date = date('Y-m-d');
         $fee_transaction->student_id = $student->id;
@@ -85,12 +86,12 @@ class FeeRepository
 
 
         $account = Account::find(12);
-        $account->debit($student->fee_amount);
+        $account->debit($fee_amount);
         $account->save();
 
         $account_transaction = new AccountTransaction();
         $account_transaction->account_id = $account->id;
-        $account_transaction->amount = $student->fee_amount;
+        $account_transaction->amount = $fee_amount;
         $account_transaction->balance = $account->balance;
         $account_transaction->account_transaction_type_id = 1;
         $account_transaction->description = $student->fullname . 'With StudentID: '.$student->id . ' , Fee Invoice';
@@ -100,12 +101,12 @@ class FeeRepository
 
         // credit the revenue account
         $revenue_account = Account::find(13);
-        $revenue_account->credit($student->fee_amount);
+        $revenue_account->credit($fee_amount);
 
         // record the transaction
         $revenue_account_transaction = new AccountTransaction();
         $revenue_account_transaction->account_id = $revenue_account->id;
-        $revenue_account_transaction->amount = $student->fee_amount;
+        $revenue_account_transaction->amount = $fee_amount;
         $revenue_account_transaction->balance = $revenue_account->balance;
         $revenue_account_transaction->account_transaction_type_id = 2;
         $revenue_account_transaction->description = $student->fullname . 'With StudentID: '.$student->id . ' , Fee Invoice';

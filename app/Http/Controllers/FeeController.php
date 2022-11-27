@@ -8,9 +8,11 @@ use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use App\Models\Fee;
 use App\Models\FeeType;
+use App\Models\Student;
 use App\Repositories\ClassRoomRepository;
 use App\Repositories\FeeRepository;
 use App\Services\CheckActiveYear;
+use Illuminate\Support\Facades\DB;
 
 class FeeController extends Controller
 {
@@ -36,26 +38,39 @@ class FeeController extends Controller
     {
         $fee_type_ids = FeeType::all();
         $class_rooms = $this->classRoomRepository->active_classes();
-        return view('fees.create', compact('fee_type_ids','class_rooms'));
+        return view('fees.create', compact('fee_type_ids', 'class_rooms'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, ['month' => 'required', 'fee_type_id' => 'required',]);
+        $this->validate($request, ['fee_type_id' => 'required',]);
         $activeYear =  CheckActiveYear::check_active_year();
 
-        $fee = new Fee();
-        $fee->fill($request->all());
-        $fee->academic_year_id = $activeYear;
-        $fee->save();
+        DB::transaction(function () use ($request, $activeYear) {
+            $fee = new Fee();
+            $fee->fill($request->all());
+            $fee->academic_year_id = $activeYear;
+            $fee->save();
 
-        $active_classes = $this->classRoomRepository->active_classes();
-        foreach ($active_classes as $active_class) {
-            $class_students = $active_class->students;
-            foreach ($class_students as $student) :
-                $this->feeRepository->generate_student_fee($student, $fee, $fee->month);
-            endforeach;
-        }
+            $amount = isset($request->amount) ? $request->amount : 0;
+
+            if (!isset($request->students)) {
+                $active_classes = $this->classRoomRepository->active_classes();
+                foreach ($active_classes as $active_class) {
+                    $class_students = $active_class->students;
+                    foreach ($class_students as $student) :
+                        $this->feeRepository->generate_student_fee($student, $fee, $fee->fee_type->name, $amount);
+                    endforeach;
+                }
+            } else {
+                foreach ($request->students as $student) :
+                    $student = Student::find($student);
+                    $this->feeRepository->generate_student_fee($student, $fee, $fee->fee_type->name, $amount);
+                endforeach;
+            }
+        });
+
+
 
         return redirect()->route('fees.index');
     }
@@ -70,7 +85,7 @@ class FeeController extends Controller
     }
     public function update(Request $request, Fee  $fee)
     {
-        $this->validate($request, [ 'month' => 'required', 'fee_type_id' => 'required',]);
+        $this->validate($request, ['month' => 'required', 'fee_type_id' => 'required',]);
         $fee->month = $request->month;
         $fee->fee_type_id = $request->fee_type_id;
         $fee->save();
