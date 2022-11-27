@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Models\AccountTransaction;
 use App\Models\ClassRoom;
 use App\Models\Student;
+use App\Models\StudentFeeTransaction;
 use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
@@ -143,6 +144,65 @@ class DashboardController extends Controller
             $dec_expense
         ]);
 
-        return view('dashboard.dashboard', compact('total_users','total_income','total_expense','total_students','total_teachers','total_classes', 'service_income', 'expense','total_transactions','equity_balance','total_net_income','income_chart','expense_chart'));
+
+
+        $jan_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','1')->sum('amount');
+        $feb_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','2')->sum('amount');
+        $mar_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','3')->sum('amount');
+        $apr_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','4')->sum('amount');
+        $may_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','5')->sum('amount');
+        $jun_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','6')->sum('amount');
+        $jul_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','7')->sum('amount');
+        $aug_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','8')->sum('amount');
+        $sep_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','9')->sum('amount');
+        $oct_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','10')->sum('amount');
+        $nov_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','11')->sum('amount');
+        $dec_invoices = StudentFeeTransaction::where(['transaction_type'=>'invoice'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','12')->sum('amount');
+
+        $jan_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','1')->sum('amount');
+        $feb_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','2')->sum('amount');
+        $mar_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','3')->sum('amount');
+        $apr_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','4')->sum('amount');
+        $may_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','5')->sum('amount');
+        $jun_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','6')->sum('amount');
+        $jul_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','7')->sum('amount');
+        $aug_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','8')->sum('amount');
+        $sep_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','9')->sum('amount');
+        $oct_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','10')->sum('amount');
+        $nov_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','11')->sum('amount');
+        $dec_payments = StudentFeeTransaction::where(['transaction_type'=>'payment'])->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date','=','12')->sum('amount');
+
+
+        $payment_charts = json_encode([
+            $jan_payments,
+            $feb_payments,
+            $mar_payments,
+            $apr_payments,
+            $may_payments,
+            $jun_payments,
+            $jul_payments,
+            $aug_payments,
+            $sep_payments,
+            $oct_payments,
+            $nov_payments,
+            $dec_payments
+        ]);
+
+        $invoice_charts = json_encode([
+            $jan_invoices,
+            $feb_invoices,
+            $mar_invoices,
+            $apr_invoices,
+            $may_invoices,
+            $jun_invoices,
+            $jul_invoices,
+            $aug_invoices,
+            $sep_invoices,
+            $oct_invoices,
+            $nov_invoices,
+            $dec_invoices
+        ]);
+
+        return view('dashboard.dashboard', compact('total_users','total_income','total_expense','total_students','total_teachers','total_classes', 'service_income', 'expense','total_transactions','equity_balance','total_net_income','income_chart','expense_chart','invoice_charts','payment_charts'));
     }
 }
