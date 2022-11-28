@@ -325,7 +325,7 @@
 
             $(".alert").each(function() {
                 $(this).fadeTo(2000, 700).slideUp(700, function() {
-                    $(this).slideUp(700);
+                        $(this).slideUp(700);
                 });
             });
         });

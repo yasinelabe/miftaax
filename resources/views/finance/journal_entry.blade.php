@@ -29,7 +29,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                  <div id="success-message"></div>
+                  <div id="success-message"  class="badge alert-success" style="padding:20px;display:none;"></div>
                     <div class="x_content">
                         <div class="row">
                             <div class="col-md-12">
