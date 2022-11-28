@@ -1,93 +1,80 @@
-Registration
-
-- Student Details
-- Student Admission
-- Inactive Students
-- Graduated Students
-
-Examination
-- exams
-- grading
-- schedule exam
-- print marks sheet
-- print admit card
+--Human Resource--
+Staff Registration
+Staff Directory
+Staff Profile
+Staff Attendance
+Staff Leaves Management
+Staff Payroll Management
+Department
+Designation
+Disable Staff
 
 
-Academics
+--Library--
+Book List
+Issue Return
+Add Student
+Add Staff Member
 
-- class rooms
-- sections
-- subjects
-- subject groups
-- teachers
-- teacher subject mapping
-- teacher class mapping
-- teacher timetable
-- class timetable
+
+--Transportation--
+Routes
+Vehicles
+Assign Vehicle
 
 
 
-Fees Collection
+--Hostel--
+Hostel rooms
+Room types
+Hostel
 
-- collect fees
-- Search Due fees
-- Fee types
 
-
-Attendance
-- do Attendance
-- 
-
-Accounting
-
--- chart of accounts
--- balance sheet
--- income statement
--- journal entry
--- General Lender
--- Trial Balance
+--Certificate--
+Student Certificate
+Generate Certificate
+Student ID Card
+Generate ID Card
+Staff ID Card
+Generate Staff ID Card
 
 
 
+--HomeWork--
+Add HomeWork
+Evalute HomeWork
 
-Exam Subjects
 
-
-- SubjectId
-- Date
-- Time
-- Duration
-- Credit Hours
-- Max-marks
-- Min-marks
-
-- Exam
-- ExamGroup
-- ExamGroupItem
-- ExamStudent
-- ExamSubject
+--Inventory--
+Issue Item
+Add Item Stock
+Add Item
+Item Category
+Item Store
+Item Supplier
 
 
 
+--Finance--
+Income
+New Income
+Income Head
+Search Income
 
-
-MAX_SCORE = 100
-MIN_SCORE = 50
-
-12 = 100
-X = 50
-
-
-
-SCORE = (4 * MARKS ) / 100
-GRADE POINTS = CREDIT_HOURS * SCORE
 
 
 Student profile Information
-
-    - Student Details
-    - Student Parent
-    - Student Siblings
-    - Student Fee Information  / Academic year
-    - Student Exams / Academic Year
     - Student Attendance Map Report
+
+
+
+
+
+
+
+GPA CALCULATION
+
+MAX_SCORE = 100
+MIN_SCORE = 50
+SCORE = (4 * MARKS ) / 100
+GRADE POINTS = CREDIT_HOURS * SCORE

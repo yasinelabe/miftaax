@@ -199,7 +199,6 @@ class Finance extends Controller
     {
         $years = AccountTransaction::select(DB::raw('YEAR(transaction_date) as year'))->groupBy('year')->get();
         $months = AccountTransaction::select(DB::raw('MONTH(transaction_date) as month'))->groupBy('month')->get();
-        $days = AccountTransaction::select(DB::raw('DAY(transaction_date) as day'))->groupBy('day')->get();
 
         $total_income = Account::where('account_type_id', 4)->sum('balance');
         $total_expense = Account::where('account_type_id', 3)->sum('balance');
@@ -207,7 +206,7 @@ class Finance extends Controller
 
         $total_net_income = $total_income - $total_expense;
 
-        return view('finance.income_statement', ['years' => $years, 'months' => $months, 'days' => $days, 'total_income' => $total_income, 'total_expense' => $total_expense, 'total_net_income' => $total_net_income]);
+        return view('finance.income_statement', ['years' => $years, 'months' => $months, 'total_income' => $total_income, 'total_expense' => $total_expense, 'total_net_income' => $total_net_income]);
     }
 
 
@@ -215,11 +214,10 @@ class Finance extends Controller
     {
         $years = AccountTransaction::select(DB::raw('YEAR(transaction_date) as year'))->groupBy('year')->get();
         $months = AccountTransaction::select(DB::raw('MONTH(transaction_date) as month'))->groupBy('month')->get();
-        $days = AccountTransaction::select(DB::raw('DAY(transaction_date) as day'))->groupBy('day')->get();
 
         $account_transactions = AccountTransaction::all();
         $accounts = Account::all();
-        return view('finance.trial_balance', ['account_transactions' => $account_transactions, 'accounts' => $accounts, 'years' => $years, 'months' => $months, 'days' => $days]);
+        return view('finance.trial_balance', ['account_transactions' => $account_transactions, 'accounts' => $accounts, 'years' => $years, 'months' => $months]);
     }
 
 
