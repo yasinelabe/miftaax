@@ -63,17 +63,6 @@ class DashboardController extends Controller
         }
 
 
-        // get today's total transactions
-        $total_transactions = $service_income_account_transactions->count();
-
-        $total_income = Account::where('account_type_id', 4)->sum('balance');
-        $total_expense = Account::where('account_type_id', 3)->sum('balance');
-        $total_net_income = $total_income - $total_expense;
-
-        $equity = Account::find(10);
-        $equity_balance = $equity->balance;
-
-
         $expense_ids = $all_expense_accounts->map(function($account){
             if($account->id != 11){
                 return $account->id;
@@ -85,6 +74,30 @@ class DashboardController extends Controller
         $income_ids = $all_income_accounts->map(function($account){
             return $account->id;
         })->toArray();
+
+
+        // get today's total transactions
+        $total_transactions = $service_income_account_transactions->count();
+
+
+
+        // total income & expense of the current month
+        $total_income = AccountTransaction::where('account_transaction_type_id',2)->whereIn('account_id',$income_ids)->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date', '=', date('m'))->sum('amount');
+        $total_expense = AccountTransaction::where('account_transaction_type_id',1)->whereIn('account_id',$expense_ids)->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date', '=',  date('m'))->sum('amount');
+        $total_net_income = $total_income - $total_expense;
+
+
+        $overall_income = Account::where('account_type_id', 4)->sum('balance') - Account::where('account_type_id', 3)->sum('balance');
+        $equity = Account::find(10);
+        $equity_balance = $equity->balance;
+
+
+        // total unpaid amount
+        $total_unpaid_fees = Account::find(12)->balance;
+
+
+
+        
 
 
         $jan_income = AccountTransaction::where('account_transaction_type_id',2)->whereIn('account_id',$income_ids)->whereYear('transaction_date','=',date('Y'))->whereMonth('transaction_date', '=', '1')->sum('amount');
@@ -208,6 +221,6 @@ class DashboardController extends Controller
         $male = (Student::where('gender','male')->count() * 100 ) / $total_students;
         $female = (Student::where('gender','female')->count() * 100 ) / $total_students;
 
-        return view('dashboard.dashboard', compact('total_users','total_income','total_expense','total_students','total_teachers','total_classes', 'service_income', 'expense','total_transactions','equity_balance','total_net_income','income_chart','expense_chart','invoice_charts','payment_charts','male','female'));
+        return view('dashboard.dashboard', compact('total_users','total_income','total_expense','total_students','total_teachers','total_classes', 'service_income', 'expense','total_transactions','equity_balance','total_net_income','income_chart','expense_chart','invoice_charts','payment_charts','male','female','overall_income','total_unpaid_fees'));
     }
 }

@@ -3549,7 +3549,7 @@ function init_echarts() {
             series: [
                 {
                     name: "income",
-                    type: "line",
+                    type: "bar",
                     data: JSON.parse(
                         document.getElementById("income_chart").value
                     ),
@@ -3568,7 +3568,7 @@ function init_echarts() {
                 },
                 {
                     name: "expense",
-                    type: "line",
+                    type: "bar",
                     data: JSON.parse(
                         document.getElementById("expense_chart").value
                     ),

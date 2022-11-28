@@ -6230,11 +6230,3 @@ ul#myTab {
     height: 10vh;
 	padding:10px;
 }
-
-.tile_count .tile_stats_count {
-    background:radial-gradient(#2a3f5430, transparent)
-}
-
-.tile {
-    background: radial-gradient(#fed6d6, transparent);
-}
