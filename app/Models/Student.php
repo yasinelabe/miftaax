@@ -57,6 +57,10 @@ class Student extends Model
         return $this->belongsTo(StudentAddress::class,'student_address_id');
     }
 
+    public function attendance_results(){
+        return $this->hasMany(AttendanceResult::class,'student_id');
+    }
+
     public function hasClassRoom($class_room_id){
         foreach($this->class_rooms as $class_room){
             if($class_room->id == $class_room_id){

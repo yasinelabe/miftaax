@@ -206,7 +206,7 @@
                                                 @foreach ($student->fee_transactions as $k => $row)
                                                     <tr>
                                                         <td>{{ $row->id }}</td>
-                                                        <td>{{ $row->fee->fee_type->name  . ' #' . $row->fee->month }}</td>
+                                                        <td>{{ $row->fee->fee_type->name . ' #' . $row->fee->month }}</td>
                                                         <td>{{ $row->fee->academic_year->year }}</td>
                                                         <td>
                                                             @if ($row->transaction_type == 'payment')
@@ -287,7 +287,92 @@
                                         aria-labelledby="attendance-tab">
                                         <br />
                                         <br />
-                                       
+
+                                        <table class="table table-striped table-bordered table-hover"
+                                            id="attendancetable" role="grid">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">
+                                                        Date | Month </th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">January</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">February</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">March</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">April</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">May</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">June</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">July</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">August</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">September</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">October</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">November</th>
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 0px;">December</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for ($i = 1; $i <= 31; $i++)
+                                                    <tr role="row" class="odd">
+                                                        @for ($m = 0; $m < 13; $m++)
+                                                            @if ($m == 0)
+                                                                <td>{{ $i }}</td>
+                                                            @else
+                                                                @php
+                                                                    $td = false;
+                                                                @endphp
+                                                                @foreach ($student->attendance_results as $result)
+                                                                    @if ((int) \Carbon\Carbon::parse($result->attendance->attendance_date)->format('d') === $i &&
+                                                                        (int) \Carbon\Carbon::parse($result->attendance->attendance_date)->format('m') == $m)
+                                                                        @php
+                                                                            $classes = '';
+                                                                        @endphp
+                                                                        @if (ucfirst($result->attendance_result_status->name) == 'Present')
+                                                                            @php
+                                                                                $classes = 'bg-success';
+                                                                            @endphp
+                                                                        @elseif (ucfirst($result->attendance_result_status->name) == 'Half day' || $result->attendance_result_status->name == 'Late')
+                                                                            @php
+                                                                                $classes = 'bg-warning';
+                                                                            @endphp
+                                                                        @elseif (ucfirst($result->attendance_result_status->name) == 'Absent')
+                                                                            @php
+                                                                                $classes = 'bg-danger';
+                                                                            @endphp
+                                                                        @else
+                                                                            @php
+                                                                                $classes = 'bg-info';
+                                                                            @endphp
+                                                                        @endif
+                                                                        <td class="{{$classes}}" title="{{ $result->attendance_result_status->name }}, {{$result->attendance->attendance_date}}"> {{ $result->attendance_result_status->name[0] }}
+                                                                            @php
+                                                                                $td = true;
+                                                                            @endphp
+                                                                        </td>
+                                                                    @endif
+                                                                @endforeach
+
+                                                                @if ($td == false)
+                                                                    <td></td>
+                                                                @endif
+                                                            @endif
+                                                        @endfor
+                                                    </tr>
+                                                @endfor
+
+                                            </tbody>
+                                        </table>
+
                                     </div>
                                 </div>
 
