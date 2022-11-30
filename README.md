@@ -1,4 +1,4 @@
---Human Resource--
+# Human Resource
 Staff Registration
 Staff Directory
 Staff Profile
@@ -10,27 +10,27 @@ Designation
 Disable Staff
 
 
---Library--
+# Library# 
 Book List
 Issue Return
 Add Student
 Add Staff Member
 
 
---Transportation--
+# Transportation# 
 Routes
 Vehicles
 Assign Vehicle
 
 
 
---Hostel--
+# Hostel# 
 Hostel rooms
 Room types
 Hostel
 
 
---Certificate--
+# Certificate# 
 Student Certificate
 Generate Certificate
 Student ID Card
@@ -40,12 +40,12 @@ Generate Staff ID Card
 
 
 
---HomeWork--
+# HomeWork# 
 Add HomeWork
 Evalute HomeWork
 
 
---Inventory--
+# Inventory# 
 Issue Item
 Add Item Stock
 Add Item
@@ -55,7 +55,7 @@ Item Supplier
 
 
 
---Finance--
+# Finance# 
 Income
 New Income
 Income Head
@@ -63,16 +63,7 @@ Search Income
 
 
 
-Student profile Information
-    - Student Attendance Map Report
-
-
-
-
-
-
-
-GPA CALCULATION
+# GPA CALCULATION
 
 MAX_SCORE = 100
 MIN_SCORE = 50
