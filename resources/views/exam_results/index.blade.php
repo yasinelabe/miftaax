@@ -123,77 +123,80 @@
                                             $total_index = $result_index - 2;
                                         @endphp
                                         <tbody>
+
                                             @foreach ($students as $student)
-                                                @php
-                                                    $total_marks = 0;
-                                                @endphp
-
-                                                @foreach ($student->exam_results as $result)
+                                                @if ($student != null)
                                                     @php
-                                                        $total_marks += $result->marks;
+                                                        $total_marks = 0;
                                                     @endphp
-                                                @endforeach
 
-                                                <tr>
-                                                    @foreach ($theads as $th)
-                                                        @if ($th[0] == 0)
-                                                            <td>{{ $student->id }}</td>
-                                                        @endif
-                                                        @if ($th[0] == 1)
-                                                            <td>{{ $student->fullname }}</td>
-                                                        @endif
+                                                    @foreach ($student->exam_results as $result)
                                                         @php
-                                                            $results = [];
+                                                            $total_marks += $result->marks;
                                                         @endphp
-                                                        @foreach ($student->exam_results as $result)
-                                                            @php
-                                                                array_push($results, $result->exam_subject->id);
-                                                            @endphp
-                                                        @endforeach
+                                                    @endforeach
 
-                                                        @if (!in_array($th[0], $results) && $th[0] != 1 && $th[0] != 0)
-                                                            @if ($th[0] == $total_index)
-                                                                @if ($type == 'GPA')
-                                                                    <td>
-                                                                        @php
-                                                                            echo '( ' . App\Models\Grading::find(App\Models\Grading::get_grading_id(number_format((float) $total_marks, 2, '.', ''), $max_limit))->grade . ' )';
-                                                                        @endphp
-                                                                    </td>
-                                                                @else
-                                                                    <td> {{ number_format((float) $total_marks, 2, '.', '') . '/' . number_format((float) $max_limit, 2, '.', '') }}
-                                                                    </td>
-                                                                @endif
-                                                            @else
-                                                                @if ($type == 'GPA')
-                                                                @else
-                                                                    @if ($th[0] == $result_index)
+                                                    <tr>
+                                                        @foreach ($theads as $th)
+                                                            @if ($th[0] == 0)
+                                                                <td>{{ $student->id }}</td>
+                                                            @endif
+                                                            @if ($th[0] == 1)
+                                                                <td>{{ $student->fullname }}</td>
+                                                            @endif
+                                                            @php
+                                                                $results = [];
+                                                            @endphp
+                                                            @foreach ($student->exam_results as $result)
+                                                                @php
+                                                                    array_push($results, $result->exam_subject->id);
+                                                                @endphp
+                                                            @endforeach
+
+                                                            @if (!in_array($th[0], $results) && $th[0] != 1 && $th[0] != 0)
+                                                                @if ($th[0] == $total_index)
+                                                                    @if ($type == 'GPA')
                                                                         <td>
                                                                             @php
                                                                                 echo '( ' . App\Models\Grading::find(App\Models\Grading::get_grading_id(number_format((float) $total_marks, 2, '.', ''), $max_limit))->grade . ' )';
                                                                             @endphp
                                                                         </td>
                                                                     @else
-                                                                        @if ($th[0] == $percent_index)
-                                                                            <td>{{ number_format(((float) $total_marks * 100) / $max_limit, 2, '.', '') . '%' }}
+                                                                        <td> {{ number_format((float) $total_marks, 2, '.', '') . '/' . number_format((float) $max_limit, 2, '.', '') }}
+                                                                        </td>
+                                                                    @endif
+                                                                @else
+                                                                    @if ($type == 'GPA')
+                                                                    @else
+                                                                        @if ($th[0] == $result_index)
+                                                                            <td>
+                                                                                @php
+                                                                                    echo '( ' . App\Models\Grading::find(App\Models\Grading::get_grading_id(number_format((float) $total_marks, 2, '.', ''), $max_limit))->grade . ' )';
+                                                                                @endphp
                                                                             </td>
                                                                         @else
-                                                                            <td></td>
+                                                                            @if ($th[0] == $percent_index)
+                                                                                <td>{{ number_format(((float) $total_marks * 100) / $max_limit, 2, '.', '') . '%' }}
+                                                                                </td>
+                                                                            @else
+                                                                                <td></td>
+                                                                            @endif
                                                                         @endif
                                                                     @endif
                                                                 @endif
+                                                            @else
+                                                                @foreach ($student->exam_results as $result)
+                                                                    @if ($result->exam_subject->id == $th[0])
+                                                                        <td>{{ $result->marks . ' (' . $result->grading->grade . ')' }}
+                                                                            <br /><small>{{ $result->note }}</small>
+                                                                        </td>
+                                                                    @endif
+                                                                @endforeach
                                                             @endif
-                                                        @else
-                                                            @foreach ($student->exam_results as $result)
-                                                                @if ($result->exam_subject->id == $th[0])
-                                                                    <td>{{ $result->marks . ' (' . $result->grading->grade . ')' }}
-                                                                        <br /><small>{{ $result->note }}</small>
-                                                                    </td>
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endforeach
+                                                        @endforeach
 
-                                                </tr>
+                                                    </tr>
+                                                @endif
                                             @endforeach
                                         </tbody>
 
