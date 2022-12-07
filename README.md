@@ -58,8 +58,8 @@
 # Finance# 
 * Income
 * New Income
-* Income Head
-* Search Income
+* Debit Voucher
+* Credit Voucher
 
 
 
