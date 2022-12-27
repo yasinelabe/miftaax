@@ -145,9 +145,14 @@ class FeeController extends Controller
         return view('fees.paid_list', compact('class_rooms', 'list'));
     }
 
-    public function search_due_fees(ClassRoom $classroom)
+    public function search_due_fees($classroom)
     {
-        $students = $classroom->students;
+        if($classroom == 0){
+            $students = Student::all();
+        }else{
+            $classroom = ClassRoom::find($classroom);
+            $students = $classroom->students;
+        }
         $unpaid_students = [];
         foreach ($students as $student) {
             if ($student->fee_balance > 0) {

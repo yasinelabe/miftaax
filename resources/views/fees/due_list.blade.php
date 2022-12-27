@@ -93,7 +93,7 @@
                                 <div class="col-sm-6">
                                     <div class="col">
                                         <select name="class_id" id="class_rooms" class="form-control">
-                                            <option value="">-class room-</option>
+                                            <option value="">-ALL-</option>
                                             @foreach ($class_rooms as $class_room)
                                                 <option value="{{ $class_room->id }}">{{ $class_room->name }}</option>
                                             @endforeach
@@ -153,8 +153,8 @@
     <script>
         function searchStudents(event) {
             event.preventDefault();
-
             class_room = $("#class_rooms :selected").val()
+            class_room = (class_room != '') ? class_room : 0
             class_room_name = $("#class_rooms :selected").text()
             let table = $('#datatable-buttons').DataTable();
             let due_amount = 0;
