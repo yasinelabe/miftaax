@@ -130,6 +130,13 @@
 
                                         </tbody>
 
+                                        <tfoot>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th id="due_amount"></th>
+                                            <th></th>
+                                        </tfoot>
 
                                     </table>
 
@@ -150,7 +157,7 @@
             class_room = $("#class_rooms :selected").val()
             class_room_name = $("#class_rooms :selected").text()
             let table = $('#datatable-buttons').DataTable();
-
+            let due_amount = 0;
 
             $.ajax({
                 type: "get",
@@ -176,8 +183,12 @@
                                 <td>${student.fee_amount}</td>
                         `
                             table.row.add(tr).draw();
+
+                            due_amount += parseFloat(student.fee_balance)
                         }
                     });
+
+                    $("#due_amount").html(`<h5>Due Amount: $${due_amount}`)
 
                 },
             });
