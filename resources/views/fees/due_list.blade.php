@@ -157,6 +157,7 @@
             class_room = (class_room != '') ? class_room : 0
             class_room_name = $("#class_rooms :selected").text()
             let table = $('#datatable-buttons').DataTable();
+            table.clear()
             let due_amount = 0;
 
             $.ajax({

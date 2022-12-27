@@ -343,7 +343,7 @@
             $class_room = $("#class_rooms :selected").val()
 
             let table = $('#datatable-buttons').DataTable();
-
+            table.clear()
 
             $.ajax({
                 type: "get",

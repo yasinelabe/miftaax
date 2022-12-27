@@ -160,7 +160,7 @@
             class_room = $("#class_rooms :selected").val()
             class_room_name = $("#class_rooms :selected").text()
             let table = $('#datatable-buttons').DataTable();
-
+            table.clear()
 
             $.ajax({
                 type: "get",
