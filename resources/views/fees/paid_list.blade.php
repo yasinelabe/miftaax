@@ -123,6 +123,7 @@
                                                 <th>Student Fullname</th>
                                                 <th>Class</th>
                                                 <th>Unpaid Total</th>
+                                                <th>Paid Total</th>
                                                 <th>Fee Amount</th>
                                             </tr>
                                         </thead>
@@ -130,7 +131,16 @@
 
                                         </tbody>
 
-
+                                        <tfoot>
+                                            <tr role="row">
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th id="paid_total"></th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
 
 
@@ -157,7 +167,7 @@
                 url: "/fees/search_paid_list/" + class_room,
                 success: function(response) {
                     students = response
-
+                    let paid_total = 0;
                     students.forEach(student => {
                         if (student.fee_balance == 0 && student.fee_amount != 0) {
                             tr = document.createElement('tr')
@@ -167,11 +177,15 @@
                                 <td>${student.fullname}</td>
                                 <td>${class_room_name}</td>
                                 <td>${student.fee_balance}</td>
+                                <td>${parseFloat(student.fee_amount) - parseFloat(student.fee_balance)}</td>
                                 <td>${student.fee_amount}</td>
                         `
                             table.row.add(tr).draw();
+                            paid_total += parseFloat(student.fee_amount) - parseFloat(student.fee_balance)
                         }
                     });
+
+                    $("#paid_total").html(`<h5>Paid Total: $${paid_total}</h5>`)
 
                 },
             });
