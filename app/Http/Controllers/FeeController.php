@@ -188,7 +188,8 @@ class FeeController extends Controller
             $student_fee_transaction->delete();
 
             $student = $student_fee_transaction->student;
-
+            $student->fee_balance = $student->fee_balance - $amount;
+            $student->save();
             $account = Account::find(12);
             $account->credit($amount);
             $account->save();
