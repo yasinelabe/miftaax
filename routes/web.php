@@ -235,6 +235,7 @@ Route::controller(FeeController::class)->prefix("fees")->middleware("auth")->nam
     Route::get("/collect_fees", "collect_fees")->name(".collect_fees");
     Route::post("/save_payments", "save_payments")->name(".save_payments");
     Route::post("/save_student_payment", "save_student_payment")->name(".save_student_payment");
+    Route::get("/cancel_fee/{transaction_id}", "cancel_fee")->name(".cancel_fee");
 });
 Route::controller(FeeTypeController::class)->prefix("fee_types")->middleware("auth")->name("fee_types")->group(function () {
     Route::get("/", "index")->name(".index");

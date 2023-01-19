@@ -199,6 +199,7 @@
                                                     <th>Balance</th>
                                                     <th>Status</th>
                                                     <th>Date</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -244,13 +245,22 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ $row->transaction_date }}</td>
+                                                        <td>
+                                                            @if ($row->transaction_type == 'invoice')
+                                                                @if ($row->transaction_type == 'invoice' && $k == $student->fee_transactions->count() - 1)
+                                                                    <a class="btn btn-danger btn-sm" title="Cancel Invoice" href="{{ route('fees.cancel_fee',$row->id) }}"><i
+                                                                            class="fa fa-undo"></i> Cancel</a>
+                                                                @endif
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                 @endforeach
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="results" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div class="tab-pane fade" id="results" role="tabpanel"
+                                        aria-labelledby="contact-tab">
                                         <br />
                                         <br />
                                         @foreach ($student->exam_group_items as $exam)
@@ -288,8 +298,8 @@
                                         <br />
                                         <br />
 
-                                        <table class="table table-striped table-bordered table-hover"
-                                            id="attendancetable" role="grid">
+                                        <table class="table table-striped table-bordered table-hover" id="attendancetable"
+                                            role="grid">
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting_disabled" rowspan="1" colspan="1"
@@ -341,7 +351,8 @@
                                                                             @php
                                                                                 $classes = 'bg-success';
                                                                             @endphp
-                                                                        @elseif (ucfirst($result->attendance_result_status->name) == 'Half day' || $result->attendance_result_status->name == 'Late')
+                                                                        @elseif (ucfirst($result->attendance_result_status->name) == 'Half day' ||
+                                                                            $result->attendance_result_status->name == 'Late')
                                                                             @php
                                                                                 $classes = 'bg-warning';
                                                                             @endphp
@@ -354,7 +365,9 @@
                                                                                 $classes = 'bg-info';
                                                                             @endphp
                                                                         @endif
-                                                                        <td class="{{$classes}}" title="{{ $result->attendance_result_status->name }}, {{$result->attendance->attendance_date}}"> {{ $result->attendance_result_status->name[0] }}
+                                                                        <td class="{{ $classes }}"
+                                                                            title="{{ $result->attendance_result_status->name }}, {{ $result->attendance->attendance_date }}">
+                                                                            {{ $result->attendance_result_status->name[0] }}
                                                                             @php
                                                                                 $td = true;
                                                                             @endphp

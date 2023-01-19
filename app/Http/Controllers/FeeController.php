@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use App\Models\AccountTransaction;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use App\Models\Fee;
 use App\Models\FeeType;
 use App\Models\Student;
+use App\Models\StudentFeeTransaction;
 use App\Repositories\ClassRoomRepository;
 use App\Repositories\FeeRepository;
 use App\Services\CheckActiveYear;
@@ -175,5 +177,48 @@ class FeeController extends Controller
         return response()->json(
             $unpaid_students
         );
+    }
+
+
+
+    function cancel_fee($transaction_id) {
+        $student_fee_transaction = StudentFeeTransaction::find($transaction_id);
+        if($student_fee_transaction){
+            $amount = $student_fee_transaction->amount;
+            $student_fee_transaction->delete();
+
+            $student = $student_fee_transaction->student;
+
+            $account = Account::find(12);
+            $account->credit($amount);
+            $account->save();
+    
+            $account_transaction = new AccountTransaction();
+            $account_transaction->account_id = $account->id;
+            $account_transaction->amount = $amount;
+            $account_transaction->balance = $account->balance;
+            $account_transaction->account_transaction_type_id = 2;
+            $account_transaction->description = $student->fullname . 'With StudentID: '.$student->id . ' , Cancelled Fee';
+            $account_transaction->student_id = $student->id;
+            $account_transaction->save();
+    
+    
+            // credit the revenue account
+            $revenue_account = Account::find(13);
+            $revenue_account->debit($amount);
+    
+            // record the transaction
+            $revenue_account_transaction = new AccountTransaction();
+            $revenue_account_transaction->account_id = $revenue_account->id;
+            $revenue_account_transaction->amount = $amount;
+            $revenue_account_transaction->balance = $revenue_account->balance;
+            $revenue_account_transaction->account_transaction_type_id = 1;
+            $revenue_account_transaction->description = $student->fullname . 'With StudentID: '.$student->id . ' , Cancelled Fee';
+            $revenue_account_transaction->save();
+
+
+            session()->flash('success', 'Fee Cancelled');
+            return redirect()->back();
+        }
     }
 }

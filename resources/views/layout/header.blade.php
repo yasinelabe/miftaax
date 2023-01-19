@@ -89,7 +89,6 @@
                                         <li><a href="/subjects">Subjects</a></li>
                                         <li><a href="/teachers">Teachers</a></li>
                                         <li><a href="/subject_groups">Subject Groups </a></li>
-                                        
                                         <li><a href="/teacher_subjects">Teacher Subject Mapping</a></li>
                                         <li><a href="/class_room_subjects">Class Subject Mapping</a></li>
                                         <li><a href="/schedules">Class Time Table</a></li>
@@ -104,8 +103,8 @@
                                         <li><a href="/exams">Exams</a></li>
                                         <li><a href="/exam_results">Exam Result</a></li>
                                         <li><a href="/exams/schedule">Exam Schedule</a></li>
-                                        <li><a href="#">Get Marks Sheet</a></li>
-                                        <li><a href="#">Get Admit Card</a></li>
+                                        {{-- <li><a href="#">Get Marks Sheet</a></li> --}}
+                                        {{-- <li><a href="#">Get Admit Card</a></li> --}}
                                     </ul>
                                 </li>
                                 <li>
