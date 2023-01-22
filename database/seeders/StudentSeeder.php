@@ -16,6 +16,7 @@ class StudentSeeder extends Seeder
     public function run()
     {
         DB::table('students')->insert([
+            [
             'fullname' => 'Cumar jaamac',
             'gender'=> 'male',
             'guardian_id' => 1,
@@ -24,8 +25,21 @@ class StudentSeeder extends Seeder
             'is_active' => 1,
             'is_graduated' => 0,
             'fee_balance' => 0,
-            'fee_amount' => 50,
+            'fee_amount' => 10,
             'student_address_id' => 1,
-        ]);
+            ],
+            [
+            'fullname' => 'Axmed',
+            'gender'=> 'male',
+            'guardian_id' => 1,
+            'blood_group_id' => 1,
+            'has_medical_emergency' =>1,
+            'is_active' => 1,
+            'is_graduated' => 0,
+            'fee_balance' => 0,
+            'fee_amount' => 10,
+            'student_address_id' => 1,
+        ]
+    ]);
     }
 }

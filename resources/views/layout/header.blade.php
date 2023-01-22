@@ -160,7 +160,6 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">inActive Students</a></li>
                                         <li><a href="#">Graduated Students</a></li>
                                         <li><a href="/student_addresses">Student Areas</a></li>
                                         <li><a href="/guardians">Parents</a></li>

@@ -29,7 +29,7 @@ class StudentRepository
     {
         $all_students = Student::all()->filter(function($student){
             $class_rooms = StudentClassRoom::where('student_id',$student->id);
-            if($class_rooms->count() == 0){
+            if($class_rooms->count() == 0 && $student->is_active == 1){
                 return $student;
             }
         });

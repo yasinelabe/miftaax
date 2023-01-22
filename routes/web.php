@@ -138,6 +138,7 @@ Route::controller(ClassRoomController::class)->prefix("class_rooms")->middleware
     Route::get("/{classroom}/delete", "destroy")->name(".delete");
     Route::post("/import_students", "import_students")->name(".import_students");
     Route::get("/get_class_students/{classroom}", "get_class_students")->name(".get_class_students");
+    Route::get("/students/{classroom}", "students")->name(".students");
 });
 Route::controller(ShiftController::class)->prefix("shifts")->middleware("auth")->name("shifts")->group(function () {
     Route::get("/", "index")->name(".index");

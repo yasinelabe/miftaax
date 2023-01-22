@@ -60,7 +60,7 @@ class ExamGroupItemRepository
     function add_students($request)
     {
         foreach ($request->students as $k => $student) {
-            // check if subject exists already
+            // check if student exists already
             $examstudent = ExamStudent::where('exam_group_item_id', $request->exam_group_item_id)->where('student_id', $student)->get();
             if ($examstudent->count() == 0) {
                 $new_student = new ExamStudent();

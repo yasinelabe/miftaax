@@ -82,7 +82,11 @@ class ClassRoomController extends Controller
 
     public function get_class_students(ClassRoom $classroom)
     {
-        $students = $classroom->students;
+        $students = $classroom->students->filter(function($std) {
+            if($std->is_active == 1){
+                return $std;
+            }
+        });
 
         foreach($students as $k=>$student):
             $student->exam_groups = $student->exam_group_items;
@@ -93,5 +97,15 @@ class ClassRoomController extends Controller
         return response()->json(
             $students
         )->header('Content-type','Application/json');
+    }
+
+    function students(ClassRoom $classroom){
+        $students = $classroom->students->filter(function($std) {
+            if($std->is_active == 1){
+                return $std;
+            }
+        });
+
+        return view('class_rooms.students', compact('students'));
     }
 }

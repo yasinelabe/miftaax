@@ -59,7 +59,11 @@ class FeeController extends Controller
             if (!isset($request->students)) {
                 $active_classes = $this->classRoomRepository->active_classes();
                 foreach ($active_classes as $active_class) {
-                    $class_students = $active_class->students;
+                    $class_students = $active_class->students->filter(function($st){
+                        if($st->is_active == 1){
+                            return $st;
+                        }
+                    });
                     foreach ($class_students as $student) :
                         $this->feeRepository->generate_student_fee($student, $fee, $fee->fee_type->name, $amount);
                     endforeach;

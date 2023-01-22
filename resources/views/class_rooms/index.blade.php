@@ -181,7 +181,7 @@
                                             @foreach ($class_rooms as $classroom)
                                                 <tr role="row" class="odd">
                                                     <td>{{ $classroom->id }}</td>
-                                                    <td>{{ $classroom->name }}</td>
+                                                    <td><a href="{{route('class_rooms.students',$classroom->id)}}">{{ $classroom->name }}</a></td>
                                                     <td>{{ $classroom->academic_year->year }}</td>
                                                     <td>{{ $classroom->shift->name }}</td>
                                                     <td><a href="#" data-toggle="modal" data-target=".edit_modal"
