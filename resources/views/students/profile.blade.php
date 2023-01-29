@@ -135,42 +135,42 @@
                                                         <table class="table table-hover table-striped tmb0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>Name: {{ $student->fullname }}</td>
+                                                                    <td>Name: {{ $child->fullname }}</td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <td>Address:{{ $student->student_address->area }}</td>
+                                                                    <td>Address:{{ $child->student_address->area }}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Gender:{{ $student->gender }}</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>DOB: {{ $student->date_of_birth }}</td>
+                                                                    <td>Gender:{{ $child->gender }}</td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <td>Joined: {{ $student->joined_date }}</td>
+                                                                    <td>DOB: {{ $child->date_of_birth }}</td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <td>Blood G: {{ $student->blood_group->name }}</td>
+                                                                    <td>Joined: {{ $child->joined_date }}</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Blood G: {{ $child->blood_group->name }}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Fee: {{ $student->fee_amount }}</td>
+                                                                    <td>Fee: {{ $child->fee_amount }}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td> Balance: {{ $student->fee_balance }}</td>
+                                                                    <td> Balance: {{ $child->fee_balance }}</td>
                                                                 </tr>
 
                                                                 <tr>
                                                                     <td>Graduated:
-                                                                        {{ $student->is_graduated == 1 ? 'Yes' : 'No' }}
+                                                                        {{ $child->is_graduated == 1 ? 'Yes' : 'No' }}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Active:
-                                                                        {{ $student->is_active == 1 ? 'Yes' : 'No' }}</td>
+                                                                        {{ $child->is_active == 1 ? 'Yes' : 'No' }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Class Rooms: @foreach ($child->class_rooms as $class_room)
