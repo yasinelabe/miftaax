@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Asset;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
@@ -666,17 +665,6 @@ class generateCV extends Command
         $routes_content .= '}); ';
         fwrite($routes_file, $routes_content);
         fclose($routes_file);
-
-
-        //  create record of assets table
-        // asset_name = $table_name
-        // route_name = $table_name
-        $asset_name = $table_name;
-        $route_name = $table_name;
-
-        Asset::create([
-            'assets_name' => $asset_name,
-            'route_name' => $route_name,
-        ]);
+        
     }
 }

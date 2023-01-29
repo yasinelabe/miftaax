@@ -33,7 +33,7 @@
     <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
 
     <link href="{{ URL::asset('css/select2.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/dropify.css') }}" rel="stylesheet">
 </head>
 
@@ -67,113 +67,166 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                                <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard </a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-graduation-cap"></i> Academics <span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        {{-- <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li class="sub_menu"><a href="level2.html">Level Two</a>
-                                                </li>
-                                                <li><a href="#level2_1">Level Two</a>
-                                                </li>
-                                                <li><a href="#level2_2">Level Two</a>
-                                                </li>
-                                            </ul>
-                                        </li> --}}
-                                        <li><a href="/academic_years">Academic Year</a></li>
-                                        <li><a href="/class_rooms">Class Rooms</a></li>
-                                        <li><a href="/shifts">Shifts</a></li>
-                                        <li><a href="/subjects">Subjects</a></li>
-                                        <li><a href="/teachers">Teachers</a></li>
-                                        <li><a href="/subject_groups">Subject Groups </a></li>
-                                        <li><a href="/teacher_subjects">Teacher Subject Mapping</a></li>
-                                        <li><a href="/class_room_subjects">Class Subject Mapping</a></li>
-                                        <li><a href="/schedules">Class Time Table</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-question-circle"></i> Examination <span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/gradings">Grading</a></li>
-                                        <li><a href="/exam_groups">Exam Groups</a></li>
-                                        <li><a href="/exams">Exams</a></li>
-                                        <li><a href="/exam_results">Exam Result</a></li>
-                                        <li><a href="/exams/schedule">Exam Schedule</a></li>
-                                        {{-- <li><a href="#">Get Marks Sheet</a></li> --}}
-                                        {{-- <li><a href="#">Get Admit Card</a></li> --}}
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-money"></i> Fees Collection <span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/fees">Fees list</a></li>
-                                        <li><a href="/fees/create">Generate Fee</a></li>
-                                        <li><a href="/fees/collect_fees">Collect Fees</a></li>
-                                        <li><a href="/fees/due_list">Search Due Fees</a></li>
-                                        <li><a href="/fees/paid_list">Search Paid Fees</a></li>
-                                        <li><a href="/fee_types">Fee Types</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-eye"></i> Attendance <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/attendances">Make Attendance</a></li>
-                                        <li><a href="/attendance_result_statuses">Attendance Status</a></li>
-                                        <li><a href="/leaves">Leaves</a></li>
-                                        <li><a href="/teacher_attendances">Teacher Attendance</a></li>
-                                        <li><a href="/attendance_results">Student Attendance Report</a></li>
-                                    </ul>
-                                </li>
+
+                                @if (Auth::user()->id != 1)
 
 
-                                <li><a><i class="fa fa-book"></i> Accounting <span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/finance/accounts">Chart of accounts</a></li>
-                                        <li><a href="/finance/journal_entry">Journal Entry</a></li>
-                                        <li><a href="/finance/balance_sheet">Balance sheet</a></li>
-                                        <li><a href="/finance/trial_balance">Trial Balance</a></li>
-                                        <li><a href="/finance/income_statement">Income statement</a></li>
-                                        <li><a href="/finance/expenses">Expenses</a></li>
-                                        <li><a href="/finance/new_expense">New Expenses</a></li>
-                                        <li><a href="/finance/new_expense_category">New Expense Head</a></li>
-                                    </ul>
-                                </li>
+                                    @foreach (Session::get('role_menus') as $item)
+                                        @if ($item->menu_id != null)
+                                            <li>
+                                                @if ($item->menu_id->sub_menus->count() > 0)
+                                                    <a>
+                                                        <i class="{{ $item->menu_id->icon }}"></i>
+                                                        {{ $item->menu_id->name }}
+                                                        <span class="fa fa-chevron-down"></span>
+                                                    </a>
+                                                @else
+                                                    <a href="{{ $item->menu_id->link }}">
+                                                        <i class="{{ $item->menu_id->icon }}"></i>
+                                                        {{ $item->menu_id->name }}</a>
+                                                @endif
 
-                                <li>
-                                    <a><i class="fa fa-child"></i> Registration <span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/students">Student Details</a></li>
-                                        <li><a>Student Admission<span class="fa fa-chevron-down"></span></a>
-                                            <ul class="nav child_menu">
-                                                <li class="sub_menu"><a href="/student_class_rooms">Admission list</a>
-                                                </li>
-                                                <li class="sub_menu"><a href="/student_class_rooms/create">Admit By Student</a>
-                                                </li>
-                                                <li class="sub_menu"><a href="/student_class_rooms/admit_in_batches">Admit By Batch</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Graduated Students</a></li>
-                                        <li><a href="/student_addresses">Student Areas</a></li>
-                                        <li><a href="/guardians">Parents</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-users"></i> User Management <span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="/users">Users</a></li>
-                                        <li><a href="/roles">Roles</a></li>
-                                    </ul>
-                                </li>
 
+                                                <ul class="nav child_menu">
+                                                    @foreach ($item->menu_id->sub_menus as $submenu)
+                                                        @foreach (Session::get('role_menus') as $sm)
+                                                            @if ($sm->sub_menu_id != null && $sm->sub_menu_id->id == $submenu->id)
+                                                                @if ($submenu->has_low_menu)
+                                                                    <li><a>{{ $submenu->name }}<span
+                                                                                class="fa fa-chevron-down"></span></a>
+                                                                        <ul class="nav child_menu">
+                                                                            @foreach ($sm->sub_menu_id->low_menus as $lowmenu)
+                                                                                @foreach (Session::get('role_menus') as $lm)
+                                                                                    @if ($lm->low_menu_id != null && $lm->low_menu_id->id == $lowmenu->id)
+                                                                                        <li class="sub_menu"><a
+                                                                                                href="{{ $lowmenu->link }}">{{ $lowmenu->name }}</a>
+                                                                                        </li>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @endforeach
+
+                                                                        </ul>
+                                                                    </li>
+                                                                @else
+                                                                    <li><a
+                                                                            href="{{ $submenu->link }}">{{ $submenu->name }}</a>
+                                                                    </li>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard </a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-graduation-cap"></i> Academics <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/academic_years">Academic Year</a></li>
+                                            <li><a href="/class_rooms">Class Rooms</a></li>
+                                            <li><a href="/shifts">Shifts</a></li>
+                                            <li><a href="/subjects">Subjects</a></li>
+                                            <li><a href="/teachers">Teachers</a></li>
+                                            <li><a href="/subject_groups">Subject Groups </a></li>
+                                            <li><a href="/teacher_subjects">Teacher Subject Mapping</a></li>
+                                            <li><a href="/class_room_subjects">Class Subject Mapping</a></li>
+                                            <li><a href="/schedules">Class Time Table</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-question-circle"></i> Examination <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/gradings">Grading</a></li>
+                                            <li><a href="/exam_groups">Exam Groups</a></li>
+                                            <li><a href="/exams">Exams</a></li>
+                                            <li><a href="/exam_results">Exam Result</a></li>
+                                            <li><a href="/exams/schedule">Exam Schedule</a></li>
+                                            {{-- <li><a href="#">Get Marks Sheet</a></li> --}}
+                                            {{-- <li><a href="#">Get Admit Card</a></li> --}}
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-money"></i> Fees Collection <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/fees">Fees list</a></li>
+                                            <li><a href="/fees/create">Generate Fee</a></li>
+                                            <li><a href="/fees/collect_fees">Collect Fees</a></li>
+                                            <li><a href="/fees/due_list">Search Due Fees</a></li>
+                                            <li><a href="/fees/paid_list">Search Paid Fees</a></li>
+                                            <li><a href="/fee_types">Fee Types</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-eye"></i> Attendance <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/attendances">Make Attendance</a></li>
+                                            <li><a href="/attendance_result_statuses">Attendance Status</a></li>
+                                            <li><a href="/leaves">Leaves</a></li>
+                                            <li><a href="/teacher_attendances">Teacher Attendance</a></li>
+                                            <li><a href="/attendance_results">Student Attendance Report</a></li>
+                                        </ul>
+                                    </li>
+
+
+                                    <li><a><i class="fa fa-book"></i> Accounting <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/finance/accounts">Chart of accounts</a></li>
+                                            <li><a href="/finance/journal_entry">Journal Entry</a></li>
+                                            <li><a href="/finance/balance_sheet">Balance sheet</a></li>
+                                            <li><a href="/finance/trial_balance">Trial Balance</a></li>
+                                            <li><a href="/finance/income_statement">Income statement</a></li>
+                                            <li><a href="/finance/expenses">Expenses</a></li>
+                                            <li><a href="/finance/new_expense">New Expenses</a></li>
+                                            <li><a href="/finance/new_expense_category">New Expense Head</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a><i class="fa fa-child"></i> Registration <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/students">Student Details</a></li>
+                                            <li><a>Student Admission<span class="fa fa-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li class="sub_menu"><a href="/student_class_rooms">Admission
+                                                            list</a>
+                                                    </li>
+                                                    <li class="sub_menu"><a href="/student_class_rooms/create">Admit
+                                                            By
+                                                            Student</a>
+                                                    </li>
+                                                    <li class="sub_menu"><a
+                                                            href="/student_class_rooms/admit_in_batches">Admit By
+                                                            Batch</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Graduated Students</a></li>
+                                            <li><a href="/student_addresses">Student Areas</a></li>
+                                            <li><a href="/guardians">Parents</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-users"></i> User Management <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/users">Users</a></li>
+                                            <li><a href="/roles">Roles</a></li>
+                                        </ul>
+                                    </li>
+
+
+
+
+                                @endif
 
                             </ul>
                         </div>
@@ -213,7 +266,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right"
                                     aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/users/change_password"><i class="fa fa-lock pull-right"></i>
+                                    <a class="dropdown-item" href="/users/change_password"><i
+                                            class="fa fa-lock pull-right"></i>
                                         Change password</a>
                                     <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out pull-right"></i>
                                         Log Out</a>
@@ -277,7 +331,7 @@
     <script src="{{ URL::asset('js/select2.min.js') }}"></script>
     <script src="{{ URL::asset('vendors/echarts/dist/echarts.min.js') }}"></script>
     <script src="{{ URL::asset('vendors/echarts/map/js/world.js') }}"></script>
-    <script src="{{ URL::asset('vendors/switchery/dist/switchery.min.js')}}"></script>
+    <script src="{{ URL::asset('vendors/switchery/dist/switchery.min.js') }}"></script>
     <!-- Chart.js -->
     <script src="{{ URL::asset('vendors/Chart.js/dist/Chart.min.js') }}"></script>
     <!-- gauge.js -->
@@ -309,7 +363,7 @@
     <script src="{{ URL::asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ URL::asset('js/custom.js') }}"></script>
- 
+
 
     <script>
         $(document).ready(function() {
@@ -323,7 +377,7 @@
 
             $(".alert").each(function() {
                 $(this).fadeTo(2000, 700).slideUp(700, function() {
-                        $(this).slideUp(700);
+                    $(this).slideUp(700);
                 });
             });
         });

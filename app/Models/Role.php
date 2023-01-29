@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
-    
+
     public $fillable = ['role_name'];
     public $timestamps = false;
 
@@ -27,7 +27,7 @@ class Role extends Model
      */
     public function rolePermissions()
     {
-        return $this->hasMany(RolePermission::class);
+        return $this->hasMany(RoleMenu::class);
     }
 
 
@@ -39,10 +39,59 @@ class Role extends Model
      * @return bool
      */
 
-    public function hasPermission($asset, $operation)
+    public function hasPermission($menu = NULL, $sub_menu = NULL, $low_menu = NULL, $operation)
     {
-        $permission = RolePermission::where('role_id', $this->id)
-            ->where('asset_id', $asset)
+
+        if ($menu != NULL) {
+            $permission = RoleMenu::where('role_id', $this->id)
+                ->where('menu_id', $menu)
+                ->where('operation_id', $operation)
+                ->first();
+
+            if ($permission) {
+                return true;
+            }
+        }
+
+
+        if ($sub_menu != NULL) {
+            $permission = RoleMenu::where('role_id', $this->id)
+                ->where('sub_menu_id', $sub_menu)
+                ->where('operation_id', $operation)
+                ->first();
+
+            if ($permission) {
+                return true;
+            }
+        }
+
+
+        if ($low_menu != NULL) {
+            $permission = RoleMenu::where('role_id', $this->id)
+                ->where('low_menu_id', $low_menu)
+                ->where('operation_id', $operation)
+                ->first();
+
+            if ($permission) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // hasPermission
+
+    /**
+     * @param $asset
+     * @param $operation
+     * @return bool
+     */
+
+    public function hasFeaturePermission($feature, $operation)
+    {
+
+        $permission = FeaturePermission::where('role_id', $this->id)
+            ->where('feature_id', $feature)
             ->where('operation_id', $operation)
             ->first();
 
@@ -52,5 +101,4 @@ class Role extends Model
 
         return false;
     }
-
 }

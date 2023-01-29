@@ -13,13 +13,14 @@ use App\Http\Controllers\ExamGroupController;
 use App\Http\Controllers\ExamGroupItemController;
 use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\ExamTypeController;
+use App\Http\Controllers\FeaturePermissionController;
 use App\Http\Controllers\FeeController;
 use App\Http\Controllers\FeeTypeController;
 use App\Http\Controllers\Finance;
 use App\Http\Controllers\GradingController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\LeaveController;
-use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\RoleMenuController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ShiftController;
@@ -61,7 +62,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 // Dashboard routes
-Route::get('/', DashboardController::class . '@dashboard')->name('home');
+Route::get('/', DashboardController::class . '@dashboard')->name('dashboard');
 
 
 // User routes
@@ -89,7 +90,7 @@ Route::controller(RolesController::class)->prefix('roles')->name('roles')->group
 });
 
 // Role permissions routes
-Route::controller(RolePermissionController::class)->prefix('role_permissions')->name('role_permissions')->group(function () {
+Route::controller(RoleMenuController::class)->prefix('role_menus')->name('role_menus')->group(function () {
     Route::get('/{role}', 'index')->name('.index');
     Route::post('/{role}/store', 'store')->name('.store');
 });
@@ -353,14 +354,6 @@ Route::controller(StudentAddressController::class)->prefix("student_addresses")-
     Route::post("/{studentaddress}/update", "update")->name(".update");
     Route::get("/{studentaddress}/delete", "destroy")->name(".delete");
 });
-Route::controller(StudentAddressController::class)->prefix("student_addresses")->middleware("auth")->name("student_addresses")->group(function () {
-    Route::get("/", "index")->name(".index");
-    Route::get("/create", "create")->name(".create");
-    Route::post("/store", "store")->name(".store");
-    Route::get("/{studentaddress}/edit", "edit")->name(".edit");
-    Route::post("/{studentaddress}/update", "update")->name(".update");
-    Route::get("/{studentaddress}/delete", "destroy")->name(".delete");
-});
 Route::controller(TeacherAttendanceController::class)->prefix("teacher_attendances")->middleware("auth")->name("teacher_attendances")->group(function () {
     Route::get("/", "index")->name(".index");
     Route::post("/", "index")->name(".index");
@@ -379,4 +372,9 @@ Route::controller(ScheduleController::class)->prefix("schedules")->middleware("a
     Route::get("/{schedule}/edit", "edit")->name(".edit");
     Route::post("/{schedule}/update", "update")->name(".update");
     Route::get("/{schedule}/delete", "destroy")->name(".delete");
+});
+
+Route::controller(FeaturePermissionController::class)->prefix("feature_permissions")->middleware("auth")->name("feature_permissions")->group(function () {
+    Route::get('/{role}', 'index')->name('.index');
+    Route::post('/{role}/store', 'store')->name('.store');
 });

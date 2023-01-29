@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assets', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('assets_name');
-            $table->string('route_name');
-            $table->timestamp('created_at')->useCurrent();
+            $table->string('name');
+            $table->string('link')->nullable()->default(NULL);
+            $table->string('icon');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists('menus');
     }
 };

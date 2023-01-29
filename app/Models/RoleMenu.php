@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RolePermission extends Model
+class RoleMenu extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'role_permissions';
+    protected $table = 'role_menu';
 
-    public $fillable = ['role_id', 'asset_id','operation_id'];
+    public $fillable = ['role_id', 'menu_id','sub_menu_id','low_menu_id','operation_id'];
 
     // relationships
 
@@ -28,9 +28,17 @@ class RolePermission extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
 
-    public function asset()
+    public function menus()
     {
-        return $this->belongsTo(Asset::class);
+        return $this->belongsTo(Menu::class);
+    }
+
+    public function sub_menus(){
+        return $this->belongsTo(SubMenu::class);
+    }
+
+    public function low_menus(){
+        return $this->belongsTo(LowMenu::class);
     }
 
     /**

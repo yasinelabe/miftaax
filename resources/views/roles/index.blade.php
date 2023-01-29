@@ -90,8 +90,10 @@
                                                                 class="btn btn-sm btn-success text-white" onclick="initializeIframe({{$role->id}})" >Edit</a>
                                                             <a href="#" data-toggle="modal" data-target="#warningModal" onclick="deleteRole({{$role->id}})"
                                                                 class="btn btn-sm btn-danger">Delete</a>
-                                                            <a href="/role_permissions/{{ $role->id }}"
-                                                                class="btn btn-sm btn-success">Permissions</a>
+                                                            <a href="/role_menus/{{ $role->id }}"
+                                                                class="btn btn-sm btn-success">Menu Permissions</a>
+                                                            <a href="/feature_permissions/{{ $role->id }}"
+                                                                class="btn btn-sm btn-success">Feature Permissions</a>
                                                         @endif
 
                                                     </td>

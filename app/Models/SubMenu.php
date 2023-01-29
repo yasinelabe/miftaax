@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Asset extends Model
+class SubMenu extends Model
 {
     use HasFactory;
-
-    public $fillable = ['assets_name','route_name'];
     public $timestamps = false;
 
-    public function rolePermissions()
-    {
-        return $this->hasMany(RolePermission::class);
+
+    function menu(){
+        return $this->belongsTo(Menu::class);
     }
 
-   
+    function low_menus(){
+        return $this->hasMany(LowMenu::class);
+    }
 }

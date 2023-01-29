@@ -14,7 +14,7 @@
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Role Permissions</h2>
+                            <h2>Feature Permissions</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="x_content">
                             <br />
-                            <form action="/role_permissions/{{ $role->id }}/store" method="post"
+                            <form action="/feature_permissions/{{ $role->id }}/store" method="post"
                                 class="form-horizontal form-label-left">
                                 @csrf
 
@@ -35,8 +35,8 @@
                                     <div class="row">
                                         <div class="col-md-3"></div>
                                         <div class="col-md-6">
-                                            <p id="alert"
-                                                class="alert alert-success text-white  alert-dismissible" role="alert">
+                                            <p id="alert" class="alert alert-success text-white  alert-dismissible"
+                                                role="alert">
                                                 {{ Session::get('message') }}</p>
                                         </div>
                                     </div>
@@ -65,27 +65,27 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Asset</th>
+                                            <th>Features</th>
                                             <th>Permissions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         {{-- loop through assets --}}
-                                        @foreach ($assets as $asset)
-                                            <tr>
+                                        @foreach ($features as $feature)
+                                            <tr class="feature_tr">
                                                 <td>
-                                                    {{ $asset->assets_name }}
-                                                    <input name="assets[]" type="hidden" value="{{ $asset->id }}">
+                                                    {{ $feature->feature_name }}
+                                                    <input name="features[]" type="hidden" value="{{ $feature->id }}">
                                                 </td>
                                                 <td>
                                                     {{-- loop through operations and check if current role has permissions in this operation --}}
                                                     @foreach ($operations as $operation)
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="{{ $asset->id }}_operations[]"
+                                                                name="feature_{{ $feature->id }}_operations[]"
                                                                 value="{{ $operation->id }}"
-                                                                @if ($role->hasPermission($asset->id, $operation->id)) checked @endif>
+                                                                @if ($role->hasFeaturePermission($feature->id,$operation->id)) checked @endif>
                                                             <label class="form-check-label" for="defaultCheck1">
                                                                 {{ $operation->operation_name }}
                                                             </label>
@@ -101,8 +101,7 @@
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 offset-md-3">
-                                        <button class="btn btn-success" type="reset">Reset</button>
+                                    <div class="col-8">
                                         <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>

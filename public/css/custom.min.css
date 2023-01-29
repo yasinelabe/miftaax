@@ -6230,3 +6230,16 @@ ul#myTab {
     height: 10vh;
 	padding:10px;
 }
+
+tr.sub_menu_tr {
+   display: table-row-group;
+}
+
+tr.low_menu_tr {
+   display: table-row-group;
+}
+
+tr.menu_tr {
+    background: #2a3f54;
+    color: white;
+}

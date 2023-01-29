@@ -17,10 +17,10 @@ class OperationSeeder extends Seeder
     {
         //
         DB::table('operations')->insert([
-            ['operation_name' => 'create'],
-            ['operation_name' => 'read'],
-            ['operation_name' => 'update'],
-            ['operation_name' => 'delete'],
+            ['operation_name' => 'allow'],
+            // ['operation_name' => 'read'],
+            // ['operation_name' => 'update'],
+            // ['operation_name' => 'delete'],
         ]);
     }
 }
