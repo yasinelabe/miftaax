@@ -247,7 +247,7 @@ class Finance extends Controller
     function expenses()
     {
         $expenses = Expense::all();
-        // cash accounts , where parent_id is in(123) , also the top 3 accounts
+        // cash accounts , where parent_id is in(12) , also the top 3 accounts
         $cash_accounts = Account::whereIn('parent_id',  [1, 2])->orwhereIn('id', [1, 2])->get();
         return view('finance.expenses', ['expenses' => $expenses, 'cash_accounts' => $cash_accounts, 'list' => true]);
     }
