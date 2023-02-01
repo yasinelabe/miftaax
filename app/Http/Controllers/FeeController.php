@@ -110,7 +110,7 @@ class FeeController extends Controller
         $class_rooms = $this->classRoomRepository->active_classes();
         $fees = $this->feeRepository->active_fees();
         $list = true;
-        $cash_accounts = Account::whereIn('parent_id',  [1, 2, 3])->orwhereIn('id', [1, 2, 3])->get();
+        $cash_accounts = Account::whereIn('parent_id',  [1, 2])->orwhereIn('id', [1, 2])->get();
         return view('fees.collect_fees', compact('class_rooms', 'fees', 'cash_accounts', 'list'));
     }
 
