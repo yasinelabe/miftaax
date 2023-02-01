@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('income_types', function (Blueprint $table) {
+        Schema::create('income_categories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('income_types');
+        Schema::dropIfExists('income_categories');
     }
 };

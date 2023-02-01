@@ -15,7 +15,12 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('income_category_id')->constrained('income_categories')->cascadeOnDelete();
+            $table->foreignId('income_type_id')->constrained('income_types')->cascadeOnDelete();
+            $table->string('amount');
+            $table->string('description');
+            $table->string('status')->default('pending');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
