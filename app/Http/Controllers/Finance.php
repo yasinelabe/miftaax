@@ -8,6 +8,9 @@ use App\Models\AccountType;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use App\Models\ExpenseType;
+use App\Models\Income;
+use App\Models\IncomeCategory;
+use App\Models\IncomeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -310,6 +313,95 @@ class Finance extends Controller
         Session::flash('message', 'successfully paid expense');
         Session::flash('alert-class', 'alert-success');
         return redirect('/finance/expenses');
+    }
+
+    function new_income()
+    {
+        $income_categories = IncomeCategory::all();
+        $income_types = IncomeType::all();
+        return view('finance.new_income', compact('income_categories', 'income_types'));
+    }
+
+    function store_income(Request $request)
+    {
+        $request->validate([
+            'amount' => "required",
+            "description" => "required"
+        ]);
+
+        Income::create($request->all());
+
+        Session::flash('message', 'successfully created new income');
+        Session::flash('alert-class', 'alert-success');
+        return redirect('/finance/new_income');
+    }
+
+    function incomes()
+    {
+        $incomes = Income::all();
+        // cash accounts , where parent_id is in(12) , also the top 3 accounts
+        $cash_accounts = Account::whereIn('parent_id',  [1, 2])->orwhereIn('id', [1, 2])->get();
+        return view('finance.incomes', ['incomes' => $incomes, 'cash_accounts' => $cash_accounts, 'list' => true]);
+    }
+
+    function new_income_category()
+    {
+        return view('finance.new_income_category');
+    }
+
+    function store_income_category(Request $request)
+    {
+        $request->validate([
+            'name' => "required",
+        ]);
+
+        IncomeCategory::create($request->all());
+
+        Session::flash('message', 'successfully created new income');
+        Session::flash('alert-class', 'alert-success');
+        return redirect('/finance/new_income_category');
+    }
+
+    function comfirm_income(Request $request)
+    {
+        $request->validate([
+            'amount' => "required",
+            "description" => "required"
+        ]);
+
+        $income = Income::find($request->income_id);
+        $income->status = 'comfirmed';
+        $income->save();
+
+        // deposit the income account
+        $income_account = Account::find(9);
+        $income_account->credit($request->amount);
+
+        // record the income transaction
+        $income_transaction = new AccountTransaction();
+        $income_transaction->account_id = $income_account->id;
+        $income_transaction->amount = $request->amount;
+        $income_transaction->balance = $income_account->balance;
+        $income_transaction->account_transaction_type_id = 2;
+        $income_transaction->description = $request->description;
+        $income_transaction->save();
+
+        // credit the cash account
+        $cash_account = Account::find($request->cash_account_id);
+        $cash_account->debit($request->amount);
+
+        // record the cash transaction
+        $cash_transaction = new AccountTransaction();
+        $cash_transaction->account_id = $cash_account->id;
+        $cash_transaction->amount = $request->amount;
+        $cash_transaction->balance = $cash_account->balance;
+        $cash_transaction->account_transaction_type_id = 1;
+        $cash_transaction->description = $request->description;
+        $cash_transaction->save();
+
+        Session::flash('message', 'successfully comfirmed income');
+        Session::flash('alert-class', 'alert-success');
+        return redirect('/finance/incomes');
     }
 
 

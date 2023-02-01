@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             AccountTransactionTypeSeeder::class,
             AccountsSeeder::class,
             ExpenseTypeSeeder::class,
+            IncomeTypeSeeder::class,
             AttendanceResultStatusSeeder::class,
             MainMenuSeeder::class,
             SubMenuSeeder::class,

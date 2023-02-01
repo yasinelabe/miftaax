@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class IncomeCategory extends Model
 {
     use HasFactory;
+    
     public $table = 'income_categories';
     
     protected $fillable = [

@@ -16,9 +16,9 @@ class ExamTypeSeeder extends Seeder
     public function run()
     {
         DB::table('exam_types')->insert([
-            ['name' => 'General Purpose (Pass/Fail)'],
+            // ['name' => 'General Purpose (Pass/Fail)'],
             ['name' => 'School Based Grading System'],
-            ['name' => 'GPA Grading System'],
+            // ['name' => 'GPA Grading System'],
         ]);
     }
 }

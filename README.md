@@ -56,8 +56,8 @@
 
 
 # Finance# 
-* Income
-* New Income
+* Income--done
+* New Income--done
 * Debit Voucher
 * Credit Voucher
 

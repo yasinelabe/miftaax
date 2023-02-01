@@ -274,6 +274,12 @@ Route::controller(Finance::class)->prefix("finance")->middleware("auth")->name("
     Route::get('/new_expense_category', 'new_expense_category')->name('.new_expense_category');
     Route::post('/store_expense_category', 'store_expense_category')->name('.store_expense_category');
     Route::post('/pay_expense', 'pay_expense')->name('.expenses.pay');
+    Route::get('/incomes', 'incomes')->name('.incomes');
+    Route::get('/new_income', 'new_income')->name('.new_income');
+    Route::post('/store_income', 'store_income')->name('.store_income');
+    Route::get('/new_income_category', 'new_income_category')->name('.new_income_category');
+    Route::post('/store_income_category', 'store_income_category')->name('.store_income_category');
+    Route::post('/comfirm_income', 'comfirm_income')->name('.incomes.comfirm');
 });
 
 Route::controller(AttendanceController::class)->prefix("attendances")->middleware("auth")->name("attendances")->group(function () {

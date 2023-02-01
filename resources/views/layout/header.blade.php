@@ -184,8 +184,11 @@
                                             <li><a href="/finance/trial_balance">Trial Balance</a></li>
                                             <li><a href="/finance/income_statement">Income statement</a></li>
                                             <li><a href="/finance/expenses">Expenses</a></li>
+                                            <li><a href="/finance/incomes">Income List</a></li>
                                             <li><a href="/finance/new_expense">New Expenses</a></li>
+                                            <li><a href="/finance/new_income">New Income</a></li>
                                             <li><a href="/finance/new_expense_category">New Expense Head</a></li>
+                                            <li><a href="/finance/new_income_category">New Income Head</a></li>
                                         </ul>
                                     </li>
 
