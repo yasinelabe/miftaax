@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DocumentOwnerType extends Model
+class BookType extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 }
