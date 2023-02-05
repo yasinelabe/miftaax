@@ -173,6 +173,21 @@
                                             <li><a href="/attendance_results">Student Attendance Report</a></li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <a><i class="fa fa-newspaper-o"></i> Library <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/racks">Racks</a></li>
+                                            <li><a href="/books">Books</a></li>
+                                            <li><a href="/book_types">Book Types</a></li>
+                                            <li><a href="/book_categories">Book Categories</a></li>
+                                            <li><a href="/taken_books">Taken Books</a></li>
+                                            <li><a href="/taken_books/create">Issue Book</a></li>
+                                            <li><a href="/putbacks">Book Returns</a></li>
+                                            <li><a href="/library_members">Library Members</a></li>
+                                            <li><a href="/library_member_types">Library Member Types</a></li>
+                                        </ul>
+                                    </li>
 
 
                                     <li><a><i class="fa fa-book"></i> Accounting <span

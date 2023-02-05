@@ -256,7 +256,61 @@ class SubMenuSeeder extends Seeder
                 'link' => '/roles',
                 'has_low_menu' => 0,
                 'menu_id' => 8
-            ]
+            ],
+            [
+                'name' => 'Racks',
+                'link' => '/racks',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Books',
+                'link' => '/books',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Book types',
+                'link' => '/book_types',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Book categories',
+                'link' => '/book_categories',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Taken books',
+                'link' => '/taken_books',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Issue Book',
+                'link' => '/taken_books/create',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Book returns',
+                'link' => '/putbacks',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Library members',
+                'link' => '/library_members',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
+            [
+                'name' => 'Library member types',
+                'link' => '/library_member_types',
+                'has_low_menu' => 0,
+                'menu_id' => 9
+            ],
         ]);
     }
 }

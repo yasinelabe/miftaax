@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceResultController;
 use App\Http\Controllers\AttendanceResultStatusController;
+use App\Http\Controllers\BookCategoryController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookTypeController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\ClassRoomSubjectController;
 use App\Http\Controllers\DashboardController;
@@ -20,6 +23,10 @@ use App\Http\Controllers\Finance;
 use App\Http\Controllers\GradingController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\LibraryMemberController;
+use App\Http\Controllers\LibraryMemberTypeController;
+use App\Http\Controllers\PutBackController;
+use App\Http\Controllers\RackController;
 use App\Http\Controllers\RoleMenuController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ScheduleController;
@@ -33,6 +40,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherSubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentAddressController;
+use App\Http\Controllers\TakenBookController;
 use App\Http\Controllers\TeacherAttendanceController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -383,4 +391,69 @@ Route::controller(ScheduleController::class)->prefix("schedules")->middleware("a
 Route::controller(FeaturePermissionController::class)->prefix("feature_permissions")->middleware("auth")->name("feature_permissions")->group(function () {
     Route::get('/{role}', 'index')->name('.index');
     Route::post('/{role}/store', 'store')->name('.store');
+});
+
+Route::controller(RackController::class)->prefix("racks")->middleware("auth")->name("racks")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{rack}/edit", "edit")->name(".edit");
+    Route::post("/{rack}/update", "update")->name(".update");
+    Route::get("/{rack}/delete", "destroy")->name(".delete");
+});
+Route::controller(BookCategoryController::class)->prefix("book_categories")->middleware("auth")->name("book_categories")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{bookcategory}/edit", "edit")->name(".edit");
+    Route::post("/{bookcategory}/update", "update")->name(".update");
+    Route::get("/{bookcategory}/delete", "destroy")->name(".delete");
+});
+Route::controller(BookTypeController::class)->prefix("book_types")->middleware("auth")->name("book_types")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{booktype}/edit", "edit")->name(".edit");
+    Route::post("/{booktype}/update", "update")->name(".update");
+    Route::get("/{booktype}/delete", "destroy")->name(".delete");
+});
+Route::controller(LibraryMemberTypeController::class)->prefix("library_member_types")->middleware("auth")->name("library_member_types")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{librarymembertype}/edit", "edit")->name(".edit");
+    Route::post("/{librarymembertype}/update", "update")->name(".update");
+    Route::get("/{librarymembertype}/delete", "destroy")->name(".delete");
+});
+Route::controller(LibraryMemberController::class)->prefix("library_members")->middleware("auth")->name("library_members")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{librarymember}/edit", "edit")->name(".edit");
+    Route::post("/{librarymember}/update", "update")->name(".update");
+    Route::get("/{librarymember}/delete", "destroy")->name(".delete");
+});
+Route::controller(BookController::class)->prefix("books")->middleware("auth")->name("books")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{book}/edit", "edit")->name(".edit");
+    Route::post("/{book}/update", "update")->name(".update");
+    Route::get("/{book}/delete", "destroy")->name(".delete");
+});
+Route::controller(TakenBookController::class)->prefix("taken_books")->middleware("auth")->name("taken_books")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{takenbook}/edit", "edit")->name(".edit");
+    Route::post("/{takenbook}/update", "update")->name(".update");
+    Route::get("/{takenbook}/delete", "destroy")->name(".delete");
+});
+Route::controller(PutBackController::class)->prefix("putbacks")->middleware("auth")->name("putbacks")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{putback}/edit", "edit")->name(".edit");
+    Route::post("/{putback}/update", "update")->name(".update");
+    Route::get("/{putback}/delete", "destroy")->name(".delete");
 });

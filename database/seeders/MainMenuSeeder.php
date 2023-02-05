@@ -57,6 +57,11 @@ class MainMenuSeeder extends Seeder
                 'icon' => 'fa fa-users',
                 'link'=>NULL
             ],
+            [
+                'name'=> 'Library',
+                'icon' => 'fa fa-newspaper-o',
+                'link'=>NULL
+            ],
         ]);
     }
 }

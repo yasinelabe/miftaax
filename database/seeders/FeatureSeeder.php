@@ -786,6 +786,166 @@ class FeatureSeeder extends Seeder
                 'created_at' => now(),
                 'route_name' => 'feature_permissions.store',
             ],
+            [
+                'feature_name' => 'View Books',
+                'created_at' => now(),
+                'route_name' => 'books.index',
+            ],
+            [
+                'feature_name' => 'Create Books',
+                'created_at' => now(),
+                'route_name' => 'books.create,books.store',
+            ],
+            [
+                'feature_name' => 'Edit Books',
+                'created_at' => now(),
+                'route_name' => 'books.edit,books.update',
+            ],
+            [
+                'feature_name' => 'Delete Books',
+                'created_at' => now(),
+                'route_name' => 'books.delete',
+            ],
+            [
+                'feature_name' => 'View Book Types',
+                'created_at' => now(),
+                'route_name' => 'book_types.index',
+            ],
+            [
+                'feature_name' => 'Create Book Types',
+                'created_at' => now(),
+                'route_name' => 'book_types.create,book_types.store',
+            ],
+            [
+                'feature_name' => 'Edit Book Types',
+                'created_at' => now(),
+                'route_name' => 'book_types.edit,book_types.update',
+            ],
+            [
+                'feature_name' => 'Delete Book Types',
+                'created_at' => now(),
+                'route_name' => 'book_types.delete',
+            ],
+            [
+                'feature_name' => 'View Book Categories',
+                'created_at' => now(),
+                'route_name' => 'book_categories.index',
+            ],
+            [
+                'feature_name' => 'Create Book Categories',
+                'created_at' => now(),
+                'route_name' => 'book_categories.create,book_categories.store',
+            ],
+            [
+                'feature_name' => 'Edit Book Categories',
+                'created_at' => now(),
+                'route_name' => 'book_categories.edit,book_categories.update',
+            ],
+            [
+                'feature_name' => 'Delete Book Categories',
+                'created_at' => now(),
+                'route_name' => 'book_categories.delete',
+            ],
+            [
+                'feature_name' => 'View Racks',
+                'created_at' => now(),
+                'route_name' => 'racks.index',
+            ],
+            [
+                'feature_name' => 'Create Racks',
+                'created_at' => now(),
+                'route_name' => 'racks.create,racks.store',
+            ],
+            [
+                'feature_name' => 'Edit Racks',
+                'created_at' => now(),
+                'route_name' => 'racks.edit,racks.update',
+            ],
+            [
+                'feature_name' => 'Delete Racks',
+                'created_at' => now(),
+                'route_name' => 'racks.delete',
+            ],
+            [
+                'feature_name' => 'View Taken Books',
+                'created_at' => now(),
+                'route_name' => 'taken_books.index',
+            ],
+            [
+                'feature_name' => 'Create Taken Books',
+                'created_at' => now(),
+                'route_name' => 'taken_books.create,taken_books.store',
+            ],
+            [
+                'feature_name' => 'Edit Taken Books',
+                'created_at' => now(),
+                'route_name' => 'taken_books.edit,taken_books.update',
+            ],
+            [
+                'feature_name' => 'Delete Taken Books',
+                'created_at' => now(),
+                'route_name' => 'taken_books.delete',
+            ],
+            [
+                'feature_name' => 'View Book Returns',
+                'created_at' => now(),
+                'route_name' => 'putbacks.index',
+            ],
+            [
+                'feature_name' => 'Create Book Returns',
+                'created_at' => now(),
+                'route_name' => 'putbacks.create,putbacks.store',
+            ],
+            [
+                'feature_name' => 'Edit Book Returns',
+                'created_at' => now(),
+                'route_name' => 'putbacks.edit,putbacks.update',
+            ],
+            [
+                'feature_name' => 'Delete Book Returns',
+                'created_at' => now(),
+                'route_name' => 'putbacks.delete',
+            ],
+            [
+                'feature_name' => 'View Library Members',
+                'created_at' => now(),
+                'route_name' => 'library_members.index',
+            ],
+            [
+                'feature_name' => 'Create Library Members',
+                'created_at' => now(),
+                'route_name' => 'library_members.create,library_members.store',
+            ],
+            [
+                'feature_name' => 'Edit Library Members',
+                'created_at' => now(),
+                'route_name' => 'library_members.edit,library_members.update',
+            ],
+            [
+                'feature_name' => 'Delete Library Members',
+                'created_at' => now(),
+                'route_name' => 'library_members.delete',
+            ],
+            [
+                'feature_name' => 'View Library Member Types',
+                'created_at' => now(),
+                'route_name' => 'library_member_types.index',
+            ],
+            [
+                'feature_name' => 'Create Library Member Types',
+                'created_at' => now(),
+                'route_name' => 'library_member_types.create,library_member_types.store',
+            ],
+            [
+                'feature_name' => 'Edit Library Member Types',
+                'created_at' => now(),
+                'route_name' => 'library_member_types.edit,library_member_types.update',
+            ],
+            [
+                'feature_name' => 'Delete Library Member Types',
+                'created_at' => now(),
+                'route_name' => 'library_member_types.delete',
+            ],
          
         ]);
     }
