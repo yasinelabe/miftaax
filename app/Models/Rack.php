@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Rack extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [
+        'name' ,
+        'total_rows',
+        'total_columns'
+    ];
+
+    
 }
