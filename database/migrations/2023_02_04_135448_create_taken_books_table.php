@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('taken_books', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('book_id')->constrained('books');
+            $table->integer('qty');
+            $table->foreignId('library_member_id')->constrained('library_members');
+            $table->dateTime('taken_date');
+            $table->dateTime('returning_date');
         });
     }
 

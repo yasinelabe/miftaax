@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('book_title');
+            $table->text('cover_image');
+            $table->foreignId('book_category_id')->constrained('book_categories');
+            $table->foreignId('book_type_id')->constrained('book_types');
+            $table->string('shelf');
+            $table->string('author_name');
+            $table->string('status')->default('available');
         });
     }
 

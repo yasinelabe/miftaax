@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('putbacks', function (Blueprint $table) {
+        Schema::create('book_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('taken_book_id')->constrained('taken_books');
-            $table->dateTime('returned_date')->useCurrent();
-            $table->text('note');
+            $table->string('name');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('putbacks');
+        Schema::dropIfExists('book_types');
     }
 };

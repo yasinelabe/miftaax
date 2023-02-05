@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_types', function (Blueprint $table) {
+        Schema::create('racks', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('total_rows');
+            $table->string('total_columns');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_types');
+        Schema::dropIfExists('racks');
     }
 };
