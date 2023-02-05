@@ -100,7 +100,11 @@
                                                 <tr role="row" class="odd">
                                                     <td>{{ $book->id }}</td>
                                                     <td>{{ $book->book_title }}</td>
-                                                    <td>{{ $book->cover_image }}</td>
+                                                    <td>
+                                                        @if ($book->cover_image != null)
+                                                            <img width="75px" height="75px" src="{{URL::asset('uploads/book_images/'.$book->cover_image)}}"/>
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $book->book_category->name }}</td>
                                                     <td>{{ $book->book_type->name }}</td>
                                                     <td>{{ $book->shelf }}</td>

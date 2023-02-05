@@ -24,9 +24,22 @@ class BookController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, ['book_title' => 'required', 'cover_image' => 'required', 'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required']);
+        $this->validate($request, ['book_title' => 'required',  'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required']);
         $book = new Book();
-        $book->fill($request->all());
+        if(isset($request->cover_image)){
+            $file = $request->file('cover_image');
+            $filename = $file->getClientOriginalName();
+            //Move Uploaded File
+            $destinationPath = 'uploads/book_images';
+            $file->move($destinationPath, $file->getClientOriginalName());
+
+            $book->cover_image = $filename;
+        }
+        $book->book_title = $request->book_title;
+        $book->book_category_id = $request->book_category_id;
+        $book->book_type_id = $request->book_type_id;
+        $book->shelf = $request->shelf;
+        $book->author_name = $request->author_name;
         $book->save();
         return redirect()->route('books.index');
     }
@@ -42,9 +55,8 @@ class BookController extends Controller
     }
     public function update(Request $request, Book  $book)
     {
-        $this->validate($request, ['book_title' => 'required', 'cover_image' => 'required', 'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required']);
+        $this->validate($request, ['book_title' => 'required',  'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required']);
         $book->book_title = $request->book_title;
-        $book->cover_image = $request->cover_image;
         $book->book_category_id = $request->book_category_id;
         $book->book_type_id = $request->book_type_id;
         $book->shelf = $request->shelf;

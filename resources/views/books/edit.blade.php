@@ -67,12 +67,7 @@
                                     value="{{ $book->book_title }}" id="book_title" name="book_title"
                                     required="required" class="form-control"></div>
                         </div>
-                        <div class="item form-group"><label class="control-label col-md-3 col-sm-3 col-sm-12"
-                                for="cover_image">Cover image <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-sm-12"><input type="text"
-                                    value="{{ $book->cover_image }}" id="cover_image" name="cover_image"
-                                    required="required" class="form-control"></div>
-                        </div>
+                      
                         <div class="item form-group"><label class="control-label col-md-3 col-sm-3 col-sm-12"
                                 for="book_category_id">Book category <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-sm-12"><select class="form-control"

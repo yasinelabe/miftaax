@@ -17,7 +17,18 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content"><br />
+                    <div class="x_content">
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p id="alert" class="alert alert-danger">
+                                            {{ $error }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                        <br />
                         <form enctype="multipart/form-data" data-parsley-validate
                             class="form-horizontal form-label-left" method="POST" action="{{ route('books.store') }}">
                             @csrf<div class="item form-group"><label
@@ -29,7 +40,7 @@
                             <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
                                     for="cover_image">Cover image <span class="required">*</span></label>
                                 <div class="col-sm-6"><input type="file" id="cover_image" name="cover_image"
-                                        required="required" class="form-control "></div>
+                                        class="form-control "></div>
                             </div>
                             <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
                                     for="book_category_id">Book category <span class="required">*</span></label>
@@ -61,7 +72,7 @@
                                 <div class="col-sm-6"><input type="text" id="author_name" name="author_name"
                                         required="required" class="form-control "></div>
                             </div>
-                            
+
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-6 offset-3"><button type="submit"
