@@ -75,11 +75,10 @@
                             <div class="col-sm-6">
                                 <p style="margin-top:6px;">
                                     <input type="radio" class="flat" name="gender" id="genderM" value="male"
-                                        @if ($student->gender == 'male') {{'checked'}} @endif
-                                        required /> Male
+                                        @if ($student->gender == 'male') {{ 'checked' }} @endif required /> Male
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="radio" class="flat" name="gender" id="genderF" value="female"
-                                        @if ($student->gender == 'female') {{'checked'}}  @endif required /> Female
+                                        @if ($student->gender == 'female') {{ 'checked' }} @endif required /> Female
                                 </p>
                             </div>
                         </div>
@@ -115,18 +114,30 @@
                             <div class="col-sm-6">
                                 <select name="student_address_id" class="form-control">
                                     @foreach ($student_addresses as $address)
-                                        <option value="{{ $address->id }}"> {{ $address->area }}</option>
+                                        @if ($student->address_id == $address->id)
+                                            <option selected value="{{ $address->id }}">{{ $address->area }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $address->id }}"> {{ $address->area }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="item form-group"><label class="control-label col-md-3 col-sm-3 col-sm-12"
                                 for="blood_group_id">Blood group <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-sm-12"><select class="form-control" name="blood_group_id">
+                            <div class="col-md-6 col-sm-6 col-sm-12"><select class="form-control"
+                                    name="blood_group_id">
                                     <option value="">Select Blood group </option>
                                     @foreach ($blood_group_ids as $blood_group_id)
-                                        <option value="{{ $blood_group_id->id }}">{{ $blood_group_id->name }}
-                                        </option>
+                                        @if ($student->blood_group_id == $blood_group_id->id)
+                                            <option selected value="{{ $blood_group_id->id }}">
+                                                {{ $blood_group_id->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $blood_group_id->id }}">{{ $blood_group_id->name }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select></div>
                         </div>
@@ -135,10 +146,14 @@
                                     class="required">*</span></label>
                             <div class="col-sm-6">
                                 <select class="form-control" name="has_medical_emergency">
+                                    @if ($student->has_medical_emergency == 1)
+                                        <option selected value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    @else
+                                        <option value="1">Yes</option>
+                                        <option selected value="0">No</option>
+                                    @endif
 
-                                    <option value="">--</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
                                 </select>
                             </div>
                         </div>
@@ -146,10 +161,13 @@
                                 for="is_active">Is active <span class="required">*</span></label>
                             <div class="col-sm-6">
                                 <select class="form-control" name="is_active">
-
-                                    <option value="">--</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    @if ($student->is_active == 1)
+                                        <option selected value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    @else
+                                        <option value="1">Yes</option>
+                                        <option selected value="0">No</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -158,9 +176,13 @@
                             <div class="col-sm-6">
                                 <select class="form-control" name="is_graduated">
 
-                                    <option value="">--</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    @if ($student->is_graduated == 1)
+                                        <option selected value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    @else
+                                        <option value="1">Yes</option>
+                                        <option selected value="0">No</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
