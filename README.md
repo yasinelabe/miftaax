@@ -10,7 +10,7 @@
 * Disable Staff
 
 
-# Library# 
+# Library#  -- done
 * Book List
 * Issue Return
 * Add Student
@@ -66,5 +66,12 @@
 # GPA CALCULATION
 MAX_SCORE = 100
 MIN_SCORE = 50
+
+-- MAX GRADE POINTS
+GRADE POINTS MAX = 12
+
+-- CHANGE MARKS TO SCORE , MAX 4 
 SCORE = (4 * MARKS ) / 100
+
+-- CALCULATE GRADE POINTS
 GRADE POINTS = CREDIT_HOURS * SCORE

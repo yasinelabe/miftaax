@@ -22,6 +22,9 @@ use App\Http\Controllers\FeeTypeController;
 use App\Http\Controllers\Finance;
 use App\Http\Controllers\GradingController;
 use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\HostelController;
+use App\Http\Controllers\HostelRoomController;
+use App\Http\Controllers\HostelRoomTypeController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LibraryMemberController;
 use App\Http\Controllers\LibraryMemberTypeController;
@@ -456,4 +459,28 @@ Route::controller(PutBackController::class)->prefix("putbacks")->middleware("aut
     Route::get("/{putback}/edit", "edit")->name(".edit");
     Route::post("/{putback}/update", "update")->name(".update");
     Route::get("/{putback}/delete", "destroy")->name(".delete");
+});
+Route::controller(HostelController::class)->prefix("hostels")->middleware("auth")->name("hostels")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{hostel}/edit", "edit")->name(".edit");
+    Route::post("/{hostel}/update", "update")->name(".update");
+    Route::get("/{hostel}/delete", "destroy")->name(".delete");
+});
+Route::controller(HostelRoomTypeController::class)->prefix("hostel_room_types")->middleware("auth")->name("hostel_room_types")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{hostelroomtype}/edit", "edit")->name(".edit");
+    Route::post("/{hostelroomtype}/update", "update")->name(".update");
+    Route::get("/{hostelroomtype}/delete", "destroy")->name(".delete");
+});
+Route::controller(HostelRoomController::class)->prefix("hostel_rooms")->middleware("auth")->name("hostel_rooms")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{hostelroom}/edit", "edit")->name(".edit");
+    Route::post("/{hostelroom}/update", "update")->name(".update");
+    Route::get("/{hostelroom}/delete", "destroy")->name(".delete");
 });
