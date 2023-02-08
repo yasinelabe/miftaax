@@ -72,6 +72,11 @@
                                 <div class="col-sm-6"><input type="text" id="author_name" name="author_name"
                                         required="required" class="form-control "></div>
                             </div>
+                            <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
+                                    for="author_name">Quantity <span class="required">*</span></label>
+                                <div class="col-sm-6"><input type="text" id="qty" name="qty"
+                                        required="required" class="form-control "></div>
+                            </div>
 
                             <div class="ln_solid"></div>
                             <div class="item form-group">

@@ -3,7 +3,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>LibraryMember</h3>
+                <h3>Library Member</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -35,7 +35,8 @@
                                     class="col-form-label col-md-3 col-sm-3 label-align"
                                     for="library_member_type_id">Library member type <span
                                         class="required">*</span></label>
-                                <div class="col-sm-6"><select class="form-control" name="library_member_type_id">
+                                <div class="col-sm-6"><select onchange="handleMemberTypeChange(this)"
+                                        class="form-control" name="library_member_type_id">
                                         <option value="">Select Library member type </option>
                                         @foreach ($library_member_type_ids as $library_member_type_id)
                                             <option value="{{ $library_member_type_id->id }}">
@@ -46,12 +47,11 @@
                             </div>
                             <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
                                     for="member_id">Member <span class="required">*</span></label>
-                                <div class="col-sm-6"><select class="form-control" name="member_id">
-                                        <option value="">Select Member </option>
-                                        @foreach ($member_ids as $member_id)
-                                            <option value="{{ $member_id->id }}">{{ $member_id->name }}</option>
-                                        @endforeach
-                                    </select></div>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="member_id" id="members">
+
+                                    </select>`
+                                </div>
                             </div>
                             <div class="ln_solid"></div>
                             <div class="item form-group">
@@ -66,4 +66,34 @@
     </div>
 </div>
 </div>
+
+<script>
+    function handleMemberTypeChange(target) {
+        let list = ``
+        switch (parseInt(target.options[target.options.selectedIndex].value)) {
+            case 1:
+                let students = JSON.parse(`@json($students)`)
+                console.log(students)
+                students.forEach(student => {
+                    list += `<option value="${student.id}">${student.fullname}</option>`
+                });
+
+                $("#members").html(list)
+                break;
+
+            case 2:
+                let teachers = JSON.parse(`@json($teachers)`)
+                console.log(teachers)
+                teachers.forEach(teacher => {
+                    list += `<option value="${teacher.id}">${teacher.fullname}</option>`
+                });
+
+                $("#members").html(list)
+                break;
+            default:
+                break;
+        }
+
+    }
+</script>
 @endsection

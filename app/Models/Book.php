@@ -17,6 +17,7 @@ class Book extends Model
         'book_type_id' ,
         'shelf' ,
         'author_name' ,
+        'qty',
         'status' 
     ];
 

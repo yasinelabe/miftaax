@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\LibraryMember;
 use App\Models\LibraryMemberType;
+use App\Models\Student;
+use App\Models\Teacher;
 
 class LibraryMemberController extends Controller
 {
@@ -18,8 +20,9 @@ class LibraryMemberController extends Controller
     public function create()
     {
         $library_member_type_ids = LibraryMemberType::all();
-        $member_ids = LibraryMember::all();
-        return view('library_members.create', compact('library_member_type_ids', 'member_ids'));
+        $students = Student::all();
+        $teachers = Teacher::all();
+        return view('library_members.create', compact('library_member_type_ids','students','teachers'));
     }
     public function store(Request $request)
     {
@@ -54,4 +57,6 @@ class LibraryMemberController extends Controller
         session()->flash('success', 'Deleted Successfully');
         return redirect()->route('library_members.index');
     }
+
+    
 }

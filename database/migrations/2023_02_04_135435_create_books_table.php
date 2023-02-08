@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('book_type_id')->constrained('book_types');
             $table->string('shelf');
             $table->string('author_name');
+            $table->string('qty');
             $table->string('status')->default('available');
         });
     }

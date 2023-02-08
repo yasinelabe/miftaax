@@ -182,7 +182,6 @@
                                             <li><a href="/book_types">Book Types</a></li>
                                             <li><a href="/book_categories">Book Categories</a></li>
                                             <li><a href="/taken_books">Taken Books</a></li>
-                                            <li><a href="/taken_books/create">Issue Book</a></li>
                                             <li><a href="/putbacks">Book Returns</a></li>
                                             <li><a href="/library_members">Library Members</a></li>
                                             <li><a href="/library_member_types">Library Member Types</a></li>

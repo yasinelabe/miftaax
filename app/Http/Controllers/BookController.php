@@ -24,7 +24,7 @@ class BookController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, ['book_title' => 'required',  'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required']);
+        $this->validate($request, ['book_title' => 'required',  'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required','qty'=>'required']);
         $book = new Book();
         if(isset($request->cover_image)){
             $file = $request->file('cover_image');
@@ -40,6 +40,7 @@ class BookController extends Controller
         $book->book_type_id = $request->book_type_id;
         $book->shelf = $request->shelf;
         $book->author_name = $request->author_name;
+        $book->qty = $request->qty;
         $book->save();
         return redirect()->route('books.index');
     }
@@ -55,12 +56,13 @@ class BookController extends Controller
     }
     public function update(Request $request, Book  $book)
     {
-        $this->validate($request, ['book_title' => 'required',  'book_category_id' => 'required', 'book_type_id' => 'required', 'shelf' => 'required', 'author_name' => 'required']);
+        $this->validate($request, ['book_title' => 'required',  'book_category_id' => 'required', 'book_type_id' => 'required', 'qty'=>'required','shelf' => 'required', 'author_name' => 'required']);
         $book->book_title = $request->book_title;
         $book->book_category_id = $request->book_category_id;
         $book->book_type_id = $request->book_type_id;
         $book->shelf = $request->shelf;
         $book->author_name = $request->author_name;
+        $book->qty = $request->qty;
         $book->save();
         session()->flash('message', 'Record updated successfully.');
         return redirect()->route('books.edit', $book->id);

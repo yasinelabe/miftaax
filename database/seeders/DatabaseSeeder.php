@@ -37,7 +37,9 @@ class DatabaseSeeder extends Seeder
             AttendanceResultStatusSeeder::class,
             MainMenuSeeder::class,
             SubMenuSeeder::class,
-            LowMenuSeeder::class
+            LowMenuSeeder::class,
+            BookTypeSeeder::class,
+            LibraryMemberTypeSeeder::class
         ]);
     }
 }
