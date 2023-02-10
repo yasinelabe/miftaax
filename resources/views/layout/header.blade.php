@@ -187,6 +187,15 @@
                                             <li><a href="/library_member_types">Library Member Types</a></li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <a><i class="fa fa-newspaper-o"></i> Hostel <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/hostels">Hostels</a></li>
+                                            <li><a href="/hostel_rooms">Hostel Rooms</a></li>
+                                            <li><a href="/hostel_room_types">Hostel Room Types</a></li>
+                                        </ul>
+                                    </li>
 
 
                                     <li><a><i class="fa fa-book"></i> Accounting <span
