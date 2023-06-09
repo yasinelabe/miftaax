@@ -62,6 +62,16 @@ class MainMenuSeeder extends Seeder
                 'icon' => 'fa fa-newspaper-o',
                 'link'=>NULL
             ],
+            [
+                'name'=> 'Transportation',
+                'icon' => 'fa fa-bus',
+                'link'=>NULL
+            ],
+            [
+                'name'=> 'Hostel',
+                'icon' => 'fa fa-building-o',
+                'link'=>NULL
+            ],
         ]);
     }
 }

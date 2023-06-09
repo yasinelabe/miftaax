@@ -32,6 +32,7 @@ use App\Http\Controllers\PutBackController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\RoleMenuController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\RouteController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\StudentClassRoomController;
@@ -45,6 +46,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentAddressController;
 use App\Http\Controllers\TakenBookController;
 use App\Http\Controllers\TeacherAttendanceController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\VehicleRouteController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -483,4 +486,28 @@ Route::controller(HostelRoomController::class)->prefix("hostel_rooms")->middlewa
     Route::get("/{hostelroom}/edit", "edit")->name(".edit");
     Route::post("/{hostelroom}/update", "update")->name(".update");
     Route::get("/{hostelroom}/delete", "destroy")->name(".delete");
+});
+Route::controller(RouteController::class)->prefix("routes")->middleware("auth")->name("routes")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{route}/edit", "edit")->name(".edit");
+    Route::post("/{route}/update", "update")->name(".update");
+    Route::get("/{route}/delete", "destroy")->name(".delete");
+});
+Route::controller(VehicleController::class)->prefix("vehicles")->middleware("auth")->name("vehicles")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{vehicle}/edit", "edit")->name(".edit");
+    Route::post("/{vehicle}/update", "update")->name(".update");
+    Route::get("/{vehicle}/delete", "destroy")->name(".delete");
+});
+Route::controller(VehicleRouteController::class)->prefix("vehicle_routes")->middleware("auth")->name("vehicle_routes")->group(function () {
+    Route::get("/", "index")->name(".index");
+    Route::get("/create", "create")->name(".create");
+    Route::post("/store", "store")->name(".store");
+    Route::get("/{vehicleroute}/edit", "edit")->name(".edit");
+    Route::post("/{vehicleroute}/update", "update")->name(".update");
+    Route::get("/{vehicleroute}/delete", "destroy")->name(".delete");
 });

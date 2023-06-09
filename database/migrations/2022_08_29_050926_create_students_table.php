@@ -27,6 +27,8 @@ return new class extends Migration
             $table->boolean('is_graduated'); 
             $table->string('fee_amount')->default('0'); 
             $table->string('fee_balance')->default('0');
+            $table->integer('hostel_id')->nullable()->default(NULL);
+            
         });
     }
 

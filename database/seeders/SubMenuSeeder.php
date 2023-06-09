@@ -311,6 +311,42 @@ class SubMenuSeeder extends Seeder
                 'has_low_menu' => 0,
                 'menu_id' => 9
             ],
+            [
+                'name' => 'Vehicles',
+                'link' => '/vehicles',
+                'has_low_menu' => 0,
+                'menu_id' => 10
+            ],
+            [
+                'name' => 'Routes',
+                'link' => '/routes',
+                'has_low_menu' => 0,
+                'menu_id' => 10
+            ],
+            [
+                'name' => 'Vehicle Route Mapping',
+                'link' => '/vehicle_routes',
+                'has_low_menu' => 0,
+                'menu_id' => 10
+            ],
+            [
+                'name' => 'Hostels',
+                'link' => '/hostels',
+                'has_low_menu' => 0,
+                'menu_id' => 11
+            ],
+            [
+                'name' => 'Hostel Rooms',
+                'link' => '/hostel_rooms',
+                'has_low_menu' => 0,
+                'menu_id' => 11
+            ],
+            [
+                'name' => 'Hostel Room Types',
+                'link' => '/hostel_room_types',
+                'has_low_menu' => 0,
+                'menu_id' => 11
+            ],
         ]);
     }
 }

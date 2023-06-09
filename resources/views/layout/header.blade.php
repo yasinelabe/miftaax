@@ -188,7 +188,16 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a><i class="fa fa-newspaper-o"></i> Hostel <span
+                                        <a><i class="fa fa-bus"></i> Transportation <span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/vehicles">Vehicles</a></li>
+                                            <li><a href="/routes">Routes</a></li>
+                                            <li><a href="/vehicle_routes">Vehicle Routes</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-building-o"></i> Hostel <span
                                                 class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/hostels">Hostels</a></li>
