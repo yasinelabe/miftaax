@@ -158,7 +158,7 @@
                             </div>
                             <div class="item form-group"><label class="col-form-label col-md-3 col-sm-3 label-align"
                                     for="fee_balance">Fee balance <span class="required">*</span></label>
-                                <div class="col-sm-6"><input type="text" id="fee_balance" name="fee_balance"
+                                <div class="col-sm-6"><input type="text" id="fee_balance" value="0" name="fee_balance"
                                         required="required" class="form-control "></div>
                             </div>
                             <div class="ln_solid"></div>

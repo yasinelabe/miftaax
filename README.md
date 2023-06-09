@@ -28,6 +28,7 @@
 * Hostel rooms
 * Room types
 * Hostel
+* Mapp student to rooms
 
 
 # Certificate# 
@@ -61,6 +62,11 @@
 * Debit Voucher
 * Credit Voucher
 
+
+# System Settings
+
+- Default fee amount
+- 
 
 
 # GPA CALCULATION

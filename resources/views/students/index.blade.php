@@ -82,6 +82,10 @@
                                     </div>
                                 </form>
                             </div>
+
+                            <div class="col-3">
+                                <a class="btn btn-success" href="{{URL::asset('samples/student_template.xlsx')}}" download>Download Sample</a>
+                            </div>
                         </div>
 
 
