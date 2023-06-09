@@ -946,6 +946,127 @@ class FeatureSeeder extends Seeder
                 'created_at' => now(),
                 'route_name' => 'library_member_types.delete',
             ],
+            [
+                'feature_name' => 'View Hostels',
+                'created_at' => now(),
+                'route_name' => 'hostels.index',
+            ],
+            [
+                'feature_name' => 'Create Hostels',
+                'created_at' => now(),
+                'route_name' => 'hostels.create',
+            ],
+            [
+                'feature_name' => 'Edit Hostels',
+                'created_at' => now(),
+                'route_name' => 'hostels.edit',
+            ],
+            [
+                'feature_name' => 'Delete Hostels',
+                'created_at' => now(),
+                'route_name' => 'hostels.delete',
+            ],
+         
+            [
+                'feature_name' => 'View Hostel Rooms',
+                'created_at' => now(),
+                'route_name' => 'hostel_rooms.index',
+            ],
+            [
+                'feature_name' => 'Create Hostel Rooms',
+                'created_at' => now(),
+                'route_name' => 'hostel_rooms.create',
+            ],
+            [
+                'feature_name' => 'Edit Hostel Rooms',
+                'created_at' => now(),
+                'route_name' => 'hostel_rooms.edit',
+            ],
+            [
+                'feature_name' => 'Delete Hostel Rooms',
+                'created_at' => now(),
+                'route_name' => 'hostel_rooms.delete',
+            ],
+            [
+                'feature_name' => 'View Hostel Room Types',
+                'created_at' => now(),
+                'route_name' => 'hostel_room_types.index',
+            ],
+            [
+                'feature_name' => 'Create Hostel Room Types',
+                'created_at' => now(),
+                'route_name' => 'hostel_room_types.create',
+            ],
+            [
+                'feature_name' => 'Edit Hostel Room Types',
+                'created_at' => now(),
+                'route_name' => 'hostel_room_types.edit',
+            ],
+            [
+                'feature_name' => 'Delete Hostel Room Types',
+                'created_at' => now(),
+                'route_name' => 'hostel_room_types.delete',
+            ],
+            [
+                'feature_name' => 'View Vehicles',
+                'created_at' => now(),
+                'route_name' => 'vehicles.index',
+            ],
+            [
+                'feature_name' => 'Create Vehicles',
+                'created_at' => now(),
+                'route_name' => 'vehicles.create',
+            ],
+            [
+                'feature_name' => 'Edit Vehicles',
+                'created_at' => now(),
+                'route_name' => 'vehicles.edit',
+            ],
+            [
+                'feature_name' => 'Delete Vehicles',
+                'created_at' => now(),
+                'route_name' => 'vehicles.delete',
+            ],
+            [
+                'feature_name' => 'View Routes',
+                'created_at' => now(),
+                'route_name' => 'routes.index',
+            ],
+            [
+                'feature_name' => 'Create Routes',
+                'created_at' => now(),
+                'route_name' => 'routes.create',
+            ],
+            [
+                'feature_name' => 'Edit Routes',
+                'created_at' => now(),
+                'route_name' => 'routes.edit',
+            ],
+            [
+                'feature_name' => 'Delete Routes',
+                'created_at' => now(),
+                'route_name' => 'routes.delete',
+            ],
+            [
+                'feature_name' => 'View Vehicle Routes',
+                'created_at' => now(),
+                'route_name' => 'vehicle_routes.index',
+            ],
+            [
+                'feature_name' => 'Create Vehicle Routes',
+                'created_at' => now(),
+                'route_name' => 'vehicle_routes.create',
+            ],
+            [
+                'feature_name' => 'Edit Vehicle Routes',
+                'created_at' => now(),
+                'route_name' => 'vehicle_routes.edit',
+            ],
+            [
+                'feature_name' => 'Delete Vehicle Routes',
+                'created_at' => now(),
+                'route_name' => 'vehicle_routes.delete',
+            ],
          
         ]);
     }

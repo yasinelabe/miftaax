@@ -10,26 +10,6 @@
 * Disable Staff
 
 
-# Library#  -- done
-* Book List
-* Issue Return
-* Add Student
-* Add Staff Member
-
-
-# Transportation# 
-* Routes
-* Vehicles
-* Assign Vehicle
-
-
-
-# Hostel# 
-* Hostel rooms
-* Room types
-* Hostel
-* Mapp student to rooms
-
 
 # Certificate# 
 * Student Certificate
@@ -38,7 +18,6 @@
 * Generate ID Card
 * Staff ID Card
 * Generate Staff ID Card
-
 
 
 # HomeWork# 
@@ -57,16 +36,22 @@
 
 
 # Finance# 
-* Income--done
-* New Income--done
 * Debit Voucher
 * Credit Voucher
 
 
 # System Settings
-
 - Default fee amount
 - 
+
+
+# Student 
+* Link to transportation
+* Map to Hostels
+* Add image to creation
+* Refresh on parent creation
+
+
 
 
 # GPA CALCULATION
