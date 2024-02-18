@@ -27,36 +27,7 @@ class AcademicYearSeeder extends Seeder
             [
                 'year' => '2024-25',
                 'is_active' =>0
-            ],
-            [
-                'year' => '2023-24',
-                'is_active' =>0
-            ],
-            [
-                'year' => '2022-23',
-                'is_active' =>1
-            ],
-            [
-                'year' => '2021-22',
-                'is_active' =>0
-            ],
-            [
-                'year' => '2020-21',
-                'is_active' =>0
-            ],
-            [
-                'year' => '2019-20',
-                'is_active' =>0
-            ],
-            [
-                'year' => '2018-19',
-                'is_active' =>0
-            ],
-            [
-                'year' => '2017-18',
-                'is_active' =>0
-            ],
-  
+            ]
         ]);
     }
 }
