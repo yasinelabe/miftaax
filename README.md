@@ -1,3 +1,6 @@
+![Dashboard](screenshots/dashboard.png)
+
+### TODO
 # Human Resource
 * Staff Registration
 * Staff Directory
@@ -52,11 +55,10 @@
 * Refresh on parent creation
 
 
-
-
 # GPA CALCULATION
 MAX_SCORE = 100
 MIN_SCORE = 50
+
 
 -- MAX GRADE POINTS
 GRADE POINTS MAX = 12
