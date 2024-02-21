@@ -26,7 +26,7 @@ class AcademicYearSeeder extends Seeder
             ],
             [
                 'year' => '2024-25',
-                'is_active' =>0
+                'is_active' =>1
             ]
         ]);
     }
