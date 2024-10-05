@@ -31,6 +31,7 @@
     <link href="{{ URL::asset('css/custom.min.css') }}" rel="stylesheet">
     <!-- jQuery -->
     <script src="{{ URL::asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link href="{{ URL::asset('css/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
